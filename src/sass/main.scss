@@ -1,0 +1,14 @@
+//layout
+@import "utils/colors.scss";
+@import "utils/fonts.scss";
+@import "utils/media.scss";
+@import "utils/mixins.scss";
+@import "utils/global.scss";
+
+// styles
+@import "blocks/button.scss";
+
+h1 {
+    color: $red;
+    font-family: $fonts_bold;
+}

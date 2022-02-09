@@ -1,0 +1,14 @@
+//- extends ./base
+
+include ./mixins/inputField.pug
+    
+block content
+    form.form(name="signin")
+        .form__container
+            h2.form__title Вход
+            +inputField("login", "Логин", "login", "text", "Поле некорректно заполнено", "Логин" )
+            +inputField("login", "Логин", "login", "text", "Поле некорректно заполнено", "Пароль")
+           
+    .block.
+    button.button(name='button') Авторизоваться
+    a(href='/signup.pug') Нет аккаунта?

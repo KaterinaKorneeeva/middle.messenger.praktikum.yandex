@@ -1,0 +1,13 @@
+block vars
+	- const siteTitle = 'title of this site';
+	- const lang = 'ru';
+doctype html
+html(lang=lang)
+	head
+		meta(charset="UTF-8")
+		meta(name="viewport", content="width=device-width, initial-scale=1.0")
+		title #{siteTitle}
+		link(rel="stylesheet" href= '../src/sass/main.scss')
+		
+	body
+		block content

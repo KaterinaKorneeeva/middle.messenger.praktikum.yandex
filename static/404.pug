@@ -1,0 +1,14 @@
+extends ./base
+
+include ./mixins/inputField.pug
+
+block variables
+    - const siteTitle = "Ошибка 404"
+    - const errorTitle = "404"
+    - const errorSubTitle = "Не туда попали"
+    - const errorNavPath = "/index.pug"
+    - const errorBtnText = "Назад к чатам"
+
+block content
+    include ./templates/main.pug
+        include ./templates/error

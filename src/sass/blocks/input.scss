@@ -1,6 +1,7 @@
 /* установим отступ 1rem от нижнего края элемента */
 .input-field {
-    margin-bottom: 1rem;
+    margin-bottom: 10px;
+    position: relative;
   }
   .input-field__input {
     background-color: transparent;
@@ -8,6 +9,8 @@
     border-bottom: 1px solid $blue;
     padding: 7px 0;
     width: 100%;
+    font-size: 13px !important;
+    line-height: 13px !important;
 }
 .input-field__label, 
 .input-field__error-text {
@@ -21,4 +24,8 @@
 }
 .input-field__error-text {
     color: $red;
+    position: absolute;
+    margin-top: 0;
+    bottom: -13px;
 }
+

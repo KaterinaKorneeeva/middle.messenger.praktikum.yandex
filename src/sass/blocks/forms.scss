@@ -8,6 +8,10 @@ form {
     margin: 0 auto;
 }
 
+.form[name="signup"]{
+    min-height: 615px;
+}
+
 .form__container {
     text-align: center;
     display: flex;

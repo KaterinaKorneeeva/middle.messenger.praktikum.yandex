@@ -4,11 +4,25 @@
 @import "utils/media.scss";
 @import "utils/mixins.scss";
 @import "utils/global.scss";
+@import "utils/typography.scss";
 
 // styles
 @import "blocks/button.scss";
+@import "blocks/forms.scss";
+@import "blocks/input.scss";
 
-h1 {
-    color: $red;
-    font-family: $fonts_bold;
+
+main {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+a {
+    color: $blue;
+    font-size: 11px;
+    line-height: 11px;
+    text-decoration: none;
 }

@@ -65,11 +65,6 @@ input {
     line-height: normal;
   }
 
-input:active, :hover, :focus {
-    outline:none;
-    outline-offset: 0;
-    box-shadow: none;
-}
   
 button::-moz-focus-inner,
 input::-moz-focus-inner {
@@ -86,4 +81,11 @@ select {
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
+}
+
+input[type="text"] {
+  font-family: inherit; 
+  font-size: inherit; 
+  line-height: inherit; 
+  margin: 0; 
 }

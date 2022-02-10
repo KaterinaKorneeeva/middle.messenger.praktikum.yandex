@@ -1,28 +1,28 @@
 //layout
-@import "utils/colors.scss";
-@import "utils/fonts.scss";
-@import "utils/media.scss";
-@import "utils/mixins.scss";
-@import "utils/global.scss";
-@import "utils/typography.scss";
+@import 'utils/colors.scss';
+@import 'utils/fonts.scss';
+@import 'utils/media.scss';
+@import 'utils/mixins.scss';
+@import 'utils/global.scss';
+@import 'utils/typography.scss';
 
 // styles
-@import "blocks/button.scss";
-@import "blocks/forms.scss";
-@import "blocks/input.scss";
-
+@import 'blocks/button.scss';
+@import 'blocks/forms.scss';
+@import 'blocks/input.scss';
+@import 'blocks/profile.scss';
 
 main {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
 }
 
 a {
-    color: $blue;
-    font-size: 11px;
-    line-height: 11px;
-    text-decoration: none;
+  color: $blue;
+  font-size: 11px;
+  line-height: 11px;
+  text-decoration: none;
 }

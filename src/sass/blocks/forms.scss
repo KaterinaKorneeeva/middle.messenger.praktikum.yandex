@@ -1,25 +1,25 @@
 form {
-    max-width: 340px;
-    min-height: 460px;
-    padding: 50px 30px 30px;
-    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.14);
-    border-radius: 12px;
-    box-sizing: border-box;
-    margin: 0 auto;
+  max-width: 340px;
+  min-height: 460px;
+  padding: 50px 30px 30px;
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.14);
+  border-radius: 12px;
+  box-sizing: border-box;
+  margin: 0 auto;
 }
 
-.form[name="signup"]{
-    min-height: 615px;
+.form[name='signup'] {
+  min-height: 615px;
 }
 
 .form__container {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
-.form__buttons{
-    justify-self: flex-end;
-    margin-top: auto;
+.form__buttons {
+  justify-self: flex-end;
+  margin-top: auto;
 }

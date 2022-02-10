@@ -4,7 +4,7 @@ html {
 *,
 *::before,
 *::after {
-    box-sizing: border-box
+  box-sizing: border-box;
 }
 
 body {
@@ -18,7 +18,7 @@ body {
 
 ul[class],
 ol[class] {
-    padding: 0
+  padding: 0;
 }
 
 body,
@@ -35,43 +35,40 @@ figcaption,
 blockquote,
 dl,
 dd {
-    margin: 0
+  margin: 0;
 }
 
 ul[class],
 ol[class] {
-    list-style: none
+  list-style: none;
 }
 
 input,
 button,
 textarea,
 select {
-    color: inherit; 
-    font: inherit; 
-    margin: 0; 
-   
+  color: inherit;
+  font: inherit;
+  margin: 0;
 }
 
 button,
-html input[type="button"], 
-input[type="reset"],
-input[type="submit"] {
-  -webkit-appearance: button; 
-  cursor: pointer; 
+html input[type='button'],
+input[type='reset'],
+input[type='submit'] {
+  -webkit-appearance: button;
+  cursor: pointer;
 }
 
 input {
-    line-height: normal;
-  }
+  line-height: normal;
+}
 
-  
 button::-moz-focus-inner,
 input::-moz-focus-inner {
   border: 0;
   padding: 0;
 }
-
 
 button,
 select {
@@ -80,12 +77,12 @@ select {
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
+  -webkit-appearance: none;
 }
 
-input[type="text"] {
-  font-family: inherit; 
-  font-size: inherit; 
-  line-height: inherit; 
-  margin: 0; 
+input[type='text'] {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  margin: 0;
 }

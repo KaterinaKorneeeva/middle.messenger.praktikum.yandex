@@ -1,0 +1,10 @@
+extends ../../base
+include ../../mixins/inputField.pug
+include ../../mixins/modal.pug
+
+block content
+    +modal('Файл загружен', 'Поменять', 'Нужно выбрать файл')
+        form.form(name="photo-edit")
+            .form__container
+                //- +inputField("password", "Пароль", "password", "password", "Поле некорректно заполнено", "Пароль")
+                //- +inputField("confirmPassword", "Пароль (ещё раз)", "password",  "password", "Поле некорректно заполнено", "Пароль (ещё раз)")

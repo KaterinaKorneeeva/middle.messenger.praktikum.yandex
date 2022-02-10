@@ -2,6 +2,7 @@ extends ./base
 
 include ./mixins/inputField.pug
 
+
 block variables
     - const siteTitle = 'Профиль';
 
@@ -11,9 +12,10 @@ block content
         .profile-info
             .profile-info__container
                 .profile-info__head
-                    .profile-info__add-image
-                        img(src='../src/img/add-photo.svg' width='40' height='40' alt='Аватар')
-                    h2.profile-info-name Иван
+                    a(href='#modal')
+                        .profile-info__add-image
+                            img(src='../src/img/add-photo.svg' width='40' height='40' alt='Аватар')
+                        h2.profile-info-name Иван
 
                 .profile-info__fields-container
                 for i in [{name: 'Почта', value: 'pochta@yandex.ru'}, {name: 'Логин', value: 'ivanivanov'}, {name: 'Имя', value: 'Иван'}, {name: 'Фамилия', value: 'Иванов'}, {name: 'Имя в чате', value: 'ivan'}, {name: 'Телефон', value: '+7 (909) 967 30 30'}]
@@ -28,5 +30,6 @@ block content
                         p.profile-info__field-name.button--blue Изменить пароль
                     .profile-info__field
                         p.profile-info__field-name.button--red Выйти
-            
-              
+    //- include ./templates/modals/edit-profile-modal.pug
+    include ./templates/modals/edit-password-modal.pug       
+    //- include ./templates/modals/edit-photo-modal.pug  

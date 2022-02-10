@@ -7,16 +7,17 @@ block variables
 
 block content
     include ./templates/main.pug
-        form.form(name="signup")
-            .form__container
-                h2.form__title Регистрация
-                +inputField("email", "Почта", "mail", "text", "Поле некорректно заполнено", "email" )
-                +inputField("login", "Логин", "login", "text", "Поле некорректно заполнено", "Пароль")
-                +inputField("firstName", "Имя", "firstName", "text", "Поле некорректно заполнено", "Имя")
-                +inputField("secondName", "Фамилия", "secondName", "text", "Поле некорректно заполнено", "Фамилия")
-                +inputField("phone", "Телефон", "phone", "tel", "Поле некорректно заполнено", "Телефон")
-                +inputField("password", "Пароль", "password", "password", "Поле некорректно заполнено", "Пароль")
-                +inputField("confirmPassword", "Пароль (ещё раз)", "password",  "password", "Поле некорректно заполнено", "Пароль (ещё раз)")
-                .form__buttons
-                    button.button(name='button') Зарегистрироваться
-                    a(href='/profile.pug') Войти
+        .block
+            h2.block__title Регистрация
+            form.form(name="signup")
+                .form__container
+                    +inputField("email", "Почта", "mail", "text", "Поле некорректно заполнено", "email" )
+                    +inputField("login", "Логин", "login", "text", "Поле некорректно заполнено", "Пароль")
+                    +inputField("firstName", "Имя", "firstName", "text", "Поле некорректно заполнено", "Имя")
+                    +inputField("secondName", "Фамилия", "secondName", "text", "Поле некорректно заполнено", "Фамилия")
+                    +inputField("phone", "Телефон", "phone", "tel", "Поле некорректно заполнено", "Телефон")
+                    +inputField("password", "Пароль", "password", "password", "Поле некорректно заполнено", "Пароль")
+                    +inputField("confirmPassword", "Пароль (ещё раз)", "password",  "password", "Поле некорректно заполнено", "Пароль (ещё раз)")
+                    .form__buttons
+                        button.button(name='button') Зарегистрироваться
+                        a(href='/profile.pug') Войти

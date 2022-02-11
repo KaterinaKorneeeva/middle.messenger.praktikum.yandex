@@ -1,5 +1,5 @@
-mixin modal (modalTitle, modalBtnText, modalErrorText)
-    #modal.modal
+mixin modal (modalId, modalTitle, modalBtnText, modalErrorText)
+    div(id=modalId).modal
         .modal__container
             h3.modal__title=modalTitle
             block

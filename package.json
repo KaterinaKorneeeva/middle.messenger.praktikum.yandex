@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "parcel -p 3000 ./static/*.pug",
-    "build": "parcel build ./static/*.pug"
+    "start": "parcel -p 3000  ./src/pages/*.pug ./static/*.pug",
+    "build": "parcel build  ./src/pages/*.pug ./static/*.pug"
   },
   "author": "",
   "license": "ISC",

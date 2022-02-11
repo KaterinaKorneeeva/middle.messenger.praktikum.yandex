@@ -20,23 +20,22 @@
     width: 0;
     height: 0;
     position: absolute;
-      content: 'Поменять аватар';
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: $black;
-      opacity: 0;
-      color: $white;
-      font-size: 13px;
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      transition: opacity $skills-start-anim;
+    content: 'Поменять аватар';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $black;
+    opacity: 0;
+    color: $white;
+    font-size: 13px;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    transition: opacity $skills-start-anim;
   }
   &:hover {
     &::after {
       opacity: 0.4;
-      
     }
   }
 }
@@ -67,4 +66,15 @@
 .profile-info__field-value {
   font-size: 13px;
   line-height: 13px;
+}
+
+.profile-info__edit-btn,
+.profile-info__edit-pass {
+  color: $blue;
+  cursor: pointer;
+}
+
+.profile-info__logout {
+  color: $red;
+  cursor: pointer;
 }

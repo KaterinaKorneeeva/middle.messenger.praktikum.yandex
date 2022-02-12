@@ -19,5 +19,8 @@
   "dependencies": {
     "jstransformer-markdown-it": "^2.1.0",
     "normalize.css": "8.0.1"
+  },
+  "engines": {
+    "node": ">=16.13.2"
   }
 }

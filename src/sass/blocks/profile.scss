@@ -20,7 +20,7 @@
 
   &::after {
     position: absolute;
-    content: "Поменять аватар";
+    content: 'Поменять аватар';
     display: flex;
     align-items: center;
     justify-content: center;
@@ -81,4 +81,19 @@
 .profile-info__logout {
   color: $red;
   cursor: pointer;
+}
+
+.profile-navigate {
+  position: absolute;
+  height: 100%;
+  left: 0;
+  background: $grey1;
+  width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.profile-navigate__button {
+  display: flex;
 }

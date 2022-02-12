@@ -1,17 +1,17 @@
-extends ./layout/base
+extends ../layout/base
 
-include ./mixins/inputField.pug
+include ../mixins/inputField.pug
 
 block variables
     - const siteTitle = 'Профиль';
 
 block content
-    include ./templates/main.pug
+    include ../templates/main.pug
         .profile-info
             .profile-info__container
                 .profile-info__head
                     .profile-info__add-image
-                        img(src='../sttatic/img/add-photo.svg' width='40' height='40' alt='Аватар')
+                        img(src='../../static/img/add-photo.svg' width='40' height='40' alt='Аватар')
                     p.profile-info-name.big Иван
 
                 .profile-info__fields-container
@@ -27,6 +27,6 @@ block content
                         p.profile-info__field-name.button--blue.profile-info__edit-pass Изменить пароль
                     .profile-info__field
                         a.profile-info__field-name.profile-info__logout(href='/') Выйти
-    include ./templates/modals/edit-profile-modal.pug
-    include ./templates/modals/edit-password-modal.pug       
-    include ./templates/modals/edit-photo-modal.pug  
+    include ../templates/modals/edit-profile-modal.pug
+    include ../templates/modals/edit-password-modal.pug       
+    include ../templates/modals/edit-photo-modal.pug  

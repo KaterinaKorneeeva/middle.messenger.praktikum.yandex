@@ -1,6 +1,6 @@
-extends ./layout/base
+extends ../layout/base
 
-include ./mixins/inputField.pug
+include ../mixins/inputField.pug
 
 block variables
     - const siteTitle = "Ошибка 404"
@@ -10,5 +10,5 @@ block variables
     - const errorBtnText = "Назад к чатам"
 
 block content
-    include ./templates/main
-        include ./templates/error/error
+    include ../templates/main
+        include ../templates/error/error

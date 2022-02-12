@@ -5,6 +5,7 @@
   flex-direction: column;
   text-align: center;
 }
+
 .profile-info__add-image {
   position: relative;
   background-color: $grey1;
@@ -16,11 +17,10 @@
   justify-content: center;
   margin-bottom: 20px;
   cursor: pointer;
+
   &::after {
-    width: 0;
-    height: 0;
     position: absolute;
-    content: 'Поменять аватар';
+    content: "Поменять аватар";
     display: flex;
     align-items: center;
     justify-content: center;
@@ -33,6 +33,7 @@
     border-radius: 50%;
     transition: opacity $skills-start-anim;
   }
+
   &:hover {
     &::after {
       opacity: 0.4;
@@ -49,15 +50,18 @@
 .profile-info__container {
   width: 50%;
 }
+
 .profile-info__fields-container {
   margin-top: 60px;
 }
+
 .profile-info__field {
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid $grey3;
   padding: 10px 0;
 }
+
 .profile-info__field-value {
   color: $grey2;
 }

@@ -1,4 +1,4 @@
-extends ./layout/base
+extends ../layout/base
 
 block variables
     - const siteTitle = "Ошибка 500"
@@ -7,5 +7,5 @@ block variables
     - const errorNavPath = "/index.pug"
     - const errorBtnText = "Назад к чатам"
 block content
-    include ./templates/main
-        include ./templates/error/error
+    include ../templates/main
+        include ../templates/error/error

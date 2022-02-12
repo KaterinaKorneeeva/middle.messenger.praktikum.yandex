@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "parcel -p 3000  ./src/pages/*.pug ./src/*.pug",
-    "build": "parcel build  ./src/pages/*.pug ./src/*.pug"
+    "start": "parcel --no-cache --port 3000 src/pages/*.pug",
+    "build": "parcel build src/pages/*.pug"
   },
   "author": "",
   "license": "ISC",
@@ -19,8 +19,5 @@
   "dependencies": {
     "jstransformer-markdown-it": "^2.1.0",
     "normalize.css": "8.0.1"
-  },
-  "engines": {
-    "node": ">=16.13.2"
   }
 }

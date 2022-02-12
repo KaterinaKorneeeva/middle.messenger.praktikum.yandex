@@ -9,6 +9,7 @@
 @import 'blocks/input.scss';
 @import 'blocks/profile.scss';
 @import 'blocks/modal.scss';
+@import 'blocks/errorBlock.scss';
 
 main {
   display: flex;
@@ -35,6 +36,7 @@ a {
   display: flex;
   flex-direction: column;
 }
-.error{
+
+.error {
   color: $red;
 }

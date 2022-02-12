@@ -1,0 +1,13 @@
+extends ../../layout/base
+include ../../mixins/inputField.pug
+include ../../mixins/modal.pug
+
+block content
+    +modal('modalEditProfile', 'Изменить данные', 'Сохранить' )
+        form.form(name="profile-edit")
+            .form__container
+                +inputField("email", "Почта", "mail", "text", "Поле некорректно заполнено", "email" )
+                +inputField("login", "Логин", "login", "text", "Поле некорректно заполнено", "Пароль")
+                +inputField("firstName", "Имя", "firstName", "text", "Поле некорректно заполнено", "Имя")
+                +inputField("secondName", "Фамилия", "secondName", "text", "Поле некорректно заполнено", "Фамилия")
+                +inputField("phone", "Телефон", "phone", "tel", "Поле некорректно заполнено", "Телефон")

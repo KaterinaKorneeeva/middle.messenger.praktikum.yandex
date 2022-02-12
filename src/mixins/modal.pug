@@ -1,0 +1,8 @@
+mixin modal (modalId, modalTitle, modalBtnText, modalErrorText)
+    div(id=modalId).modal
+        .modal__container
+            h3.modal__title=modalTitle
+            block
+            a.modal__button(href='/index.pug')
+                button.button=modalBtnText
+                .small.modal__error-text.error=modalErrorText

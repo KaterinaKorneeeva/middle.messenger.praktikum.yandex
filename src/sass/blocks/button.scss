@@ -1,0 +1,17 @@
+.button {
+  width: 280px;
+  color: $white;
+  padding: 10px 0;
+  background-color: $blue;
+  cursor: pointer;
+  font-family: $fonts;
+  font-size: 13px;
+  line-height: 13px;
+  display: block;
+  text-align: center;
+  border: none;
+
+  &:hover {
+    color: $white;
+  }
+}

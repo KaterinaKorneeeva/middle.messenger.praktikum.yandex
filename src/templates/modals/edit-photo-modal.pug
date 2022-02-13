@@ -1,0 +1,9 @@
+extends ../../layout/base
+include ../../mixins/inputField.pug
+include ../../mixins/modal.pug
+
+block content
+    +modal('modalAddPhoto', 'Файл загружен', 'Поменять', 'Нужно выбрать файл')
+        form.form(name="photo-edit")
+            .form__container
+                +inputField("avatar", "Avatar", "avatar", "file", "Нужно выбрать файл", "avatar")

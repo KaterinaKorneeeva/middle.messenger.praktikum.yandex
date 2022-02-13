@@ -1,0 +1,37 @@
+.input-field {
+  margin-bottom: 10px;
+  position: relative;
+
+  &:last-of-type {
+    margin-bottom: 30px;
+  }
+}
+
+.input-field__input {
+  background-color: transparent;
+  border: 0 solid;
+  border-bottom: 1px solid $blue;
+  padding: 7px 0;
+  width: 100%;
+  font-size: 13px !important;
+  line-height: 13px !important;
+}
+
+.input-field__label,
+.input-field__error-text {
+  display: block;
+  margin-top: 7px;
+  font-size: 8px;
+  text-align: left;
+}
+
+.input-field__label {
+  color: $grey2;
+}
+
+.input-field__error-text {
+  color: $red;
+  position: absolute;
+  margin-top: 0;
+  bottom: -13px;
+}

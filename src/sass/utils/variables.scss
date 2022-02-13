@@ -1,0 +1,32 @@
+@import "utils/fonts.scss";
+
+// colors
+$black: #1e1e1e;
+$white: #ffffff;
+
+$grey1: #efefef;
+$grey2: #999999;
+$grey3: #eaeaea;
+
+$blue: #3369f3;
+$blue1: #e4edfd;
+
+$red: #ff2f2f;
+
+
+// FONTS
+$fonts: opensans, arial, sans-serif;
+$fonts_bold: opensansbold, arial, sans-serif;
+$bold: 600;
+$regular: 400;
+$medium: 500;
+
+// SIZES window
+$tablet: 768px;
+$laptop: 800px;
+$tablet_l: 800px;
+$laptopMax: 1366px;
+$desktop: 1380px;
+
+// ANIMATION
+$skills-start-anim: 0.3s;

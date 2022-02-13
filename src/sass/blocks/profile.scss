@@ -45,10 +45,9 @@
   width: 100%;
   display: flex;
   justify-content: center;
-}
-
-.profile-info__container {
-  width: 50%;
+  &__container {
+    width: 50%;
+  }
 }
 
 .profile-info__fields-container {
@@ -60,13 +59,12 @@
   justify-content: space-between;
   border-bottom: 1px solid $grey3;
   padding: 10px 0;
+  &__field-value {
+    color: $grey2;
+  }
 }
 
-.profile-info__field-value {
-  color: $grey2;
-}
-
-.profile-info__field-name,
+.profile-info .profile-info__field-name,
 .profile-info__field-value {
   font-size: 13px;
   line-height: 13px;
@@ -92,8 +90,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  &__button {
+    display: flex;
+  }
 }
 
-.profile-navigate__button {
-  display: flex;
-}

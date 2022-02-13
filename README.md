@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-## Пулл реквест
-https://github.com/KaterinaKorneeeva/middle.messenger.praktikum.yandex/pull/4
-
- 
-
-=======
 ## Описание 
 Чат
 
@@ -16,4 +9,3 @@ https://www.figma.com/file/24EUnEHGEDNLdOcxg7ULwV/Chat?node-id=0%3A1
 
 ## Прототип 
 https://nifty-joliot-a7bb5d.netlify.app/
->>>>>>> sprint_1

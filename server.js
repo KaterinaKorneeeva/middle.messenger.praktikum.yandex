@@ -8,6 +8,3 @@ app.use(express.static(path.resolve('dist')))
 app.listen(PORT, () => {
     console.log(`Сервер запущен на порту ${PORT}`)
 })
-app.use((req, res) => {
-    res.redirect('./404.html');
-})

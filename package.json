@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel --no-cache --port 3000 src/pages/*.pug",
+    "server": " node ./server.js",
     "build": "parcel build src/pages/*.pug"
   },
   "author": "",

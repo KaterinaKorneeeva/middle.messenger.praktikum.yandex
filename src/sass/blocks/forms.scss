@@ -1,0 +1,21 @@
+form {
+  margin: 0 auto;
+  background: $white;
+  height: 100%;
+}
+
+.form[name="signup"] {
+  min-height: 510px;
+}
+
+.form__container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.form__buttons {
+  justify-self: flex-end;
+  margin-top: auto;
+}

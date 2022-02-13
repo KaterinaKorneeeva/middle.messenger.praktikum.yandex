@@ -1,0 +1,15 @@
+@font-face {
+  font-family: "opensans";
+  src: url("./../../static/fonts/opensans.woff2") format("woff2"), url("./../../static/fonts/opensans.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "opensansbold";
+  src: url("./../../static/fonts/opensansbold.woff2") format("woff2"), url("./../../static/fonts/opensansbold.woff") format("woff");
+  font-weight: bold;
+  font-style: bold;
+  font-display: swap;
+}

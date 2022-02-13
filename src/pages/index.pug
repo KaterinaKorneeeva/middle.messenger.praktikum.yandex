@@ -1,0 +1,12 @@
+extends ../layout/base
+
+include ../mixins/inputField.pug
+
+block variables
+    - const siteTitle = 'Приложение чат';
+
+block content
+    include ../templates/main.pug
+        include ./login.pug
+
+        

@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const editPassBtn = document.querySelector(".profile-info__edit-pass");
     const addProfileBtn = document.querySelector(".profile-info__add-image");
 
-
     if (addProfileBtn) {
         addProfileBtn.addEventListener('click', function () {
             modalAddPhoto.classList.add('active');

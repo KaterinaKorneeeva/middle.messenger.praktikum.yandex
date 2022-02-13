@@ -1,0 +1,42 @@
+//layout
+@import 'utils/variables.scss';
+@import 'utils/global.scss';
+@import 'utils/typography.scss';
+
+// styles
+@import 'blocks/button.scss';
+@import 'blocks/forms.scss';
+@import 'blocks/input.scss';
+@import 'blocks/profile.scss';
+@import 'blocks/modal.scss';
+@import 'blocks/errorBlock.scss';
+
+main {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+a {
+  color: $blue;
+  font-size: 11px;
+  line-height: 11px;
+  text-decoration: none;
+}
+
+.block {
+  min-width: 340px;
+  min-height: 460px;
+  padding: 50px 30px 30px;
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.14);
+  border-radius: 12px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.error {
+  color: $red;
+}

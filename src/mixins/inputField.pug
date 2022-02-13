@@ -1,0 +1,5 @@
+mixin inputField (inputName, labelName, id, type, errorText, placeholder)
+    .input-field
+        label.input-field__label(for=id)=labelName
+        input.input-field__input(id=id name=inputName placeholder=placeholder type=type)
+        p.input-field__error-text=errorText

@@ -1,0 +1,37 @@
+extends ../layout/base
+
+include ../mixins/inputField.pug
+
+block variables
+    - const siteTitle = 'Профиль';
+
+block content
+    include ../templates/main.pug
+        .profile-info
+            .profile-info__container
+                .profile-info__head
+                    .profile-info__add-image
+                        img(src='../../static/img/add-photo.svg' width='40' height='40' alt='Аватар')
+                    p.profile-info-name.big Иван
+
+                .profile-info__fields-container
+                for i in [{name: 'Почта', value: 'pochta@yandex.ru'}, {name: 'Логин', value: 'ivanivanov'}, {name: 'Имя', value: 'Иван'}, {name: 'Фамилия', value: 'Иванов'}, {name: 'Имя в чате', value: 'ivan'}, {name: 'Телефон', value: '+7 (909) 967 30 30'}]
+                    .profile-info__field
+                        p.profile-info__field-name=i.name
+                        p.profile-info__field-value=i.value
+
+                .profile-info__fields-container
+                    .profile-info__field
+                        p.profile-info__field-name.button--blue.profile-info__edit-btn Изменить данные
+                    .profile-info__field
+                        p.profile-info__field-name.button--blue.profile-info__edit-pass Изменить пароль
+                    .profile-info__field
+                        a.profile-info__field-name.profile-info__logout(href='/') Выйти
+
+        .profile-navigate
+            .profile-navigate__button
+                a(href="/chat.pug")
+                    img(src='../../static/img/arrow.svg' width='28' height='28' alt='Назад к чатам')
+    include ../templates/modals/edit-profile-modal.pug
+    include ../templates/modals/edit-password-modal.pug       
+    include ../templates/modals/edit-photo-modal.pug  

@@ -15,6 +15,12 @@
     display: flex;
     border-top: 1px solid $grey3;
     padding: 15px 0;
+    cursor: pointer;
+  }
+
+  &:hover, .active{
+    background-color: $blue1;
+    transition: background-color $skills-start-anim;
   }
 
   &__image {
@@ -72,6 +78,7 @@
     font-size: 11px;
     line-height: 12px;
   }
+  
 }
 
 .chat-area {

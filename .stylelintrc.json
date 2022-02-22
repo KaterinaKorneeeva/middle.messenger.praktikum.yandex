@@ -1,0 +1,18 @@
+{
+    "extends": "stylelint-config-standard",
+    "rules": {
+        "selector-class-pattern": null,
+        "color-function-notation": "modern",
+        "property-no-vendor-prefix": [
+            true,
+            {
+              "ignoreProperties": [
+                "border-image",
+                "/^mask-/"
+              ]
+            }
+          ]
+      }
+     
+  }
+  

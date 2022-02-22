@@ -1,10 +1,9 @@
-const express = require('express')
-const path = require('path')
-const app = express()
-const PORT = 3000
+const express = require('express');
+const path = require('path');
 
-app.use(express.static(path.resolve('dist')))
+const app = express();
+const PORT = 3000;
 
-app.listen(PORT, () => {
-    console.log(`Сервер запущен на порту ${PORT}`)
-})
+app.use(express.static(path.resolve('dist')));
+
+app.listen(PORT, () => {});

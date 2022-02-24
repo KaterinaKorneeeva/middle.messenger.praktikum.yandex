@@ -1,9 +1,3 @@
-    import compileTemplate from './template.pug';
-
-    const app = document.getElementById('app')
-    app.innerHTML = compileTemplate({ whom: 'World' });
-
-
 // document.addEventListener('DOMContentLoaded', () => {
 
 //     const modalAddPhoto = document.getElementById('modalAddPhoto');

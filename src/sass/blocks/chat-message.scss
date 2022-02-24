@@ -1,0 +1,31 @@
+.chat-message {
+  display: flex;
+
+  &__container {
+    border-radius: 10px;
+    padding: 10px;
+    width: 40%;
+  }
+
+  &--incoming {
+    justify-content: flex-start;
+    margin-bottom: 10px;
+
+    .chat-message__container {
+      background-color: #fbfbfb;
+    }
+  }
+
+  &--sent {
+    justify-content: flex-end;
+
+    .chat-message__container {
+      background-color: #e4edfd;
+    }
+  }
+
+  &__text {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}

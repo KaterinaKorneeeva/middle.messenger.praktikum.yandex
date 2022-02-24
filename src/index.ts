@@ -1,3 +1,39 @@
+import {renderDOM} from './utils/renderDOM'
+import {MainPage} from './pages/index';
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const mainPage = new MainPage() 
+
+    alert(2)
+    
+    //     console.log('MainPageMainPage',mainPage);
+    renderDOM('#app' , `<div>dddd</div>`);
+})
+
+// document.addEventListener('DOMContentLoaded', () => {
+  
+//     const mainPage = new MainPage() 
+
+
+//     // const button = new Button ({
+//     //     label: 'Click me',
+//     //     events: {
+//     //         click: () => console.log('Clicked')
+//     //     }
+//     // })
+
+//     console.log('MainPageMainPage',mainPage);
+//     renderDOM('#ap11' , mainPage);
+
+//     // // Через секунду контент изменится сам, достаточно обновить пропсы
+//     // setTimeout(() => {
+//     //     button.setProps({
+//     //     text: 'Click me, please',
+//     //     });
+//     // }, 1000);
+// }
+
 // document.addEventListener('DOMContentLoaded', () => {
 
 //     const modalAddPhoto = document.getElementById('modalAddPhoto');

@@ -1,18 +1,49 @@
-import Block from '../../utils/Block'
-// import temlate from './index.pug'
-import Button from '../../components/Button'
-
+import Block from '../../utils/Block';
+import template from './login.pug'
+import Button from "../../components/Button";
+import '../../sass/main.scss'
+// interface ButtonProps {
+//   label: string;
+//   events?: {
+//       onClick?: () => void;
+// }
+// }
 export class LoginPage extends Block {
 
-    render() {
-        const button = new Button ({
-            label : 'text'
-        });
+
+  constructor() {
+  
+    super({
+        label:  'Вход',
+      })
+}
 
 
-    return '<div>ddddd</div>'
-        // return this.compile(template, {button});
 
-        
-    }
+  // constructor() {
+  //   super({
+  //       button: new Button({
+  //         label: 'Click 11111',
+  //         events : {
+  //           click: () => console.log('clicked')
+  //         }
+  //       })
+
+  //   });
+  // }
+
+  protected initChildren() {
+    this.children.button = new Button ({
+          label : 'Вход'
+      });
+  }
+
+
+  render() {
+    // return this.compile(template);
+    return this.compile(template, { ...this.props });
+    // return this.compile(template, {
+    //   button,
+    // })
+  }
 }

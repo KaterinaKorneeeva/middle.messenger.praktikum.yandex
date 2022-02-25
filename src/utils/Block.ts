@@ -138,7 +138,6 @@ constructor (propsAndChildren: any = {}) {
 
 
   getContent(): HTMLElement | null {
-    alert(4)
       return this.element;
     // // Хак, чтобы вызвать CDM только после добавления в DOM
     // if (this.element?.parentNode?.nodeType === Node.DOCUMENT_FRAGMENT_NODE) {
@@ -222,7 +221,9 @@ constructor (propsAndChildren: any = {}) {
     });
     
     const htmlString = template(context);
-    console.log('htmlStringhtmlStringhtmlString',htmlString);
+
+    
+    
     fragment.innerHTML = htmlString;
  
 

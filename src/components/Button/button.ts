@@ -12,9 +12,7 @@ class Button extends Block {
   }
 
   render() {
-    // return `<div>${this.props.label}</div>`;
     return this.compile(template, { ...this.props });
-    // return this.compile(template, { whom: 'Worldsss' });
   }
 }
 export default Button;

@@ -12,38 +12,28 @@ export class LoginPage extends Block {
 
 
   constructor() {
-  
-    super({
-        label:  'Вход',
-      })
-}
-
-
-
-  // constructor() {
-  //   super({
-  //       button: new Button({
-  //         label: 'Click 11111',
-  //         events : {
-  //           click: () => console.log('clicked')
-  //         }
-  //       })
-
-  //   });
-  // }
+        super({
+            label: 'Test',
+            button:  new Button({
+              label: 'Click Test',
+              events : {
+                click: () => console.log('clicked')
+              }
+            })
+})
+  }
 
   protected initChildren() {
-    this.children.button = new Button ({
-          label : 'Вход'
-      });
+    console.log('11111', this.props.button);
+    this.children.button = this.props.button;
   }
 
 
   render() {
+    console.log('11111', this.props);
+    console.log('this.children.button ', this.children.button );
     // return this.compile(template);
-    return this.compile(template, { ...this.props });
-    // return this.compile(template, {
-    //   button,
-    // })
+    // return this.compile(template, { ...this.props });
+    return this.compile(template, {...this.props} )
   }
 }

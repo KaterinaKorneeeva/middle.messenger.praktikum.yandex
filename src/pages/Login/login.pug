@@ -1,6 +1,6 @@
 
 include ../../mixins/inputField.pug
-    
+
 block variables
     - const siteTitle = 'Приложение чат';
 
@@ -13,6 +13,6 @@ block content
                     +inputField("login", "Логин", "login", "text", "Поле некорректно заполнено", "Логин" )
                     +inputField("login", "Логин", "login", "text", "Поле некорректно заполнено", "Пароль")
                 
-                    .form__buttons
+                    .form__buttons !{button}
                         button.button(name='button') Авторизоваться
                         a(href='/signup.pug') Нет аккаунта?

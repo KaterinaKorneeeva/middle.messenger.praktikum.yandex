@@ -138,6 +138,7 @@ constructor (propsAndChildren: any = {}) {
 
 
   getContent(): HTMLElement | null {
+    console.log('this.element',this.element)
       return this.element;
     // // Хак, чтобы вызвать CDM только после добавления в DOM
     // if (this.element?.parentNode?.nodeType === Node.DOCUMENT_FRAGMENT_NODE) {
@@ -204,6 +205,7 @@ constructor (propsAndChildren: any = {}) {
     return document.createElement(tagName);
   }
 
+  
   compile(template: (context: any) => string , context: any) {
 
     const fragment = this._createDocumentElement('template') as HTMLTemplateElement;
@@ -226,16 +228,40 @@ constructor (propsAndChildren: any = {}) {
     
     fragment.innerHTML = htmlString;
  
+    Object.entries(this.children).forEach(([id, component]) => {
+      /**
+       * Ищем заглушку по id
+       */
+      const stub = fragment.content.querySelector(`[data-id="${id}"]`);
 
-    Object.entries(this.children).forEach(([key, child]) => {
+      console.log('stubstubstub',component)
+
+      if (!stub) {
+        return;
+      }
+
+      /**
+       * Заменяем заглушку на component._element
+       */
+      stub.replaceWith(component.getContent());
+
+
+    });
+
+  //   Object.entries(this.children).forEach(([key, child]) => {
+
+  //     alert(1);
+  //     console.log('fragment.content',fragment.content.querySelector(`data-id="id- ${child.id}"]`))
         
-        const stub = fragment.content.querySelector(`data-id="id- ${child.id}"]`);
-        if (!stub) {
-            return;
-        }
+  //       const stub = fragment.content.querySelector(`data-id="id- ${child.id}"]`);
+  //       if (!stub) {
+  //           return;
+  //       }
 
-        stub.replaceWith(child.getContent()!)
-   });
+  //       stub.replaceWith(child.getContent()!)
+  //  });
+
+  console.log(' fragment.content', fragment.content)
    return fragment.content;
 
   }

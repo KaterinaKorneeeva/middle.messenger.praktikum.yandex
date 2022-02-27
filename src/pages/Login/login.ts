@@ -9,8 +9,6 @@ import '../../sass/main.scss'
 // }
 // }
 export class LoginPage extends Block {
-
-
   constructor() {
         super({
             label: 'Test',
@@ -30,10 +28,10 @@ export class LoginPage extends Block {
 
 
   render() {
-    console.log('11111', this.props);
-    console.log('this.children.button ', this.children.button );
+    console.log('11111', this.props.button);
+    console.log('this.children.button111', this.children.button );
     // return this.compile(template);
     // return this.compile(template, { ...this.props });
-    return this.compile(template, {...this.props} )
+    return this.compile(template, this.children.button )
   }
 }

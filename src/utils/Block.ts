@@ -121,6 +121,8 @@ constructor (propsAndChildren: any = {}) {
     const fragment = this.render();
     const newElement = fragment.firstElementChild as HTMLElement;
 
+    console.log('newElementnewElement',newElement);
+
     if  (this._element) {
         this._removeEvents();
         this._element.replaceWith(newElement);
@@ -128,7 +130,11 @@ constructor (propsAndChildren: any = {}) {
     
 
     this._element = newElement;
+    console.log('newElementnewElement',newElement);
+
     this._addEvents();
+
+
   }
 
   protected render(): DocumentFragment {
@@ -210,56 +216,51 @@ constructor (propsAndChildren: any = {}) {
 
     const fragment = this._createDocumentElement('template') as HTMLTemplateElement;
 
-    /**
-     * Заменяем заглушки на компоненты
-     */
     Object.entries(this.children).forEach(([key, child]) => {
         if (Array.isArray(child)) {
-            context[key] = child.map((ch =>  `<div [data-id="id- ${ch.id}"]></div>`));
+            context[key] = child.map((ch =>`<div [data-id="id- ${ch.id}"]></div>`));
             return;
         }
         
         context[key]= `<div [data-id="id- ${child.id}"]></div>`
     });
+
+    console.log('this.children)this.children)',this.children);
+
     
     const htmlString = template(context);
-
+    
     
     
     fragment.innerHTML = htmlString;
  
-    Object.entries(this.children).forEach(([id, component]) => {
-      /**
-       * Ищем заглушку по id
-       */
-      const stub = fragment.content.querySelector(`[data-id="${id}"]`);
+    // Object.entries(this.children).forEach(([id, component]) => {
+    //   /**
+    //    * Ищем заглушку по id
+    //    */
+    //   const stub = fragment.content.querySelector(`[data-id="${id}"]`);
 
-      console.log('stubstubstub',component)
+    //   console.log('stubstubstub',component)
 
-      if (!stub) {
-        return;
-      }
-
-      /**
-       * Заменяем заглушку на component._element
-       */
-      stub.replaceWith(component.getContent());
+    //   /**
+    //    * Заменяем заглушку на component._element
+    //    */
+    //   stub.replaceWith(component.getContent());
 
 
-    });
+    // });
 
-  //   Object.entries(this.children).forEach(([key, child]) => {
+    Object.entries(this.children).forEach(([key, child]) => {
 
-  //     alert(1);
-  //     console.log('fragment.content',fragment.content.querySelector(`data-id="id- ${child.id}"]`))
+    
+      console.log('fragment.content',fragment.content.querySelector(`[data-id="id- ${child.id}"]`))
         
-  //       const stub = fragment.content.querySelector(`data-id="id- ${child.id}"]`);
-  //       if (!stub) {
-  //           return;
-  //       }
-
-  //       stub.replaceWith(child.getContent()!)
-  //  });
+        const stub = fragment.content.querySelector(`[data-id="id- ${child.id}"]`);
+        if (!stub) {
+            return;
+        }
+        stub.replaceWith(child.getContent()!)
+   });
 
   console.log(' fragment.content', fragment.content)
    return fragment.content;

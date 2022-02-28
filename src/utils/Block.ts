@@ -120,17 +120,12 @@ constructor (propsAndChildren: any = {}) {
   _render() {
     const fragment = this.render();
     const newElement = fragment.firstElementChild as HTMLElement;
-
-    console.log('newElementnewElement',newElement);
-
     if  (this._element) {
         this._removeEvents();
         this._element.replaceWith(newElement);
     }
     
-
     this._element = newElement;
-    console.log('newElementnewElement',newElement);
 
     this._addEvents();
 
@@ -144,7 +139,6 @@ constructor (propsAndChildren: any = {}) {
 
 
   getContent(): HTMLElement | null {
-    console.log('this.element',this.element)
       return this.element;
     // // Хак, чтобы вызвать CDM только после добавления в DOM
     // if (this.element?.parentNode?.nodeType === Node.DOCUMENT_FRAGMENT_NODE) {
@@ -218,53 +212,23 @@ constructor (propsAndChildren: any = {}) {
 
     Object.entries(this.children).forEach(([key, child]) => {
         if (Array.isArray(child)) {
-            context[key] = child.map((ch =>`<div [data-id="id- ${ch.id}"]></div>`));
+            context[key] = child.map((ch =>`<div data-id="id-${ch.id}"></div>`));
             return;
         }
         
-        context[key]= `<div [data-id="id- ${child.id}"]></div>`
+        context[key]= `<div data-id="id-${child.id}"></div>`
     });
-
-    console.log('this.children)this.children)',this.children);
-
-    
     const htmlString = template(context);
-    
-    
-    
     fragment.innerHTML = htmlString;
- 
-    // Object.entries(this.children).forEach(([id, component]) => {
-    //   /**
-    //    * Ищем заглушку по id
-    //    */
-    //   const stub = fragment.content.querySelector(`[data-id="${id}"]`);
-
-    //   console.log('stubstubstub',component)
-
-    //   /**
-    //    * Заменяем заглушку на component._element
-    //    */
-    //   stub.replaceWith(component.getContent());
-
-
-    // });
 
     Object.entries(this.children).forEach(([key, child]) => {
-
-    
-      console.log('fragment.content',fragment.content.querySelector(`[data-id="id- ${child.id}"]`))
-        
-        const stub = fragment.content.querySelector(`[data-id="id- ${child.id}"]`);
+        const stub = fragment.content.querySelector(`[data-id="id-${child.id}"]`);
         if (!stub) {
             return;
         }
         stub.replaceWith(child.getContent()!)
    });
-
-  console.log(' fragment.content', fragment.content)
    return fragment.content;
-
   }
 }
 

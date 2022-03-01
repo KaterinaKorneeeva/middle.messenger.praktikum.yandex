@@ -1,6 +1,6 @@
 import Block from '../../../utils/block';
 import { Error } from '../../../components/Error'
-import template from './template.pug'
+import template from '../template.pug'
 
 export class Error404 extends Block {
     constructor() {
@@ -9,8 +9,9 @@ export class Error404 extends Block {
                 errorTitle: 'Ошибка 404',
                 errorSubTitle: 'Не туда попали',
                 errorBtnText: 'Назад к чатам',
+                errorNavPath: '/index.pug'
             }),
-        }, 'div', '#app')
+        })
     }
 
     render() {

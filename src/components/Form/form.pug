@@ -1,0 +1,9 @@
+.block
+    h2.block__title Вход
+    form.form(name="signin")
+        .form__container !{content}
+            h2.form__title !{title}
+                | !{content}
+            .form__buttons
+                button.button(name='button') !{title}
+                a(href='/signup.pug') Нет аккаунта?

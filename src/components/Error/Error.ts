@@ -5,6 +5,7 @@ interface ErrorProps {
     errorTitle: string;
     errorSubTitle: string;
     errorBtnText: string;
+    errorNavPath: string;
 }
 
 export default class Error extends Block {
@@ -13,10 +14,8 @@ export default class Error extends Block {
     }
 
     render() {
-        const { errorTitle, errorSubTitle, errorBtnText } = this.props
+        // const { errorTitle, errorSubTitle, errorBtnText } = this.props
 
-        return this.compile(template, {
-            errorTitle, errorSubTitle, errorBtnText,
-        })
+        return this.compile(template, {  ...this.props  })
     }
 }

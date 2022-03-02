@@ -4,6 +4,7 @@ import '../../sass/main.scss'
 import template from './signUp.pug'
 import Input from "../../components/Input/input";
 import Button from "../../components/Button";
+import { renderDOM } from "../../utils/renderDOM";
 
 export class SignUpPage extends Block {
     constructor() {
@@ -93,3 +94,5 @@ export class SignUpPage extends Block {
     }
 }
 
+const signUpPage = new SignUpPage();
+renderDOM(".page", signUpPage);

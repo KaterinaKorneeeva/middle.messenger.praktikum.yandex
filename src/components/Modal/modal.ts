@@ -1,12 +1,12 @@
 import Block from '../../utils/Block';
-import template from './button.pug';
+import template from './modal.pug';
 interface ButtonProps {
     label: string;
     events?: {
         onClick?: () => void;
   }
 }
-class Button extends Block {
+class Modal extends Block {
   constructor(props: ButtonProps) {
     super(props);
   }
@@ -15,4 +15,4 @@ class Button extends Block {
     return this.compile(template, { ...this.props });
   }
 }
-export default Button;
+export default Modal;

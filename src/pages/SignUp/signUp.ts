@@ -3,7 +3,7 @@ import Form from '../../components/Form/form'
 import '../../sass/main.scss'
 import template from './signUp.pug'
 import Input from "../../components/Input/input";
-import Button from "../../components/Button";
+import Button from "../../components/Button/Button";
 import { renderDOM } from "../../utils/renderDOM";
 
 export class SignUpPage extends Block {

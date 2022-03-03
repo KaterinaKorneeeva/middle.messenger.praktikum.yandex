@@ -10,7 +10,7 @@ export class Error500 extends Block {
                 errorTitle: 'Ошибка 500',
                 errorSubTitle: 'Мы уже фиксим',
                 errorBtnText: 'Назад к чатам',
-                errorNavPath: '/index.pug'
+                errorNavPath: '/chat.html'
             }),
         })
     }

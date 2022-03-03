@@ -10,7 +10,7 @@ export class Error404 extends Block {
                 errorTitle: 'Ошибка 404',
                 errorSubTitle: 'Не туда попали',
                 errorBtnText: 'Назад к чатам',
-                errorNavPath: '/index.pug'
+                errorNavPath: '/chat.html'
             }),
         })
     }

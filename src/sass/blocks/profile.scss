@@ -72,10 +72,16 @@
   line-height: 13px;
 }
 
-.profile-info__edit-btn,
-.profile-info__edit-pass {
-  color: $blue;
+.button-settings {
   cursor: pointer;
+
+  &--blue {
+    color: $blue;
+  }
+
+  &--red {
+    color: $red;
+  }
 }
 
 .profile-info__logout {

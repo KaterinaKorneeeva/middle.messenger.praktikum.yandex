@@ -1,1 +1,2 @@
-export { default as Error } from './Error'
+import MessageForm from './MessageForm'
+export default MessageForm

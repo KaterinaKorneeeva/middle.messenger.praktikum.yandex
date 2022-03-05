@@ -1,7 +1,5 @@
 //- extends ../../layout/base
 
-include ../../mixins/inputField.pug
-
 block variables
     - const siteTitle = 'Профиль';
 
@@ -10,12 +8,7 @@ block content
         .profile-info !{modal} 
             .profile-info__container
                 .profile-info__head
-<<<<<<< HEAD
                     | !{image}
-=======
-                    .profile-info__add-image
-                        img(src='../../../static/img/add-photo.svg' width='40' height='40' alt='Аватар')
->>>>>>> ec57666b528b8dfa057225af843d9b1d95766628
                     p.profile-info-name.big Иван
 
                 .profile-info__fields-container
@@ -34,17 +27,6 @@ block content
             .profile-navigate__button 
                 a(href="/chat.html")
                     img(src='../../static/img/arrow.svg' width='28' height='28' alt='Назад к чатам')
-<<<<<<< HEAD
         | !{modalEditProfile}
         | !{modalEditPass}
         | !{modalAddPhoto}
-=======
-        
-        | !{modalEditProfile}
-        | !{modalEditPass}
-        //- | !{modal}
-        
-        //- include ../../templates/modals/edit-profile-modal.pug
-        //- include ../../templates/modals/edit-password-modal.pug       
-        //- include ../../templates/modals/edit-photo-modal.pug  
->>>>>>> ec57666b528b8dfa057225af843d9b1d95766628

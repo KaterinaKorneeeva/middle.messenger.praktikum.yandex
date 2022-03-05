@@ -20,57 +20,64 @@ export class SignUpPage extends Block {
             content: [
                 new Input({
                     inputName: 'email',
-                    labelName: 'Почта',
+                    inputValue: '',
+                    labelName: '',
                     id: 'mail',
-                    errorText: 'Поле некорректно заполнено',
+                    errorText: '',
                     type: 'text',
                     placeholder: 'email',
                 }),
                 new Input({
                     inputName: 'login',
-                    labelName: 'Логин',
+                    inputValue: '',
+                    labelName: '',
                     id: 'login',
-                    errorText: 'Поле некорректно заполнено',
+                    errorText: '',
                     type: 'text',
                     placeholder: 'Логин',
                 }),
                 new Input({
                     inputName: 'firstName',
-                    labelName: 'Имя',
+                    inputValue: '',
+                    labelName: '',
                     id: 'firstName',
-                    errorText: 'Поле некорректно заполнено',
+                    errorText: '',
                     type: 'text',
                     placeholder: 'Имя',
                 }),
                 new Input({
                     inputName: 'secondName',
-                    labelName: 'Фамилия',
+                    inputValue: '',
+                    labelName: '',
                     id: 'secondName',
-                    errorText: 'Поле некорректно заполнено',
+                    errorText: '',
                     type: 'text',
                     placeholder: 'Фамилия',
                 }),
                 new Input({
                     inputName: 'phone',
-                    labelName: 'Телефон',
+                    inputValue: '',
+                    labelName: '',
                     id: 'phone',
-                    errorText: 'Поле некорректно заполнено',
+                    errorText: '',
                     type: 'tel',
                     placeholder: 'Телефон',
                 }),
                 new Input({
                     inputName: 'password',
-                    labelName: 'Пароль',
+                    inputValue: '',
+                    labelName: '',
                     id: 'password',
-                    errorText: 'Поле некорректно заполнено',
+                    errorText: '',
                     type: 'password',
                     placeholder: 'Пароль',
                 }),
                 new Input({
                     inputName: 'confirmPassword',
-                    labelName: 'Пароль (ещё раз)',
+                    inputValue: '',
+                    labelName: '',
                     id: 'confirmPassword',
-                    errorText: 'Поле некорректно заполнено',
+                    errorText: '',
                     type: 'password',
                     placeholder: 'Пароль (ещё раз)',
                 }),
@@ -78,16 +85,26 @@ export class SignUpPage extends Block {
             ],
 
             events: {
-                submit: (e: Event) => this.onSubmit(e),
+                submit: (e: Event) => this.handleSubmit(e),
             },
         })
     }
 
-    // protected initChildren() {
-    //   console.log('11111', this.props.button);
-    //   this.children.button = this.props.button; 
-    // }
+    handleSubmit(e: Event) {
+        e.preventDefault();
+        const formData = new FormData((e.target as HTMLFormElement));
 
+        const data = {
+            email: formData.get('email'),
+            login: formData.get('login'),
+            first_name: formData.get('firstName'),
+            second_name: formData.get('secondName'),
+            phone: formData.get('phone'),
+            password: formData.get('password'),
+            confirmPassword: formData.get('confirmPassword'),
+          };
+          console.log('signuppage', data);
+      }
 
     render() {
         return this.compile(template, { ...this.props });

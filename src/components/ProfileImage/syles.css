@@ -1,0 +1,33 @@
+.profile-info__image {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: #efefef;
+  cursor: pointer;
+}
+
+.profile-info__image:hover {
+  background: rgba(0, 0, 0, 0.5);
+  transition: background 0.3s linear;
+}
+
+.profile-info__image-edit {
+  opacity: 0;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-info__image-edit-text {
+  margin: 0;
+  text-align: center;
+  color: #fff;
+}
+
+.profile-info__image-edit:hover {
+  opacity: 1;
+}

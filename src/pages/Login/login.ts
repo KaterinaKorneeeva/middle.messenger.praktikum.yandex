@@ -9,35 +9,46 @@ export class LoginPage extends Block {
       label: 'Вход',
       button: new Button({
         label: 'Авторизоваться',
-        events: {
-          click: () => console.log('clicked')
-        }
       }),
+    
       content: [
         new Input({
           inputName: 'login',
-          labelName: 'Логин',
+          inputValue: '',
+          labelName: '',
           id: 'login',
-          errorText: 'Поле некорректно заполнено',
+          errorText: '',
           type: 'text',
           placeholder: 'Логин',
+          required: true,
         }),
         new Input({
           inputName: 'password',
-          labelName: 'Пароль',
+          inputValue: '',
+          labelName: '',
           id: 'password',
-          errorText: 'Поле некорректно заполнено',
+          errorText: '',
           type: 'password',
           placeholder: 'Пароль',
+          required: true,
         })
-      ]
+      ],
+      events: {
+        submit: (e: Event) => this.handleSubmit(e),
+      },
     })
   }
 
-  // protected initChildren() {
-  //   console.log('11111', this.props.button);
-  //   this.children.button = this.props.button; 
-  // }
+  handleSubmit(e: Event) {
+    e.preventDefault();
+    const formData = new FormData((e.target as HTMLFormElement));
+    const data = {
+        login: formData.get('login'),
+        password: formData.get('password'),
+      };
+      
+    console.log('signinForm', data);
+  }
 
 
   render() {

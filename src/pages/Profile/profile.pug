@@ -10,8 +10,7 @@ block content
         .profile-info !{modal} 
             .profile-info__container
                 .profile-info__head
-                    .profile-info__add-image
-                        img(src='../../../static/img/add-photo.svg' width='40' height='40' alt='Аватар')
+                    | !{image}
                     p.profile-info-name.big Иван
 
                 .profile-info__fields-container
@@ -33,8 +32,4 @@ block content
         
         | !{modalEditProfile}
         | !{modalEditPass}
-        //- | !{modal}
-        
-        //- include ../../templates/modals/edit-profile-modal.pug
-        //- include ../../templates/modals/edit-password-modal.pug       
-        //- include ../../templates/modals/edit-photo-modal.pug  
+        | !{modalAddPhoto}

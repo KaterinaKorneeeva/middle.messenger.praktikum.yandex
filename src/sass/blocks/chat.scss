@@ -16,11 +16,17 @@
     border-top: 1px solid $grey3;
     padding: 15px 0;
     cursor: pointer;
+<<<<<<< HEAD
     justify-content: space-between;
   }
 
   &:hover,
   .active {
+=======
+  }
+
+  &:hover, .active{
+>>>>>>> ec57666b528b8dfa057225af843d9b1d95766628
     background-color: $blue1;
     transition: background-color $skills-start-anim;
   }
@@ -80,6 +86,10 @@
     font-size: 11px;
     line-height: 12px;
   }
+<<<<<<< HEAD
+=======
+  
+>>>>>>> ec57666b528b8dfa057225af843d9b1d95766628
 }
 
 .chat-area {

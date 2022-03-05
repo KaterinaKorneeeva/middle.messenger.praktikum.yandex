@@ -9,15 +9,25 @@ block content
             .chat-list
                 .chat-list__container
                     a(href='/profile.html')  профиль 
+<<<<<<< HEAD
                     .chat-search-bar
                         .chat-search-bar__container
                             input.chat-search-bar__input(placeholder="Поиск")
                     | !{chatList}
+=======
+                    include  ../../templates/chat/chat-search-bar.pug
+                    | !{chatList}
+            //- include  ../../templates/chat/chat-area.pug
+>>>>>>> ec57666b528b8dfa057225af843d9b1d95766628
             .chat-area
                 .chat-area__header
                     .chat-list-item__image
                     .chat-list-item__message-info
+<<<<<<< HEAD
                         p.chat-list-item__user-name !{sender}
+=======
+                        p.chat-list-item__user-name Андрей
+>>>>>>> ec57666b528b8dfa057225af843d9b1d95766628
                 .chat-area__container
                     | !{messageList}
                 .chat-area__footer

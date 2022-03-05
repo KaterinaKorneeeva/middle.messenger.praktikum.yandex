@@ -9,6 +9,7 @@ export class LoginPage extends Block {
       label: 'Вход',
       button: new Button({
         label: 'Авторизоваться',
+<<<<<<< HEAD
       }),
     
       content: [
@@ -49,6 +50,37 @@ export class LoginPage extends Block {
       
     console.log('signinForm', data);
   }
+=======
+        events: {
+          click: () => console.log('clicked')
+        }
+      }),
+      content: [
+        new Input({
+          inputName: 'login',
+          labelName: 'Логин',
+          id: 'login',
+          errorText: 'Поле некорректно заполнено',
+          type: 'text',
+          placeholder: 'Логин',
+        }),
+        new Input({
+          inputName: 'password',
+          labelName: 'Пароль',
+          id: 'password',
+          errorText: 'Поле некорректно заполнено',
+          type: 'password',
+          placeholder: 'Пароль',
+        })
+      ]
+    })
+  }
+
+  // protected initChildren() {
+  //   console.log('11111', this.props.button);
+  //   this.children.button = this.props.button; 
+  // }
+>>>>>>> ec57666b528b8dfa057225af843d9b1d95766628
 
 
   render() {

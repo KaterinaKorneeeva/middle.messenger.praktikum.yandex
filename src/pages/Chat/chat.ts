@@ -10,7 +10,10 @@ export class ChatPage extends Block {
   constructor() {
     super({
       label: 'Регистрация',
+<<<<<<< HEAD
       sender: 'Андрей',
+=======
+>>>>>>> ec57666b528b8dfa057225af843d9b1d95766628
       chatList: [
         new Chat({
           sender: 'Андрей',

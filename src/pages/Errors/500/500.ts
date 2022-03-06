@@ -1,4 +1,4 @@
-import Block from '../../../utils/block';
+import Block from '../../../utils/Block';
 import { Error } from '../../../components/Error'
 import template from '../template.pug'
 import { renderDOM } from "../../../utils/renderDOM";

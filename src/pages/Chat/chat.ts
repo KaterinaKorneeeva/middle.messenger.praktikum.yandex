@@ -1,7 +1,7 @@
 import Block from '../../utils/Block';
 import template from './chat.pug'
 import Chat from "../../components/Chat/Chat";
-import Input from "../../components/Input/Input";
+// import Input from "../../components/Input/Input";
 import Message from "../../components/Chat/Message";
 import { renderDOM } from "../../utils/renderDOM";
 
@@ -44,14 +44,14 @@ export class ChatPage extends Block {
           massageText: 'Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну.'
         }),
       ],
-      inputMessage: new Input({
-        inputName: 'message',
-        inputValue: '',
-        id: 'message',
-        errorText: '',
-        type: 'text',
-        placeholder: 'Сообщение',
-      }),
+      // inputMessage: new Input({
+      //   inputName: 'message',
+      //   inputValue: '',
+      //   id: 'message',
+      //   errorText: '',
+      //   type: 'text',
+      //   placeholder: 'Сообщение',
+      // }),
       events: {
         submit: (e: Event) => this.handleSubmit(e),
       },

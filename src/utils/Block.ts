@@ -1,8 +1,5 @@
 import EventBus from './EventBus';
-// import {Nullable, Values} from './types';
 import { nanoid } from 'nanoid';
-
-
 
 class Block {
   static EVENTS = {

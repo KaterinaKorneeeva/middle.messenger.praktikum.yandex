@@ -50,7 +50,6 @@ export class LoginPage extends Block {
     console.log('signinForm', data);
   }
 
-
   render() {
     return this.compile(template, { ...this.props });
   }

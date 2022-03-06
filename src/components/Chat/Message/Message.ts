@@ -2,13 +2,11 @@ import Block from '../../../utils/block';
 import template from './template.pug'
 
 interface MessageProps {
-    errorTitle: string;
-    errorSubTitle: string;
-    errorBtnText: string;
-    errorNavPath: string;
+    massageText: string;
+    className: string;
 }
 
-export default class Error extends Block {
+export default class Message extends Block {
     constructor(props: MessageProps) {
         super(props)
     }

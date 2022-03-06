@@ -3,7 +3,7 @@ import template from './profileImage.pug';
 
 interface ProfileImageProps {
     events?: {
-        onClick?: () => void;
+        click?: () => void;
   }
 }
 

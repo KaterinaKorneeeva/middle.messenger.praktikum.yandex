@@ -105,14 +105,6 @@ class Block {
   };
 
 
-  //   setState = (nextState: any) => {
-  //     if (!nextState) {
-  //       return;
-  //     }
-
-  //     Object.assign(this.state, nextState);
-  //   };
-
   get element(): HTMLElement | null {
     return this._element;
   }
@@ -134,22 +126,10 @@ class Block {
 
   protected render(): DocumentFragment {
     return new DocumentFragment();
-  };
-
-
+  }
 
   getContent(): HTMLElement | null {
     return this.element;
-    // // Хак, чтобы вызвать CDM только после добавления в DOM
-    // if (this.element?.parentNode?.nodeType === Node.DOCUMENT_FRAGMENT_NODE) {
-    //   setTimeout(() => {
-    //     if (this.element?.parentNode?.nodeType !==  Node.DOCUMENT_FRAGMENT_NODE ) {
-    //       this.eventBus().emit(Block.EVENTS.FLOW_CDM);
-    //     }
-    //   }, 100)
-    // }
-
-    // return this.element!;
   }
 
   _makePropsProxy(props: any): any {

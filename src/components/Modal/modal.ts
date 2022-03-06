@@ -1,9 +1,9 @@
 import Block from '../../utils/Block';
 import template from './modal.pug';
 interface ButtonProps {
-    label: string;
-    events?: {
-        onClick?: () => void;
+  label: string;
+  events?: {
+    submit?: () => void;
   }
 }
 class Modal extends Block {

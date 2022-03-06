@@ -13,15 +13,12 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@parcel/transformer-sass": "^2.3.2",
-    "@typescript-eslint/eslint-plugin": "^5.12.1",
-    "@typescript-eslint/parser": "^5.12.1",
+    "@parcel/transformer-sass": "2.3.2",
+    "@typescript-eslint/eslint-plugin": "5.12.1",
     "eslint": "8.9.0",
     "eslint-config-airbnb": "19.0.4",
-    "eslint-plugin-import": "2.25.4",
-    "eslint-plugin-react": "^7.28.0",
-    "parcel": "^2.3.2",
-    "parcel-transformer-pug-precompile": "^1.0.6",
+    "parcel": "2.3.2",
+    "parcel-transformer-pug-precompile": "1.0.6",
     "pug": "3.0.0",
     "sass": "1.5.0",
     "stylelint": "14.5.1",
@@ -29,10 +26,11 @@
     "typescript": "4.5.5"
   },
   "dependencies": {
+    "@typescript-eslint/parser": "^5.13.0",
     "eslint-plugin-jsx-a11y": "6.5.1",
     "express": "4.17.2",
     "jstransformer-markdown-it": "2.1.0",
-    "nanoid": "^3.3.1",
+    "nanoid": "3.3.1",
     "normalize.css": "8.0.1",
     "stylelint-config-standard": "25.0.0"
   },

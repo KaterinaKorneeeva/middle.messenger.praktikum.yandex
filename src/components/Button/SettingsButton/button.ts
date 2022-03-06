@@ -1,9 +1,10 @@
 import Block from '../../../utils/Block';
 import template from './button.pug';
 interface ButtonProps {
-    label: string;
-    events?: {
-        onClick?: () => void;
+  label: string;
+  className: string;
+  events?: {
+    click?: () => void;
   }
 }
 class ButtonSettings extends Block {

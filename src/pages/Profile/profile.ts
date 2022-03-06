@@ -26,7 +26,7 @@ export class Profile extends Block {
                 { name: 'Имя в чате', value: 'ivan' },
                 { name: 'Телефон', value: '+7 (909) 967 30 30' }
             ],
-            modalEditProfile: new Modal ({
+            modalEditProfile: new Modal({
                 modalId: 'modalEditProfile',
                 modalTitle: 'Изменить данные',
                 modalBtnText: 'button-settings--blue',
@@ -84,9 +84,9 @@ export class Profile extends Block {
 
                 events: {
                     submit: (e: Event) => this.handleSignupSubmit(e),
-                  },
+                },
             }),
-            modalEditPass: new Modal ({
+            modalEditPass: new Modal({
                 modalId: 'modalEditPass',
                 modalTitle: 'Изменить пароль',
                 modalBtnText: 'button-settings--blue',
@@ -124,9 +124,9 @@ export class Profile extends Block {
                 ],
                 events: {
                     submit: (e: Event) => this.handleChangePasSubmit(e),
-                  },
+                },
             }),
-            modalAddPhoto: new Modal ({
+            modalAddPhoto: new Modal({
                 modalId: 'modalAddPhoto',
                 modalTitle: 'Загрузите файл',
                 // modalBtnText: 'button-settings--blue',
@@ -144,7 +144,7 @@ export class Profile extends Block {
                 ],
                 events: {
                     submit: (e: Event) => this.handleChangePhoto(e),
-                  },
+                },
             }),
             buttonEditInfo: new ButtonSettings({
                 label: 'Изменить данные',
@@ -167,7 +167,7 @@ export class Profile extends Block {
                     click: () => console.log('logout')
                 }
             }),
-            buttonAddPhoto:{
+            buttonAddPhoto: {
                 events: {
                     click: () => console.log('buttonAddPhoto')
                 }
@@ -175,7 +175,7 @@ export class Profile extends Block {
         })
     }
 
-   
+
     handleEditPhotoModal() {
         const modalAddPhoto = document.getElementById('modalAddPhoto');
         modalAddPhoto.classList.add('active');
@@ -183,39 +183,39 @@ export class Profile extends Block {
 
 
     handleChangePhoto(e: Event) {
-        e.preventDefault();  
+        e.preventDefault();
         const formData = new FormData((e.target as HTMLFormElement));
         const data = {
-        avatar: formData.get('avatar'),
+            avatar: formData.get('avatar'),
         };
 
         console.log('changePhoto', data);
 
         const modalAddPhoto = document.getElementById('modalAddPhoto');
         modalAddPhoto.classList.remove('active');
-      }
+    }
     public handleClickEditInfo() {
         const modalEditProfile = document.getElementById('modalEditProfile');
         modalEditProfile.classList.add('active');
     }
 
     public handleSignupSubmit(e: Event) {
-        e.preventDefault();  
+        e.preventDefault();
         const formData = new FormData((e.target as HTMLFormElement));
         const data = {
-          email: formData.get('email'),
-          login: formData.get('login'),
-          first_name: formData.get('firstName'),
-          second_name: formData.get('secondName'),
-          display_name: formData.get('display_name'),
-          phone: formData.get('phone'),
+            email: formData.get('email'),
+            login: formData.get('login'),
+            first_name: formData.get('firstName'),
+            second_name: formData.get('secondName'),
+            display_name: formData.get('display_name'),
+            phone: formData.get('phone'),
         };
 
         console.log('changeProfile', data);
 
         const modalEditProfile = document.getElementById('modalEditProfile');
         modalEditProfile.classList.remove('active');
-      }
+    }
     public handleChangePasSubmit(e: Event) {
         e.preventDefault();
         const formData = new FormData((e.target as HTMLFormElement));
@@ -228,8 +228,8 @@ export class Profile extends Block {
 
         const modalEditPass = document.getElementById('modalEditPass');
         modalEditPass.classList.remove('active');
-      }
-    
+    }
+
 
     public handleClickPassword() {
         const modalEditPass = document.getElementById('modalEditPass');

@@ -1,6 +1,6 @@
 import Block from '../../utils/Block';
 import template from './chat.pug'
-import Chat from "../../components/Chat/chat";
+import Chat from "../../components/Chat/Chat";
 import Input from "../../components/Input";
 import Message from "../../components/Chat/Message";
 import { renderDOM } from "../../utils/renderDOM";

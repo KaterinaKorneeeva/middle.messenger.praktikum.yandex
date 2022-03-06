@@ -11,7 +11,7 @@ class ButtonSettings extends Block {
   constructor(props: ButtonProps) {
     super(props);
   }
-
+  
   render() {
     return this.compile(template, { ...this.props });
   }

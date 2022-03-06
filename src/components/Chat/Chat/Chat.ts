@@ -8,6 +8,7 @@ interface ChatProps {
     count: string;
 }
 
+
 export default class Chat extends Block {
     constructor(props: ChatProps) {
         super(props)

@@ -1,2 +1,2 @@
-import Input from './InputField'
+import Input from './Input'
 export default Input

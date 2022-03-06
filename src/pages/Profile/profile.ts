@@ -3,9 +3,9 @@ import '../../sass/main.scss'
 import template from './profile.pug'
 import Button from "../../components/Button/Button";
 import ButtonSettings from "../../components/Button/SettingsButton";
-import ProfileImage from "../../components/ProfileImage/ProfileImage";
+import ProfileImage from "../../components/ProfileImage";
 import Modal from "../../components/Modal/modal";
-import Input from "../../components/Input/InputField";
+import Input from "../../components/Input/Input";
 import { renderDOM } from "../../utils/renderDOM";
 
 

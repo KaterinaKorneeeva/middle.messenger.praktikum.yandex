@@ -1,7 +1,7 @@
 import Block from '../../utils/Block';
 import template from './login.pug'
 import Button from "../../components/Button/Button";
-import Input from "../../components/Input/InputField";
+import Input from "../../components/Input";
 import '../../sass/main.scss'
 export class LoginPage extends Block {
   constructor() {

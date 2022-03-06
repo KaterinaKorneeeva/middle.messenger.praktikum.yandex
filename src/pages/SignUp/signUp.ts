@@ -1,5 +1,4 @@
 import Block from '../../utils/Block';
-import Form from '../../components/Form/form'
 import '../../sass/main.scss'
 import template from './signUp.pug'
 import Input from "../../components/Input/Input";

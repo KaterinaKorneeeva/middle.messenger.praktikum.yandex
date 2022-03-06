@@ -1,5 +1,5 @@
 import Block from '../../utils/Block';
-import template from './modal.pug';
+import template from './template.pug';
 interface ButtonProps {
   label: string;
   events?: {

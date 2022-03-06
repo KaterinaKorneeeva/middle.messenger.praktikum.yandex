@@ -1,5 +1,5 @@
 import Block from '../../utils/Block';
-import template from './input.pug';
+import template from './template.pug';
 import { VALIDATOR } from '../../utils/const'
 
 interface InputProps {

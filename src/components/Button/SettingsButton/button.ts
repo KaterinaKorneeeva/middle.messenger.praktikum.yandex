@@ -1,5 +1,5 @@
 import Block from '../../../utils/Block';
-import template from './button.pug';
+import template from './template.pug';
 interface ButtonProps {
   label: string;
   className: string;

@@ -6,6 +6,7 @@ interface ButtonProps {
     submit?: () => void;
   }
 }
+
 class Modal extends Block {
   constructor(props: ButtonProps) {
     super(props);

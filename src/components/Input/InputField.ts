@@ -4,7 +4,7 @@ import { VALIDATOR } from '../../utils/const'
 
 interface InputProps {
   inputName: string;
-  inputValue: string;
+  inputValue?: string;
   labelName?: string;
   id: string;
   errorText: string;
@@ -48,3 +48,4 @@ class Input extends Block {
   }
 }
 export default Input;
+

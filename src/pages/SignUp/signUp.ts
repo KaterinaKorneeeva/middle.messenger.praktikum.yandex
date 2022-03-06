@@ -2,7 +2,7 @@ import Block from '../../utils/Block';
 import Form from '../../components/Form/form'
 import '../../sass/main.scss'
 import template from './signUp.pug'
-import Input from "../../components/Input/input";
+import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
 import { renderDOM } from "../../utils/renderDOM";
 

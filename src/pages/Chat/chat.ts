@@ -1,6 +1,6 @@
 import Block from '../../utils/Block';
 import template from './chat.pug'
-import Chat from "../../components/Chat/Chat";
+import Chat from "../../components/Chat/chat";
 // import Input from "../../components/Input/Input";
 import Message from "../../components/Chat/Message";
 import { renderDOM } from "../../utils/renderDOM";
@@ -57,6 +57,7 @@ export class ChatPage extends Block {
       },
     })
   }
+
 
   handleSubmit(e: Event) {
     e.preventDefault();

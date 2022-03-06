@@ -6,7 +6,6 @@ interface ProfileImageProps {
         click?: () => void;
   }
 }
-
 export default class ProfileImage extends Block {
     constructor(props: ProfileImageProps) {
         super(props)

@@ -4,7 +4,7 @@ import template from './profile.pug'
 import Button from "../../components/Button/Button";
 import ButtonSettings from "../../components/Button/SettingsButton";
 import ProfileImage from "../../components/ProfileImage/ProfileImage";
-import Modal from "../../components/Modal/Modal";
+import Modal from "../../components/Modal/modal";
 import Input from "../../components/Input/InputField";
 import { renderDOM } from "../../utils/renderDOM";
 

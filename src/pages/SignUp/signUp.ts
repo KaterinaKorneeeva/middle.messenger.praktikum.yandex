@@ -12,9 +12,6 @@ export class SignUpPage extends Block {
             formName: 'Регистрация',
             button: new Button({
                 label: 'Зарегистрироваться',
-                events: {
-                  click: () => console.log('clicked')
-                }
               }),
             content: [
                 new Input({

@@ -19,53 +19,36 @@ export class SignUpPage extends Block {
             content: [
                 new Input({
                     inputName: 'email',
-                    inputValue: '',
-                    labelName: '',
                     id: 'mail',
-                    errorText: '',
                     type: 'text',
                     placeholder: 'email',
                 }),
                 new Input({
                     inputName: 'login',
-                    inputValue: '',
-                    labelName: '',
                     id: 'login',
-                    errorText: '',
                     type: 'text',
                     placeholder: 'Логин',
                 }),
                 new Input({
                     inputName: 'firstName',
-                    inputValue: '',
-                    labelName: '',
                     id: 'firstName',
-                    errorText: '',
                     type: 'text',
                     placeholder: 'Имя',
                 }),
                 new Input({
                     inputName: 'secondName',
-                    inputValue: '',
-                    labelName: '',
                     id: 'secondName',
-                    errorText: '',
                     type: 'text',
                     placeholder: 'Фамилия',
                 }),
                 new Input({
                     inputName: 'phone',
-                    inputValue: '',
-                    labelName: '',
                     id: 'phone',
-                    errorText: '',
                     type: 'tel',
                     placeholder: 'Телефон',
                 }),
                 new Input({
                     inputName: 'password',
-                    inputValue: '',
-                    labelName: '',
                     id: 'password',
                     errorText: '',
                     type: 'password',
@@ -73,14 +56,10 @@ export class SignUpPage extends Block {
                 }),
                 new Input({
                     inputName: 'confirmPassword',
-                    inputValue: '',
-                    labelName: '',
                     id: 'confirmPassword',
-                    errorText: '',
                     type: 'password',
                     placeholder: 'Пароль (ещё раз)',
                 }),
-
             ],
 
             events: {

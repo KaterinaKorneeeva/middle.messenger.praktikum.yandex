@@ -7,7 +7,7 @@ interface InputProps {
   inputValue?: string;
   labelName?: string;
   id: string;
-  errorText: string;
+  errorText?: string;
   type: string;
   placeholder?: string;
   required?:  boolean;

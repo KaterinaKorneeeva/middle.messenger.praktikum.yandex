@@ -14,20 +14,14 @@ export class LoginPage extends Block {
       content: [
         new Input({
           inputName: 'login',
-          inputValue: '',
-          labelName: '',
           id: 'login',
-          errorText: '',
           type: 'text',
           placeholder: 'Логин',
           required: true,
         }),
         new Input({
           inputName: 'password',
-          inputValue: '',
-          labelName: '',
           id: 'password',
-          errorText: '',
           type: 'password',
           placeholder: 'Пароль',
           required: true,

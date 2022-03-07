@@ -1,5 +1,3 @@
-//- extends ../layout/base
-
 block variables
     - const siteTitle = 'Список чатов';
 
@@ -8,7 +6,7 @@ block content
         .chat-container
             .chat-list
                 .chat-list__container
-                    a(href='/profile.html')  профиль 
+                    a(href='/profile.html') профиль 
                     .chat-search-bar
                         .chat-search-bar__container
                             input.chat-search-bar__input(placeholder="Поиск")
@@ -21,9 +19,8 @@ block content
                 .chat-area__container
                     | !{messageList}
                 .chat-area__footer
-                    form.form(name="message")
-                        .chat-list-item__image
-                        //- input.chat-search-bar__input(placeholder="Сообщение"
+                    form.chat-message-form(name="message")
+                        .chat-message-form__btn-attach
                         | !{inputMessage}
-                        button
+                        button.chat-message-form__btn-send
           

@@ -1,5 +1,3 @@
-//- extends ../../layout/base
-
 block variables
     - const siteTitle = 'Профиль';
 
@@ -24,9 +22,7 @@ block content
                         a.profile-info__field-name.profile-info__logout(href='/') 
         
         .profile-navigate
-            .profile-navigate__button 
-                a(href="/chat.html")
-                    img(src='../../../static/img/arrow.svg' width='28' height='28' alt='Назад к чатам')
+            a.profile-navigate__link(href="/chat.html")
         | !{modalEditProfile}
         | !{modalEditPass}
         | !{modalAddPhoto}

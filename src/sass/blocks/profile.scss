@@ -17,6 +17,9 @@
   justify-content: center;
   margin-bottom: 20px;
   cursor: pointer;
+  background-image: url(../../static/img/add-photo.svg);
+  background-repeat: no-repeat;
+  background-position: center;
 
   &::after {
     position: absolute;
@@ -97,9 +100,12 @@
   width: 60px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-
-  &__button {
+  justify-content: center;
+  &__link {
     display: flex;
+    background-image: url(../../static/img/arrow.svg);
+    background-repeat: no-repeat;
+    width: 32px;
+    height: 32px;
   }
 }

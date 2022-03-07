@@ -1,9 +1,5 @@
 {
-<<<<<<< HEAD
-    "extends": "stylelint-config-standard-scss",
-=======
     "extends": "stylelint-config-standard",
->>>>>>> ec57666b528b8dfa057225af843d9b1d95766628
     "rules": {
         "selector-class-pattern": null
       }

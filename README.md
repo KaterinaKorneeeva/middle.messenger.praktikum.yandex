@@ -25,5 +25,5 @@ https://nifty-joliot-a7bb5d.netlify.app/error404.html
 https://nifty-joliot-a7bb5d.netlify.app/error500.html
 
 ## Пулл реквест
-https://github.com/KaterinaKorneeeva/middle.messenger.praktikum.yandex/pull/6
+https://github.com/KaterinaKorneeeva/middle.messenger.praktikum.yandex/pull/7
 

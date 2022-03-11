@@ -20,6 +20,8 @@ body {
 ul[class],
 ol[class] {
   padding: 0;
+  margin: 0;
+  list-style: none;
 }
 
 body,
@@ -28,8 +30,6 @@ h2,
 h3,
 h4,
 p,
-ul[class],
-ol[class],
 li,
 figure,
 figcaption,
@@ -37,11 +37,6 @@ blockquote,
 dl,
 dd {
   margin: 0;
-}
-
-ul[class],
-ol[class] {
-  list-style: none;
 }
 
 input,
@@ -54,10 +49,10 @@ select {
 }
 
 button,
-html input[type='button'],
-input[type='reset'],
-input[type='submit'] {
-  -webkit-appearance: button;
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  appearance: button;
   cursor: pointer;
 }
 
@@ -78,10 +73,10 @@ select {
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
+  appearance: none;
 }
 
-input[type='text'] {
+input[type="text"] {
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;

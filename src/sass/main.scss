@@ -1,15 +1,14 @@
-//layout
-@import 'utils/variables.scss';
-@import 'utils/global.scss';
-@import 'utils/typography.scss';
-
-// styles
-@import 'blocks/button.scss';
-@import 'blocks/forms.scss';
-@import 'blocks/input.scss';
-@import 'blocks/profile.scss';
-@import 'blocks/modal.scss';
-@import 'blocks/errorBlock.scss';
+@import "utils/variables.scss";
+@import "utils/global.scss";
+@import "utils/typography.scss";
+@import "blocks/button.scss";
+@import "blocks/forms.scss";
+@import "blocks/input.scss";
+@import "blocks/profile.scss";
+@import "blocks/modal.scss";
+@import "blocks/errorBlock.scss";
+@import "blocks/chat.scss";
+@import "blocks/chat-message.scss";
 
 main {
   display: flex;
@@ -30,7 +29,7 @@ a {
   min-width: 340px;
   min-height: 460px;
   padding: 50px 30px 30px;
-  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.14);
+  box-shadow: 0 0 6px 0 rgb(66 165 245 / 12%);
   border-radius: 12px;
   box-sizing: border-box;
   display: flex;

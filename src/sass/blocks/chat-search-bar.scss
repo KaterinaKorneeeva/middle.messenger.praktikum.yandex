@@ -1,0 +1,17 @@
+.chat-search-bar {
+  &__container {
+    margin-bottom: 15px;
+  }
+
+  &__input {
+    background-color: $grey1;
+    border-radius: 5px;
+    padding-right: 32px;
+    padding-left: 65px;
+    border-color: transparent;
+    width: 100%;
+    font-size: 12px;
+    line-height: 12px;
+    color: $grey2;
+  }
+}

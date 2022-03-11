@@ -17,10 +17,13 @@
   justify-content: center;
   margin-bottom: 20px;
   cursor: pointer;
+  background-image: url("../../static/img/add-photo.svg");
+  background-repeat: no-repeat;
+  background-position: center;
 
   &::after {
     position: absolute;
-    content: 'Поменять аватар';
+    content: "Поменять аватар";
     display: flex;
     align-items: center;
     justify-content: center;
@@ -45,6 +48,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
+
   &__container {
     width: 50%;
   }
@@ -59,6 +63,7 @@
   justify-content: space-between;
   border-bottom: 1px solid $grey3;
   padding: 10px 0;
+
   &__field-value {
     color: $grey2;
   }
@@ -70,10 +75,16 @@
   line-height: 13px;
 }
 
-.profile-info__edit-btn,
-.profile-info__edit-pass {
-  color: $blue;
+.button-settings {
   cursor: pointer;
+
+  &--blue {
+    color: $blue;
+  }
+
+  &--red {
+    color: $red;
+  }
 }
 
 .profile-info__logout {
@@ -89,9 +100,13 @@
   width: 60px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  &__button {
+  justify-content: center;
+
+  &__link {
     display: flex;
+    background-image: url("../../static/img/arrow.svg");
+    background-repeat: no-repeat;
+    width: 32px;
+    height: 32px;
   }
 }
-

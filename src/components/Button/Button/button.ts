@@ -1,18 +1,18 @@
-import Block from '../../../utils/Block';
-import template from './template.pug';
+import Block from '../../../utils/Block'
+import template from './template.pug'
 interface ButtonProps {
-    label: string;
-    events?: {
-        onClick?: () => void;
+  label: string
+  events?: {
+    onClick?: () => void
   }
 }
 class Button extends Block {
   constructor(props: ButtonProps) {
-    super(props);
+    super(props)
   }
 
   render() {
-    return this.compile(template, { ...this.props });
+    return this.compile(template, { ...this.props })
   }
 }
-export default Button;
+export default Button

@@ -22,4 +22,4 @@ export const VALIDATOR: Record<string, (value: string, againValue?: string) => V
   password: passwordValidator,
   confirmPassword: passwordValidator,
   message: notIsEmptyValidator,
-};
+}

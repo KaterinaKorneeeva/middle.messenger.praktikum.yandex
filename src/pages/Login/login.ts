@@ -1,8 +1,9 @@
-import Block from '../../utils/Block';
+import Block from '../../utils/Block'
 import template from './login.pug'
-import Button from "../../components/Button/Button";
-import Input from "../../components/Input";
+import Button from '../../components/Button/Button'
+import Input from '../../components/Input'
 import '../../sass/main.scss'
+
 export class LoginPage extends Block {
   constructor() {
     super({
@@ -10,7 +11,6 @@ export class LoginPage extends Block {
       button: new Button({
         label: 'Авторизоваться',
       }),
-    
       content: [
         new Input({
           inputName: 'login',
@@ -25,7 +25,7 @@ export class LoginPage extends Block {
           type: 'password',
           placeholder: 'Пароль',
           required: true,
-        })
+        }),
       ],
       events: {
         submit: (e: Event) => this.handleSubmit(e),
@@ -34,18 +34,19 @@ export class LoginPage extends Block {
   }
 
   handleSubmit(e: Event) {
-    e.preventDefault();
-    const formData = new FormData((e.target as HTMLFormElement));
+    e.preventDefault()
+    const formData = new FormData((e.target as HTMLFormElement))
     const data = {
-        login: formData.get('login'),
-        password: formData.get('password'),
-      };
-      
-    console.log('signinForm', data);
+      login: formData.get('login'),
+      password: formData.get('password'),
+    }
+
+    console.log('signinForm', data)
   }
 
   render() {
-    return this.compile(template, { ...this.props });
+    return this.compile(template, { ...this.props })
   }
 }
+
 

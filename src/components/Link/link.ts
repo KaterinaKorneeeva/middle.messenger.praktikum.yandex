@@ -1,14 +1,13 @@
 import Block from '../../utils/Block'
 import template from './template.pug'
-interface ButtonProps {
+interface LinkProps {
   label: string
   events?: {
-    submit?: () => void
+    onClick?: () => void
   }
 }
-
-class Modal extends Block {
-  constructor(props: ButtonProps) {
+class Link extends Block {
+  constructor(props: LinkProps) {
     super(props)
   }
 
@@ -16,4 +15,4 @@ class Modal extends Block {
     return this.compile(template, { ...this.props })
   }
 }
-export default Modal
+export default Link

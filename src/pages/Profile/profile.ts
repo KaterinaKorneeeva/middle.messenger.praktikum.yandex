@@ -7,6 +7,8 @@ import ProfileImage from '../../components/ProfileImage'
 import Modal from '../../components/Modal/modal'
 import Input from '../../components/Input/Input'
 import AuthController, {ControllerSignUpData} from '../../../src/controllers/AuthController'
+import UserController, {EditProfileData} from '../../controllers/UserController'
+
 import {Path} from "../../constants/router"
 import store from '../../utils/Store'
 import { Router } from '../../utils/Router'
@@ -35,7 +37,7 @@ class ProfilePage extends Block {
         modalBtnText: 'button-settings--blue',
         modalErrorText: '',
         button: new Button({
-          label: 'Зарегистрироваться',
+          label: 'Сохранить',
         }),
         content: [
           new Input({
@@ -44,6 +46,7 @@ class ProfilePage extends Block {
             id: 'mail',
             type: 'text',
             placeholder: 'email',
+            inputValue: props.email,
           }),
           new Input({
             inputName: 'login',
@@ -51,6 +54,7 @@ class ProfilePage extends Block {
             id: 'login',
             type: 'text',
             placeholder: 'Логин',
+            inputValue: props.login,
           }),
           new Input({
             inputName: 'firstName',
@@ -58,6 +62,7 @@ class ProfilePage extends Block {
             id: 'firstName',
             type: 'text',
             placeholder: 'Имя',
+            inputValue: props.first_name,
           }),
           new Input({
             inputName: 'secondName',
@@ -65,6 +70,7 @@ class ProfilePage extends Block {
             id: 'secondName',
             type: 'text',
             placeholder: 'Фамилия',
+            inputValue: props.second_name,
           }),
           new Input({
             inputName: 'phone',
@@ -72,6 +78,7 @@ class ProfilePage extends Block {
             id: 'phone',
             type: 'tel',
             placeholder: 'Телефон',
+            inputValue: props.phone,
           }),
         ],
 
@@ -170,20 +177,9 @@ class ProfilePage extends Block {
 
 
   async handleLogOutClick() {
-    alert('logoutwwwsss')
 
       AuthController.logout()
        this.route.go('/sign-up');
-    
-   
-
-      // try {
-      //   await AuthController.logout();
-      //   store.set('currentUser', null);
-      //   this.route.go('/');
-      // } catch (err) {
-      //   console.log(err);
-      // }
 
     }
 
@@ -210,23 +206,30 @@ class ProfilePage extends Block {
     modalEditProfile.classList.add('active')
   }
 
-  public handleSignupSubmit(e: Event) {
+  public async handleSignupSubmit(e: Event) {
     e.preventDefault()
     const formData = new FormData((e.target as HTMLFormElement))
     const data = {
-      email: formData.get('email'),
-      login: formData.get('login'),
       first_name: formData.get('firstName'),
       second_name: formData.get('secondName'),
+      display_name: 'test',
+      login: formData.get('login'),
+      email: formData.get('email'),
       phone: formData.get('phone'),
     }
 
     console.log('changeProfile', data)
 
+    try {
+      await UserController.editProfile(data as EditProfileData)
+    } catch (e) {
+      console.log('error', e)
+    }
+
     const modalEditProfile = document.getElementById('modalEditProfile')
     modalEditProfile.classList.remove('active')
   }
-  public handleChangePasSubmit(e: Event) {
+  public async handleChangePasSubmit(e: Event) {
     e.preventDefault()
     const formData = new FormData((e.target as HTMLFormElement))
     const data = {
@@ -236,6 +239,11 @@ class ProfilePage extends Block {
     }
     console.log('ChangePas', data)
 
+    // SettingsController.editProfile(data)
+
+   
+    
+    
     const modalEditPass = document.getElementById('modalEditPass')
     modalEditPass.classList.remove('active')
   }
@@ -248,6 +256,7 @@ class ProfilePage extends Block {
 
   render() {
 
+    console.log('...this.props', {...this.props})
     return this.compile(template, { ...this.props })
   }
 }

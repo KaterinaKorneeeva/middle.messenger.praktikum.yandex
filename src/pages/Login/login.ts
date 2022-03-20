@@ -2,7 +2,13 @@ import Block from '../../utils/Block'
 import template from './login.pug'
 import Button from '../../components/Button/Button'
 import Input from '../../components/Input'
+import Link from '../../components/Link'
 import '../../sass/main.scss'
+import AuthController, {ControllerSignUpData} from '../../../src/controllers/AuthController'
+import{ SignInData} from '../../api/AuthApi'
+import { Router } from '../../utils/Router'
+import {Path} from "../../constants/router"
+import store from '../../utils/Store'
 
 export class LoginPage extends Block {
   constructor() {
@@ -10,6 +16,12 @@ export class LoginPage extends Block {
       label: 'Вход',
       button: new Button({
         label: 'Авторизоваться',
+      }),
+      linkToSignUp: new Link({
+        label: 'Нет аккаунта?',
+        events: {
+          click: () => this.onClick()
+        }
       }),
       content: [
         new Input({
@@ -31,6 +43,26 @@ export class LoginPage extends Block {
         submit: (e: Event) => this.handleSubmit(e),
       },
     })
+    this.route = new Router()
+  }
+
+  async componentDidMount() {
+    alert('componentDidMount')
+    try {
+      await AuthController.fetchUser();
+      if (store.getState().currentUser) {
+        this.route.go('/messenger');
+      }
+    }
+    catch (e) {
+      console.log('eeeeeess', e);
+      this.route.go('/')
+    }
+  }
+
+  onClick() {
+    console.log('Path.SignUp')
+    this.route.go(Path.SignUp)
   }
 
   handleSubmit(e: Event) {
@@ -40,8 +72,8 @@ export class LoginPage extends Block {
       login: formData.get('login'),
       password: formData.get('password'),
     }
-
     console.log('signinForm', data)
+    AuthController.signIn(data as SignInData)
   }
 
   render() {

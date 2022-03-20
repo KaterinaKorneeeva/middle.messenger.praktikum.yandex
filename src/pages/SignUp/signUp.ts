@@ -3,13 +3,25 @@ import '../../sass/main.scss'
 import template from './signUp.pug'
 import Input from '../../components/Input'
 import Button from '../../components/Button/Button'
+import AuthController, { ControllerSignUpData } from '../../../src/controllers/AuthController'
+import Link from '../../components/Link'
+import { Router } from '../../utils/Router';
+import {Path} from "../../constants/router";
 export class SignUpPage extends Block {
-  constructor() {
+  constructor(props) {
+    console.log('props.erorr', props)
     super({
       label: 'Регистрация',
       formName: 'Регистрация',
       button: new Button({
         label: 'Зарегистрироваться',
+      }),
+      errorText: props.error,
+      linkToSignIn: new Link({
+        label: 'войти',
+        events: {
+          click: () => this.onClick()
+        }
       }),
       content: [
         new Input({
@@ -56,14 +68,24 @@ export class SignUpPage extends Block {
           placeholder: 'Пароль (ещё раз)',
         }),
       ],
-
       events: {
         submit: (e: Event) => this.handleSubmit(e),
       },
     })
+    this.route = new Router()
   }
 
-  handleSubmit(e: Event) {
+  componentDidMount() {
+    console.log('props.erorr', this.props)
+  }
+  componentDidUpdate() {
+
+  }
+  onClick() {
+    this.route.go(Path.SignIn)
+  }
+
+  async handleSubmit(e: Event) {
     e.preventDefault()
     const formData = new FormData((e.target as HTMLFormElement))
 
@@ -76,7 +98,17 @@ export class SignUpPage extends Block {
       password: formData.get('password'),
       confirmPassword: formData.get('confirmPassword'),
     }
+
+    // await AuthController.signUp(data as ControllerSignUpData)
+
+    // console.log('this.props', this.props)
     console.log('signuppage', data)
+    try {
+      await AuthController.signUp(data as ControllerSignUpData)
+    } catch (e) {
+      console.log('error', e)
+    }
+
   }
 
   render() {

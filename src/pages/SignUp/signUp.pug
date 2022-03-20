@@ -6,6 +6,6 @@ block content
         .block
             h2.block__title !{label}
             form.form(name="signin")
-                .form__container !{content}
-                    .form__buttons !{button}
-                        a(href='/index.html') Войти
+                .form__container !{content} текст =!{errorText} 
+                    .form__buttons !{button} 
+                      | !{linkToSignIn} 

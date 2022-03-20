@@ -1,6 +1,6 @@
 import EventBus from './EventBus'
 import { nanoid } from 'nanoid'
-
+import {isEqual}  from './helpers';
 class Block {
   static EVENTS = {
     INIT: 'init',
@@ -15,9 +15,11 @@ class Block {
   private _meta: { props: any }
 
   protected props: any
+  private _timeoutId: undefined | ReturnType<typeof setTimeout>
+
   protected children: Record<string, Block>
   private eventBus: () => EventBus
-
+  
 
   constructor(propsAndChildren: any = {}) {
     const eventBus = new EventBus()
@@ -84,14 +86,30 @@ class Block {
   }
 
   _componentDidUpdate(oldProps: any, newProps: any) {
-    if (this.componentDidUpdate(oldProps, newProps)) {
-      this.eventBus().emit(Block.EVENTS.FLOW_RENDER)
-    }
+    // if (this.componentDidUpdate(oldProps, newProps)) {
+    //   this.eventBus().emit(Block.EVENTS.FLOW_RENDER)
+      
+    // }
+
+    console.log('oldProps', oldProps);
+    console.log('newProps', newProps);
+    
+    if (!isEqual(oldProps, newProps)) {
+      const RENDER_DELAY = 200
+      if (this._timeoutId) return
+
+      this._timeoutId = setTimeout(() => {
+          this._removeEvents()
+          this.eventBus().emit(Block.EVENTS.FLOW_RENDER)
+          clearTimeout(this._timeoutId)
+          this._timeoutId = undefined
+      }, RENDER_DELAY)
+  }
   }
 
-  componentDidUpdate(oldProps: any, newProps: any) {
-    return true
-  }
+  componentDidUpdate() {
+    return
+}
 
   setProps = (nextProps: any) => {
     if (!nextProps) {

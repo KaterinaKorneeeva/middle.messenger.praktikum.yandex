@@ -2,49 +2,47 @@ import LoginPage from './pages/Login'
 import ChatPage from './pages/Chat'
 import ProfilePage from './pages/Profile'
 import SignUpPage from './pages/SignUp'
-import Error404  from "./pages/Errors/404";
+import Error404 from "./pages/Errors/404";
 import Error500 from "./pages/Errors/500";
-import {Path} from "./constants/router";
-
 import { Router } from './utils/Router';
+import { Path } from "./constants/router";
+import AuthController from './controllers/AuthController'
 import './sass/main.scss'
 
+const router = new Router('#app')
 
-const router = new Router('#app');
-console.log('router',router)
-  
+document.addEventListener('DOMContentLoaded', async () => {
+  router
+    .use('/', LoginPage)
+    .use(Path.SignUp, SignUpPage)
+    .use(Path.Profile, ProfilePage)
+    .use(Path.Chat, ChatPage)
+    .use(Path.Error404, Error404)
+    .use(Path.Error500, Error500)
 
+    // .use('/', LoginPage)
+    // .use('/sign-up', Registration)
+    // .use('/settings', Settings)
+    // .use('/settings/user', SettingsUser)
+    // .use('/settings/password', SettingsPassword)
+    // .use('/messenger', Chat)
+    // .use('/500', Error500)
+    // .use('/404', Error404);
 
-// Можно обновиться на /user и получить сразу пользователя
-router
-  .use(Path.SignIn, LoginPage)
-  .use(Path.SignUp, SignUpPage)
-  .use(Path.Profile, ProfilePage)
-  .use(Path.Chat, ChatPage)
-  .use(Path.Error404, Error404)
-  .use(Path.Error500, Error500)
-  .start();
-
-// // Через секунду контент изменится сам, достаточно дёрнуть переход
-// setTimeout(() => {
-//   router.go("/users");
-// }, 1000);
-
-// // А можно и назад
-// setTimeout(() => {
-//   router.back();
-// }, 3000);
-
-// // И снова вперёд
-// setTimeout(() => {
-//   router.forward();
-// }, 5000);
+    // await AuthController.fetchUser();
+    try {
+      await AuthController.fetchUser()
+    } catch (e) {
+      console.log('eeee',e);
+      router.go('/');
+    }
 
 
-// router
-//   .use('/', Button)
+  router.start();
+});
 
-export {
-  router,
-};
+
+// export {
+//   router
+// };
 

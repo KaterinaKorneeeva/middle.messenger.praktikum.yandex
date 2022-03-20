@@ -6,9 +6,14 @@ import ButtonSettings from '../../components/Button/SettingsButton'
 import ProfileImage from '../../components/ProfileImage'
 import Modal from '../../components/Modal/modal'
 import Input from '../../components/Input/Input'
+import AuthController, {ControllerSignUpData} from '../../../src/controllers/AuthController'
+import {Path} from "../../constants/router"
+import store from '../../utils/Store'
+import { Router } from '../../utils/Router'
 
-export class ProfilePage extends Block {
-  constructor() {
+class ProfilePage extends Block {
+  constructor(props) {
+    console.log('propspropsprops',props)
     super({
       label: 'fields',
       image: new ProfileImage({
@@ -17,12 +22,12 @@ export class ProfilePage extends Block {
         },
       }),
       fields: [
-        { name: 'Почта', value: 'pochta@yandex.ru' },
-        { name: 'Логин', value: 'ivanivanov' },
-        { name: 'Имя', value: 'Иван' },
-        { name: 'Фамилия', value: 'Иванов' },
+        { name: 'Почта', value: props.email },
+        { name: 'Логин', value: props.login },
+        { name: 'Имя', value:  props.first_name},
+        { name: 'Фамилия', value: props.second_name },
         { name: 'Имя в чате', value: 'ivan' },
-        { name: 'Телефон', value: '+7 (909) 967 30 30' },
+        { name: 'Телефон', value: props.phone},
       ],
       modalEditProfile: new Modal({
         modalId: 'modalEditProfile',
@@ -146,7 +151,7 @@ export class ProfilePage extends Block {
         label: 'Выйти',
         className: 'button-settings--red',
         events: {
-          click: () => console.log('logout'),
+          click: () => this.handleLogOutClick(),
         },
       }),
       buttonAddPhoto: {
@@ -155,7 +160,33 @@ export class ProfilePage extends Block {
         },
       },
     })
+    this.route = new Router()
   }
+
+  // handleLogOutClick() {
+  //   console.log('logoutlogout')
+  //   AuthController.logout()
+  //   }
+
+
+  async handleLogOutClick() {
+    alert('logoutwwwsss')
+
+      AuthController.logout()
+       this.route.go('/sign-up');
+    
+   
+
+      // try {
+      //   await AuthController.logout();
+      //   store.set('currentUser', null);
+      //   this.route.go('/');
+      // } catch (err) {
+      //   console.log(err);
+      // }
+
+    }
+
 
   handleEditPhotoModal() {
     const modalAddPhoto = document.getElementById('modalAddPhoto')
@@ -222,3 +253,4 @@ export class ProfilePage extends Block {
 }
 
 
+export default ProfilePage;

@@ -8,29 +8,24 @@ import Modal from '../../components/Modal/modal'
 import Input from '../../components/Input/Input'
 import AuthController, {ControllerSignUpData} from '../../../src/controllers/AuthController'
 import UserController, {EditProfileData} from '../../controllers/UserController'
-
 import {Path} from "../../constants/router"
-import store from '../../utils/Store'
 import { Router } from '../../utils/Router'
 
 class ProfilePage extends Block {
   constructor(props) {
-    console.log('propspropsprops',props)
     super({
-      label: 'fields',
       image: new ProfileImage({
         events: {
           click: () => this.handleEditPhotoModal(),
         },
       }),
-      fields: [
-        { name: 'Почта', value: props.email },
-        { name: 'Логин', value: props.login },
-        { name: 'Имя', value:  props.first_name},
-        { name: 'Фамилия', value: props.second_name },
-        { name: 'Имя в чате', value: 'ivan' },
-        { name: 'Телефон', value: props.phone},
-      ],
+      email: props.email,
+      login: props.login,
+      first_name: props.second_name,
+      second_name: props.second_name,
+      display_name: props.display_name,
+      phone: props.phone,
+
       modalEditProfile: new Modal({
         modalId: 'modalEditProfile',
         modalTitle: 'Изменить данные',
@@ -71,6 +66,14 @@ class ProfilePage extends Block {
             type: 'text',
             placeholder: 'Фамилия',
             inputValue: props.second_name,
+          }),
+          new Input({
+            inputName: 'displayName',
+            labelName: 'Имя в чате',
+            id: 'displayName',
+            type: 'text',
+            placeholder: 'Имя в чате',
+            inputValue: props.display_name,
           }),
           new Input({
             inputName: 'phone',
@@ -170,11 +173,6 @@ class ProfilePage extends Block {
     this.route = new Router()
   }
 
-  // handleLogOutClick() {
-  //   console.log('logoutlogout')
-  //   AuthController.logout()
-  //   }
-
 
   async handleLogOutClick() {
 
@@ -212,7 +210,7 @@ class ProfilePage extends Block {
     const data = {
       first_name: formData.get('firstName'),
       second_name: formData.get('secondName'),
-      display_name: 'test',
+      display_name: formData.get('displayName'),
       login: formData.get('login'),
       email: formData.get('email'),
       phone: formData.get('phone'),
@@ -222,6 +220,7 @@ class ProfilePage extends Block {
 
     try {
       await UserController.editProfile(data as EditProfileData)
+      
     } catch (e) {
       console.log('error', e)
     }
@@ -238,11 +237,6 @@ class ProfilePage extends Block {
       confirmPassword: formData.get('confirmPassword'),
     }
     console.log('ChangePas', data)
-
-    // SettingsController.editProfile(data)
-
-   
-    
     
     const modalEditPass = document.getElementById('modalEditPass')
     modalEditPass.classList.remove('active')
@@ -255,8 +249,6 @@ class ProfilePage extends Block {
 
 
   render() {
-
-    console.log('...this.props', {...this.props})
     return this.compile(template, { ...this.props })
   }
 }

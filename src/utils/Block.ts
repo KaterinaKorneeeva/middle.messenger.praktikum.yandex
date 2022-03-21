@@ -1,6 +1,6 @@
 import EventBus from './EventBus'
 import { nanoid } from 'nanoid'
-import {isEqual}  from './helpers';
+import { isEqual } from './helpers';
 class Block {
   static EVENTS = {
     INIT: 'init',
@@ -19,7 +19,7 @@ class Block {
 
   protected children: Record<string, Block>
   private eventBus: () => EventBus
-  
+
 
   constructor(propsAndChildren: any = {}) {
     const eventBus = new EventBus()
@@ -75,7 +75,16 @@ class Block {
   }
 
   _componentDidMount() {
-    this.componentDidMount()
+    this.componentDidMount();
+    Object.values(this.children).forEach(child => {
+      if (Array.isArray(child)) {
+        child.forEach(elem => {
+          elem.dispatchComponentDidMount();
+        })
+      } else {
+        child.dispatchComponentDidMount();
+      }
+    });
   }
 
   componentDidMount() {
@@ -85,29 +94,20 @@ class Block {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM)
   }
 
-  _componentDidUpdate(oldProps: any, newProps: any) {
-    // if (this.componentDidUpdate(oldProps, newProps)) {
-    //   this.eventBus().emit(Block.EVENTS.FLOW_RENDER)
-      
-    // }
-
-    console.log('oldProps', oldProps);
-    console.log('newProps', newProps);
-    
+  private _componentDidUpdate(oldProps: T, newProps: T) {
     if (!isEqual(oldProps, newProps)) {
-      const RENDER_DELAY = 200
-      if (this._timeoutId) return
+        if (this._timeoutId) return
 
-      this._timeoutId = setTimeout(() => {
-          this._removeEvents()
-          this.eventBus().emit(Block.EVENTS.FLOW_RENDER)
-          clearTimeout(this._timeoutId)
-          this._timeoutId = undefined
-      }, RENDER_DELAY)
-  }
-  }
+        this._timeoutId = setTimeout(() => {
+            this._removeEvents()
+            this.eventBus().emit(Block.EVENTS.FLOW_RENDER)
+            clearTimeout(this._timeoutId)
+            this._timeoutId = undefined
+        }, 200)
+    }
+}
 
-  componentDidUpdate() {
+componentDidUpdate() {
     return
 }
 

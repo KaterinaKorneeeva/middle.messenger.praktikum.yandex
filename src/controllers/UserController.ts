@@ -1,21 +1,5 @@
-import UserApi, { EditProfileData } from '../api/UserApi'
+import UserApi, { EditProfileData, EditPassData } from '../api/UserApi'
 import store from '../utils/Store'
-
-
-// export interface ControllerSignUpData extends SignUpData {
-//   confirmPassword: string
-// }
-
-
-export type EditProfileData = {
-  first_name: string;
-  second_name: string;
-  display_name: string;
-  login: string;
-  email: string;
-  phone: string;
-}
-
 
 
 class UserController {
@@ -26,7 +10,6 @@ class UserController {
   }
 
   public async editProfile(data: EditProfileData) {
-    console.log('data',data);
     try {
       const result = await this.api.editProfile(data);
       if (result.status !== 200) {
@@ -39,6 +22,18 @@ class UserController {
     }
   }
 
+  public async editPass(data: EditPassData) {
+    try {
+      const result = await this.api.editPass(data);
+      if (result.status !== 200) {
+        throw new Error(`Ошибка: ${result.status} ${result.statusText || result.responseText}`);
+      }
+      return result;
+    } catch (error) {
+      console.log(error.message);
+    }
+
+  }
 }
 
 

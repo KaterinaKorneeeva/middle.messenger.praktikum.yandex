@@ -7,7 +7,9 @@ import ProfileImage from '../../components/ProfileImage'
 import Modal from '../../components/Modal/modal'
 import Input from '../../components/Input/Input'
 import AuthController, {ControllerSignUpData} from '../../../src/controllers/AuthController'
-import UserController, {EditProfileData} from '../../controllers/UserController'
+import UserController from '../../controllers/UserController'
+import {EditProfileData, EditPassData} from '../../api/UserApi'
+
 import {Path} from "../../constants/router"
 import { Router } from '../../utils/Router'
 
@@ -237,6 +239,13 @@ class ProfilePage extends Block {
       confirmPassword: formData.get('confirmPassword'),
     }
     console.log('ChangePas', data)
+
+    try {
+      await UserController.editPass(data as EditPassData)
+      
+    } catch (e) {
+      console.log('error', e)
+    }
     
     const modalEditPass = document.getElementById('modalEditPass')
     modalEditPass.classList.remove('active')

@@ -32,7 +32,18 @@ class UserController {
     } catch (error) {
       console.log(error.message);
     }
-
+  }
+  public async editAvatar(data: any) {
+    try {
+      const result = await this.api.editAvatar(data);
+      if (result.status !== 200) {
+        throw new Error(`Ошибка: ${result.status} ${result.statusText || result.responseText}`);
+      }
+      store.set('currentUser', JSON.parse(result.response));
+      return result;
+    } catch (error) {
+      console.log(error.message);
+    }
   }
 }
 

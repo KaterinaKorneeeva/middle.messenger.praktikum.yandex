@@ -7,6 +7,7 @@ import Error500 from "./pages/Errors/500";
 import { Router } from './utils/Router';
 import { Path } from "./constants/router";
 import AuthController from './controllers/AuthController'
+import ChatController from './controllers/ChatController'
 import './sass/main.scss'
 
 const router = new Router('#app')
@@ -19,19 +20,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     .use(Path.Chat, ChatPage)
     .use(Path.Error404, Error404)
     .use(Path.Error500, Error500)
-
-    // .use('/', LoginPage)
-    // .use('/sign-up', Registration)
-    // .use('/settings', Settings)
-    // .use('/settings/user', SettingsUser)
-    // .use('/settings/password', SettingsPassword)
-    // .use('/messenger', Chat)
-    // .use('/500', Error500)
-    // .use('/404', Error404);
-
-    // await AuthController.fetchUser();
+    // await ChatController.fetchChats()
     try {
       await AuthController.fetchUser()
+      await ChatController.fetchChats()
     } catch (e) {
       console.log('eeee',e);
       router.go('/');
@@ -40,6 +32,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   router.start();
 });
+
 
 
 // export {

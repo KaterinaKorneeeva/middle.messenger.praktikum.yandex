@@ -8,30 +8,16 @@ import { Router } from '../../utils/Router';
 import {Path} from "../../constants/router";
 import '../../sass/main.scss'
 
-export class ChatPage extends Block {
-  constructor() {
+class ChatPage extends Block {
+  constructor(props) {
     super({
-      sender: 'Андрей',
+      ...props,
       link: new Link({
         label: 'профиль',
         events: {
           click: () => this.onClick()
         }
       }),
-      chatList: [
-        new Chat({
-          sender: 'Андрей',
-          messageText: 'Друзья, у меня для вас особенный выпуск новостей!',
-          date: '10:40',
-          count: '1',
-        }),
-        new Chat({
-          sender: 'Семен',
-          messageText: 'Привет! посмотри ссылку',
-          date: '9:40',
-          count: '3',
-        })],
-
       messageList: [
         new Message({
           className: 'chat-message--sent',
@@ -65,6 +51,17 @@ export class ChatPage extends Block {
     this.route = new Router()
   }
 
+  componentDidMount() {
+    this.children.chatList = this.props.chats.map(data => new Chat(data))
+    console.log('this.props.chats',this.children.chatList);
+  }
+  
+  componentDidUpdate(oldProps: any, newProps: any ) {
+    alert(2)
+    this.children.chatList = newProps.chats.map(data => new Chat(data));
+    return super.componentDidUpdate(oldProps, newProps);
+  }
+
   onClick() {
     this.route.go(Path.Profile)
   }
@@ -83,3 +80,4 @@ export class ChatPage extends Block {
     return this.compile(template, { ...this.props })
   }
 }
+export default ChatPage;

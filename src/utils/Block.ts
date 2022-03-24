@@ -94,29 +94,34 @@ class Block {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM)
   }
 
-  private _componentDidUpdate(oldProps: T, newProps: T) {
+  private _componentDidUpdate(oldProps: any, newProps: any) {
     if (!isEqual(oldProps, newProps)) {
-        if (this._timeoutId) return
+      if (this._timeoutId) return
 
-        this._timeoutId = setTimeout(() => {
-            this._removeEvents()
-            this.eventBus().emit(Block.EVENTS.FLOW_RENDER)
-            clearTimeout(this._timeoutId)
-            this._timeoutId = undefined
-        }, 200)
+      this._timeoutId = setTimeout(() => {
+        this._removeEvents()
+        this.eventBus().emit(Block.EVENTS.FLOW_RENDER)
+        clearTimeout(this._timeoutId)
+        this._timeoutId = undefined
+      }, 200)
     }
+  }
+
+  componentDidUpdate(oldProps: any, newProps: any): boolean {
+    if (oldProps === newProps) {
+        return false;
+    }
+    return true;
 }
 
-componentDidUpdate() {
-    return
-}
 
   setProps = (nextProps: any) => {
     if (!nextProps) {
       return
     }
-
-    Object.assign(this.props, nextProps)
+    const { props, children  } = this.getChildren(nextProps)
+    Object.assign(this.children, children)
+    Object.assign(this.props, props)
   }
 
 

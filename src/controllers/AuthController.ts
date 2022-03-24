@@ -2,7 +2,6 @@ import AuthAPI, { SignUpData, SignInData } from '../api/AuthApi'
 import store from '../../src/utils/Store'
 import { Router } from '../utils/Router'
 import { Path } from '../constants/router';
-// import { router } from '../index';
 export interface ControllerSignUpData extends SignUpData {
   confirmPassword: string
 }
@@ -28,41 +27,19 @@ class AuthController {
     const response = await this.api.signUp(SignUpData);
 
     if (response.reason) {
-      // throw new Error(response.reason)
       store.set('currentUser.error', response.reason)
     }
-
-    // await this.fetchUser()
-    // const router = new Router()
-
-    // router.go(Path.Chat)
   }
 
 
   public async signIn(data: SignInData) {
-    // try {
     await this.api.signIn(data)
     await this.fetchUser()
-    console.log('sssssss');
     const router = new Router()
     router.go(Path.Chat)
-    // const result = await this.api.signIn(data);
-    //   if (result.status !== 200) {
-    //     throw new Error(`Ошибка: ${result.status} ${result.statusText || result.responseText}`);
-    //   }
-    //   // await this.getUserInfo();
-    //   // router.go('/messenger');
-    // } catch (error) {
-    //   console.log(error.message)
-    // }
   }
 
   public async logout() {
-    // await this.api.logout()
-    // console.log('11272783788')
-    // const router = new Router()
-    // // router.go(Path.SignIn)
-    // router.go('/')
     try {
         console.log('logoutlogout')
       const result = await this.api.logout()
@@ -86,8 +63,6 @@ class AuthController {
         throw new Error(`Ошибка: ${result.status} ${result.statusText || result.responseText}`)
       }
       const userData = JSON.parse(result.response)
-
-      console.log('userDatauserData', userData)
       store.set('currentUser', userData)
     } catch (error) {
       console.log(error.message);

@@ -3,9 +3,9 @@ import template from './template.pug'
 
 interface ChatProps {
   messageText: string
-  sender: string
-  date: string
-  count: string
+  title: string
+  chatDate: string
+  unread_count: string
 }
 
 export default class Chat extends Block {

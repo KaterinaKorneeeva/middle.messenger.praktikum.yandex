@@ -175,21 +175,20 @@ class ProfilePage extends Block {
     this.route = new Router()
   }
 
-
+  componentDidMount() {
+    console.log('componentDidMount',this.props);
+  }
   async handleLogOutClick() {
-
       AuthController.logout()
        this.route.go('/sign-up');
-
     }
-
 
   handleEditPhotoModal() {
     const modalAddPhoto = document.getElementById('modalAddPhoto')
     modalAddPhoto.classList.add('active')
   }
 
-  handleChangePhoto(e: Event) {
+  public async handleChangePhoto(e: Event) {
     e.preventDefault()
     const formData = new FormData((e.target as HTMLFormElement))
     const data = {
@@ -200,6 +199,8 @@ class ProfilePage extends Block {
 
     const modalAddPhoto = document.getElementById('modalAddPhoto')
     modalAddPhoto.classList.remove('active')
+
+
   }
   public handleClickEditInfo() {
     const modalEditProfile = document.getElementById('modalEditProfile')
@@ -256,11 +257,9 @@ class ProfilePage extends Block {
     modalEditPass.classList.add('active')
   }
 
-
   render() {
     return this.compile(template, { ...this.props })
   }
 }
-
 
 export default ProfilePage;

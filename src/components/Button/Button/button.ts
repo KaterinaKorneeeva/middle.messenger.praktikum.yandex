@@ -2,7 +2,8 @@ import Block from '../../../utils/Block'
 import template from './template.pug'
 interface ButtonProps {
   label?: string
-  type: string
+  type?: string
+  className?: string 
   events?: {
     onClick?: () => void
   }

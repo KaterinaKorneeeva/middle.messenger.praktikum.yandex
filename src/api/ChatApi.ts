@@ -9,6 +9,7 @@ export type SignUpData = {
   phone: string
   password: string
 }
+
 export type ChatData = {
   title: string
 }
@@ -27,6 +28,20 @@ export default class ChatAPI extends BaseAPI {
       data: JSON.stringify(data)
     });
   }
+
+  public addUsersChat(data: ChatData): Promise<XMLHttpRequest> {
+    return authAPIInstance.put('/users', {
+      data: JSON.stringify(data)
+    });
+  }
+
+  public deleteUsersChat(data: ChatData): Promise<XMLHttpRequest> {
+    return authAPIInstance.delete('/users', {
+      data: JSON.stringify(data)
+    });
+  }
+
+  
 }
 
 

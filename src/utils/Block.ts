@@ -140,9 +140,8 @@ class Block {
     this._element = newElement
 
     this._addEvents()
-
-
   }
+
 
   protected render(): DocumentFragment {
     return new DocumentFragment()

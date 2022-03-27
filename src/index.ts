@@ -29,7 +29,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       router.go('/');
     }
 
-
   router.start();
 });
 

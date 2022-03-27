@@ -26,6 +26,9 @@ export default class HTTPTransport {
   public put(url: string, options: OptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
     return this.request(`${this.APIUrl}${url}`, { ...options, method: METHOD.PUT })
   }
+  public delete(url: string, options: OptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
+    return this.request(`${this.APIUrl}${url}`, { ...options, method: METHOD.DELETE })
+  }
   protected request(url: string, options: Options = { method: METHOD.GET }): Promise<XMLHttpRequest> {
     const { method, data, contentType = 'application/json' } = options
     return new Promise((resolve, reject) => {

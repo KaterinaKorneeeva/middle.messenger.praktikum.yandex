@@ -2,6 +2,7 @@ import Block from '../../utils/Block'
 import template from './chat.pug'
 import Chat from '../../components/Chat/Chat'
 import ChatCreate from '../../components/Chat/ChatCreate'
+import chatHeader from '../../components/Chat/chatHeader'
 import Input from '../../components/Input'
 import Message from '../../components/Chat/Message'
 import Link from '../../components/Link'
@@ -9,6 +10,7 @@ import Button from '../../components/Button/Button'
 import { Router } from '../../utils/Router';
 import {Path} from "../../constants/router";
 import '../../sass/main.scss'
+import store from '../../../src/utils/Store'
 
 class ChatPage extends Block {
   constructor(props) {
@@ -22,6 +24,7 @@ class ChatPage extends Block {
       }),
       createChat:  new ChatCreate(),
       chatList: props.chats.map(data => new Chat(data)),
+      chatHeader: new chatHeader(),
       messageList: [
         new Message({
           className: 'chat-message--sent',
@@ -52,19 +55,13 @@ class ChatPage extends Block {
 
       events: {
         submit: (e: Event) => this.handleSubmit(e),
-       
       },
       
     })
     this.route = new Router()
   }
 
-  componentDidMount() {
-    // document.title = getDocumentTitle('Чаты');
-  }
-  
-  componentDidUpdate(oldProps: any, newProps: any ) {
-    alert(2)
+  Update(oldProps: any, newProps: any ) {
     this.children.chatList = newProps.chats.map(data => new Chat(data));
     return super.componentDidUpdate(oldProps, newProps);
   }
@@ -82,8 +79,6 @@ class ChatPage extends Block {
 
     console.log('messageForm', data)
   }
-
- 
 
   render() {
     return this.compile(template, { ...this.props })

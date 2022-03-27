@@ -13,15 +13,12 @@ block content
                     | !{createChat} 
                     | !{chatList}
             .chat-area
-                .chat-area__header
-                    .chat-list-item__image
-                    .chat-list-item__message-info
-                        p.chat-list-item__user-name !{sender}
+                | !{chatHeader}
                 .chat-area__container
                     | !{messageList}
                 .chat-area__footer
-                    //- form.chat-message-form(name="message")
-                    //-     .chat-message-form__btn-attach
-                    //-     | !{inputMessage}
-                    //-     button.chat-message-form__btn-send
+                    form.chat-message-form(name="message")
+                        .chat-message-form__btn-attach
+                        | !{inputMessage}
+                        button.chat-message-form__btn-send
           

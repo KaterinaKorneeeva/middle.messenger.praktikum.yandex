@@ -32,27 +32,33 @@ class ChatController {
     }
   }
 
-  // public async createChat(data: ChatData) {
-  //   try {
-  //     const result = await this.api.createChat(data);
-  //     if (result.status !== 200) {
-  //       throw new Error(`Ошибка: ${result.status} ${result.statusText || result.responseText}`);
-  //     }
+  public async addUsersChat(data: any) {
+    try {
+      const result = await this.api.addUsersChat(data);
+      if (result.status !== 200) {
+        throw new Error(`Ошибка: ${result.status} ${result.statusText || result.responseText}`);
+      }
+      return result;
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
 
-  //     const test = store.getState().chats 
-  //     console.log('testtest',test)
-
-  //     store.set('chats', JSON.parse(result.response));
-  //     return result;
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   }
-  // }
-
-
+  public async deleteUsersChat(data: any) {
+    try {
+      const result = await this.api.deleteUsersChat(data);
+      if (result.status !== 200) {
+        throw new Error(`Ошибка: ${result.status} ${result.statusText || result.responseText}`);
+      }
+      return result;
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
+  
   public async createChat(data: ChatData) {
     return  await this.api.createChat(data).then(() => {
-      this.fetchChats();
+      this.fetchChats()
     });
   }
 

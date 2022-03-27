@@ -3,7 +3,7 @@ import template from './template.pug'
 interface LinkProps {
   label: string
   events?: {
-    onClick?: () => void
+    click?: () => void
   }
 }
 class Link extends Block {

@@ -5,11 +5,12 @@ import Button from '../../components/Button/Button'
 import ButtonSettings from '../../components/Button/SettingsButton'
 import ProfileImage from '../../components/ProfileImage'
 import Modal from '../../components/Modal/modal'
+import ModalAvatar from '../../components/ModalAvatar/modal'
 import Input from '../../components/Input/Input'
 import AuthController, {ControllerSignUpData} from '../../../src/controllers/AuthController'
 import UserController from '../../controllers/UserController'
-import {EditProfileData, EditPassData} from '../../api/UserApi'
-
+import {EditProfileData, EditPassData, EditPhotoData} from '../../api/UserApi'
+import { resolveAvatarSrc } from '../../utils/profile';
 import {Path} from "../../constants/router"
 import { Router } from '../../utils/Router'
 
@@ -17,10 +18,12 @@ class ProfilePage extends Block {
   constructor(props) {
     super({
       image: new ProfileImage({
+        avatar: resolveAvatarSrc(props.avatar),
         events: {
           click: () => this.handleEditPhotoModal(),
         },
       }),
+      
       email: props.email,
       login: props.login,
       first_name: props.second_name,
@@ -125,22 +128,14 @@ class ProfilePage extends Block {
           submit: (e: Event) => this.handleChangePasSubmit(e),
         },
       }),
-      modalAddPhoto: new Modal({
+      modalAddPhoto: new ModalAvatar({
         modalId: 'modalAddPhoto',
         modalTitle: 'Загрузите файл',
         // modalBtnText: 'button-settings--blue',
         button: new Button({
           label: 'Поменять',
+          type: 'submit'
         }),
-        content: [
-          new Input({
-            inputName: 'avatar',
-            inputValue: '',
-            id: 'avatar',
-            errorText: '',
-            type: 'file',
-          }),
-        ],
         events: {
           submit: (e: Event) => this.handleChangePhoto(e),
         },
@@ -175,9 +170,11 @@ class ProfilePage extends Block {
     this.route = new Router()
   }
 
-  componentDidMount() {
-    console.log('componentDidMount',this.props);
-  }
+  // componentDidMount() {
+  //   console.log('componentDidMount',this.props.avatar);
+  // }
+ 
+
   async handleLogOutClick() {
       AuthController.logout()
        this.route.go('/sign-up');
@@ -191,17 +188,15 @@ class ProfilePage extends Block {
   public async handleChangePhoto(e: Event) {
     e.preventDefault()
     const formData = new FormData((e.target as HTMLFormElement))
-    const data = {
-      avatar: formData.get('avatar'),
+    try {
+      await UserController.editAvatar(formData)
+    } catch (e) {
+      console.log('error', e)
     }
-
-    console.log('changePhoto', data)
-
     const modalAddPhoto = document.getElementById('modalAddPhoto')
     modalAddPhoto.classList.remove('active')
-
-
   }
+
   public handleClickEditInfo() {
     const modalEditProfile = document.getElementById('modalEditProfile')
     modalEditProfile.classList.add('active')

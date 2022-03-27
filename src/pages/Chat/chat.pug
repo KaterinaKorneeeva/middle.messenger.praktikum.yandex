@@ -6,9 +6,11 @@ block content
         .chat-container
             .chat-list
                 .chat-list__container !{link} 
-                    .chat-search-bar
-                        .chat-search-bar__container
-                            input.chat-search-bar__input(placeholder="Поиск")
+                    //- .chat-search-bar
+                    //-     .chat-search-bar__container
+                          //- form(id="createChatForm") !{createChat} 
+                            //- | !{button} 
+                    | !{createChat} 
                     | !{chatList}
             .chat-area
                 .chat-area__header
@@ -18,8 +20,8 @@ block content
                 .chat-area__container
                     | !{messageList}
                 .chat-area__footer
-                    form.chat-message-form(name="message")
-                        .chat-message-form__btn-attach
-                        | !{inputMessage}
-                        button.chat-message-form__btn-send
+                    //- form.chat-message-form(name="message")
+                    //-     .chat-message-form__btn-attach
+                    //-     | !{inputMessage}
+                    //-     button.chat-message-form__btn-send
           

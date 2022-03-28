@@ -1,8 +1,12 @@
 .chat-area__header
   .chat-list-item__image
   .chat-list-item__message-info
+    if title
     p.chat-list-item__user-name !{title}
-  div.chat-settings
-    div !{addUser}
-    div !{deleteUser}    
+  if title
+    div.chat-settings
+      div !{addUser}
+      div !{deleteUser}
+  else
+    p выберите чат
 

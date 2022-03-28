@@ -11,7 +11,7 @@ import { Router } from '../../utils/Router';
 import {Path} from "../../constants/router";
 import '../../sass/main.scss'
 import store from '../../../src/utils/Store'
-// import WebSocketMessage from '../../../src/api/webSocket';
+import WebSocketMessage from '../../../src/api/webSocket';
 class ChatPage extends Block {
   constructor(props) {
     super({
@@ -25,24 +25,24 @@ class ChatPage extends Block {
       createChat:  new ChatCreate(),
       chatList: props.chats.map(data => new Chat(data)),
       chatHeader: new chatHeader(),
-      messageList: [
-        new Message({
-          className: 'chat-message--sent',
-          massageText: 'Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну.',
-        }),
-        new Message({
-          className: 'chat-message--incoming',
-          massageText: 'Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну.',
-        }),
-        new Message({
-          className: 'chat-message--incoming',
-          massageText: 'Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну.',
-        }),
-        new Message({
-          className: 'chat-message--sent',
-          massageText: 'Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну.',
-        }),
-      ],
+      messageList: [],
+        // new Message({
+        //   className: 'chat-message--sent',
+        //   massageText: 'Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну.',
+        // }),
+        // new Message({
+        //   className: 'chat-message--incoming',
+        //   massageText: 'Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну.',
+        // }),
+        // new Message({
+        //   className: 'chat-message--incoming',
+        //   massageText: 'Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну.',
+        // }),
+        // new Message({
+        //   className: 'chat-message--sent',
+        //   massageText: 'Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну.',
+        // }),
+      
 
       inputMessage: new Input({
         inputName: 'message',
@@ -62,6 +62,9 @@ class ChatPage extends Block {
   }
 
 
+  componentDidMount() {
+  }
+
   componentDidUpdate(oldProps: any, newProps: any ) {
     this.children.chatList = newProps.chats.map(data => new Chat(data));
     return super.componentDidUpdate(oldProps, newProps);
@@ -78,27 +81,30 @@ class ChatPage extends Block {
       message: formData.get('message'),
     }
 
-    console.log('messageForm', data.message)
+    const dataTest = store.getState().activeChat
 
-    // const dataTest = store.getState().activeChat
+    // const socket = new WebSocketMessage()
     
-    // console.log('dataTestdataTest', dataTest.user)
+    const socket = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${dataTest.user}/${dataTest.chatid}/${dataTest.token}` );
 
+    socket.onopen = function(e) {
+      alert("[open] Соединение установлено");
+      alert("Отправляем данные на сервер");
+      // socket.send(data.message);
+      socket.send(JSON.stringify({
+        content: data.message,
+        type: 'message',
+        }));
+        
+    }
 
-    // const socket = new WebSocket(
-    //   `wss://ya-praktikum.tech/ws/chats/${dataTest.user}/${dataTest.chatid}/${dataTest.token}`
-    // );
-
-    // socket.onopen = function(e) {
-    //   // alert("[open] Соединение установлено");
-    //   // alert("Отправляем данные на сервер");
-    //   // socket.send(data.message);
-
-    //   socket.send(JSON.stringify({
-    //     content: data.message,
-    //     type: 'message',
-    //     }));
-    // };
+    this.setProps({
+      ...this.props,
+      messageList: [  new Message({
+        className: 'chat-message--sent',
+        massageText: data.message,
+      })]
+    })
 
   }
 

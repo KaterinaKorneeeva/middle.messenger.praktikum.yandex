@@ -47,7 +47,6 @@ export class LoginPage extends Block {
   }
 
   async componentDidMount() {
-    alert('componentDidMount')
     try {
       await AuthController.fetchUser();
       if (store.getState().currentUser) {

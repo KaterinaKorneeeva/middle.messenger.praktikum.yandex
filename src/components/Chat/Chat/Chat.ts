@@ -58,7 +58,7 @@ console.log('token', token)
     this.activeSocket = new WebSocketMessage(
       `wss://ya-praktikum.tech/ws/chats/${user}/${chat}/${token}`
     );
-
+    console.log('token',  this.activeSocket)
   }
 
 

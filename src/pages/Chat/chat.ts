@@ -61,6 +61,7 @@ class ChatPage extends Block {
     this.route = new Router()
   }
 
+
   componentDidUpdate(oldProps: any, newProps: any ) {
     this.children.chatList = newProps.chats.map(data => new Chat(data));
     return super.componentDidUpdate(oldProps, newProps);
@@ -79,34 +80,25 @@ class ChatPage extends Block {
 
     console.log('messageForm', data.message)
 
-    const dataTest = store.getState().activeChat
+    // const dataTest = store.getState().activeChat
     
-    console.log('dataTestdataTest', dataTest.user)
+    // console.log('dataTestdataTest', dataTest.user)
 
 
-    const socket = new WebSocket(
-      `wss://ya-praktikum.tech/ws/chats/${dataTest.user}/${dataTest.chatid}/${dataTest.token}`
-    );
+    // const socket = new WebSocket(
+    //   `wss://ya-praktikum.tech/ws/chats/${dataTest.user}/${dataTest.chatid}/${dataTest.token}`
+    // );
 
-    socket.onopen = function(e) {
-      // alert("[open] Соединение установлено");
-      // alert("Отправляем данные на сервер");
-      // socket.send(data.message);
+    // socket.onopen = function(e) {
+    //   // alert("[open] Соединение установлено");
+    //   // alert("Отправляем данные на сервер");
+    //   // socket.send(data.message);
 
-      socket.send(JSON.stringify({
-        content: data.message,
-        type: 'message',
-        }));
-    };
-
-    // // const socket = new WebSocket('wss://ya-praktikum.tech/ws/chats/<USER_ID>/<CHAT_ID>/<TOKEN_VALUE>'); 
-    // socket.send(JSON.stringify({
-    //   content: 'Моё первое сообщение миру!',
-    //   type: 'message',
-    // }));
-
-    // new WebSocketMessage().open();
-    // new WebSocketMessage().send(data);
+    //   socket.send(JSON.stringify({
+    //     content: data.message,
+    //     type: 'message',
+    //     }));
+    // };
 
   }
 

@@ -28,8 +28,10 @@ class ChatHeader extends Block {
     const userId = 390954
     const data = {
       users: [userId],
-      chatId: this.props.id
+      chatId: this.props.chatid
     }
+
+    console.log('datadata',this.props)
     try {
       await ChatController.addUsersChat(data)
       alert(`Пользователь ${userId} добавлен`)
@@ -42,7 +44,7 @@ class ChatHeader extends Block {
     const userId = 390954
     const data = {
       users: [userId],
-      chatId: this.props.id
+      chatId: this.props.chatid
     }
 
     try {

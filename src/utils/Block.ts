@@ -94,16 +94,24 @@ class Block {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM)
   }
 
-  private _componentDidUpdate(oldProps: any, newProps: any) {
-    if (!isEqual(oldProps, newProps)) {
-      if (this._timeoutId) return
+  // private _componentDidUpdate(oldProps: any, newProps: any) {
+  //   if (!isEqual(oldProps, newProps)) {
+  //     if (this._timeoutId) return
 
-      this._timeoutId = setTimeout(() => {
-        this._removeEvents()
-        this.eventBus().emit(Block.EVENTS.FLOW_RENDER)
-        clearTimeout(this._timeoutId)
-        this._timeoutId = undefined
-      }, 200)
+  //     this._timeoutId = setTimeout(() => {
+  //       this._removeEvents()
+  //       this.eventBus().emit(Block.EVENTS.FLOW_RENDER)
+  //       clearTimeout(this._timeoutId)
+  //       this._timeoutId = undefined
+  //     }, 200)
+  //   }
+  // }
+
+  _componentDidUpdate(oldProps: any, newProps: any) {
+    const response = this.componentDidUpdate(oldProps, newProps);
+  
+    if (response) {
+      this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
   }
 
@@ -112,6 +120,9 @@ class Block {
         return false;
     }
     return true;
+}
+componentDidMount(oldProps, newProps) {
+  return !isEqual(oldProps, newProps);
 }
 
 
@@ -156,6 +167,8 @@ class Block {
     // Такой способ больше не применяется с приходом ES6+
     const self = this
 
+    // const oldProps = { ...target }
+
     return new Proxy(props as unknown as object, {
       get(target: Record<string, unknown>, prop: string) {
         const value = target[prop]
@@ -163,10 +176,10 @@ class Block {
       },
       set(target: Record<string, unknown>, prop: string, value: unknown) {
         target[prop] = value
-
-        // Запускаем обновление компоненты
+        const oldProps = { ...target }        // Запускаем обновление компоненты
         // Плохой cloneDeep, в след итерации нужно заставлять добавлять cloneDeep им самим
-        self.eventBus().emit(Block.EVENTS.FLOW_CDU, { ...target }, target)
+        // self.eventBus().emit(Block.EVENTS.FLOW_CDU, { ...target }, target)
+        self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, target)
         return true
       },
       deleteProperty() {

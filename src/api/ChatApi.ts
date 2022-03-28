@@ -41,7 +41,10 @@ export default class ChatAPI extends BaseAPI {
     });
   }
 
-  
+  public getToken(chatId: number) {
+    return authAPIInstance.post(`/token/${chatId}`);
+  }
+
 }
 
 

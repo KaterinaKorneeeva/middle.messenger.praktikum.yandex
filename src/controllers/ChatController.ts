@@ -16,7 +16,7 @@ class ChatController {
       }
 
       const arrOfChats = (JSON.parse(result.response) as any).map((item: any) => {
-        return  ({
+        return ({
           avatar: resolveAvatarSrc(item.avatar),
           title: item.title,
           last_message: item.last_message,
@@ -55,15 +55,24 @@ class ChatController {
       console.log(error.message)
     }
   }
-  
+
   public async createChat(data: ChatData) {
-    return  await this.api.createChat(data).then(() => {
+    return await this.api.createChat(data).then(() => {
       this.fetchChats()
     });
   }
 
+  public async getToken(chatId: number) {
+    try {
+      const result = await this.api.getToken(chatId)
+      const resultData = JSON.parse(result.response)
+      return resultData.token
 
+    } catch (e) {
+      console.log(e)
+      return undefined
+    }
+  }
 }
-
 
 export default new ChatController();

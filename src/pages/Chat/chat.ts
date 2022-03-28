@@ -11,7 +11,7 @@ import { Router } from '../../utils/Router';
 import {Path} from "../../constants/router";
 import '../../sass/main.scss'
 import store from '../../../src/utils/Store'
-
+// import WebSocketMessage from '../../../src/api/webSocket';
 class ChatPage extends Block {
   constructor(props) {
     super({
@@ -61,7 +61,7 @@ class ChatPage extends Block {
     this.route = new Router()
   }
 
-  Update(oldProps: any, newProps: any ) {
+  componentDidUpdate(oldProps: any, newProps: any ) {
     this.children.chatList = newProps.chats.map(data => new Chat(data));
     return super.componentDidUpdate(oldProps, newProps);
   }
@@ -77,7 +77,37 @@ class ChatPage extends Block {
       message: formData.get('message'),
     }
 
-    console.log('messageForm', data)
+    console.log('messageForm', data.message)
+
+    const dataTest = store.getState().activeChat
+    
+    console.log('dataTestdataTest', dataTest.user)
+
+
+    const socket = new WebSocket(
+      `wss://ya-praktikum.tech/ws/chats/${dataTest.user}/${dataTest.chatid}/${dataTest.token}`
+    );
+
+    socket.onopen = function(e) {
+      // alert("[open] Соединение установлено");
+      // alert("Отправляем данные на сервер");
+      // socket.send(data.message);
+
+      socket.send(JSON.stringify({
+        content: data.message,
+        type: 'message',
+        }));
+    };
+
+    // // const socket = new WebSocket('wss://ya-praktikum.tech/ws/chats/<USER_ID>/<CHAT_ID>/<TOKEN_VALUE>'); 
+    // socket.send(JSON.stringify({
+    //   content: 'Моё первое сообщение миру!',
+    //   type: 'message',
+    // }));
+
+    // new WebSocketMessage().open();
+    // new WebSocketMessage().send(data);
+
   }
 
   render() {

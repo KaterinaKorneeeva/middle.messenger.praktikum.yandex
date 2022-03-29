@@ -50,7 +50,7 @@ class ChatController {
       if (result.status !== 200) {
         throw new Error(`Ошибка: ${result.status} ${result.statusText || result.responseText}`);
       }
-      this.fetchChats()
+       this.fetchChats()
       return result;
     } catch (error) {
       console.log(error.message)
@@ -67,6 +67,7 @@ class ChatController {
     try {
       const result = await this.api.getToken(chatId)
       const resultData = JSON.parse(result.response)
+      console.log('resultData.tokenresultData.token',resultData.token)
       return resultData.token
 
     } catch (e) {

@@ -13,6 +13,7 @@ import '../../sass/main.scss'
 import store from '../../../src/utils/Store'
 import WebSocketMessage from '../../../src/api/webSocket';
 class ChatPage extends Block {
+  activeSocket: WebSocketMessage;
   constructor(props) {
     super({
       ...props,
@@ -82,14 +83,15 @@ class ChatPage extends Block {
     }
 
     const dataTest = store.getState().activeChat
-
-    // const socket = new WebSocketMessage()
     
-    const socket = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${dataTest.user}/${dataTest.chatid}/${dataTest.token}` );
+    const userId = dataTest.userId
+
+    // const socket = new WebSocketMessage(userId, dataTest.chatid, dataTest.token)
+    const socket = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${userId}/${dataTest.chatid}/${dataTest.token}` );
 
     socket.onopen = function(e) {
-      alert("[open] Соединение установлено");
-      alert("Отправляем данные на сервер");
+      console.log(("[open] Соединение установлено"))
+      console.log(("Отправляем данные на сервер"))
       // socket.send(data.message);
       socket.send(JSON.stringify({
         content: data.message,

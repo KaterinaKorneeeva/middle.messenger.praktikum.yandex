@@ -17,11 +17,8 @@ export default class Router {
 
   use(pathname, block) {
     const route = new Route(pathname, block, { rootQuery: this._rootQuery })
-
     this.routes.push(route)
-
     return this
-
   }
 
   start() {

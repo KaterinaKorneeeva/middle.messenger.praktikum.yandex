@@ -21,8 +21,6 @@ class AuthController {
       store.set('currentUser.error', 'Passwords are not the same')
       return
     }
-
-    console.log('signUpsignUpsignUpsignUpsignUp');
     const { confirmPassword, ...SignUpData } = data
 
     const response = await this.api.signUp(SignUpData);

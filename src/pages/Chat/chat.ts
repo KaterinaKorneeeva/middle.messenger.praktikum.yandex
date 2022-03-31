@@ -73,7 +73,6 @@ class ChatPage extends Block {
     const data = {
       message: formData.get('message'),
     }
-    alert(1)
 
     const dataTest = store.getState().activeChat
     

@@ -8,7 +8,7 @@
     "build": "parcel build src/*.html",
     "stylelint": "stylelint '**/*.scss'",
     "stylelint::fix": "stylelint '**/*.scss' --fix",
-    "test": "mocha 'src/**/*.spec.ts'"
+    "test": "NODE_ENV=test mocha --require babel-register.js"
   },
   "author": "",
   "license": "ISC",

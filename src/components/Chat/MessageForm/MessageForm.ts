@@ -28,7 +28,6 @@ export default class MessageForm extends Block {
     const data = {
       message: formData.get('message'),
     }
-    alert(222)
 
     const dataTest = store.getState().activeChat
     
@@ -46,7 +45,11 @@ export default class MessageForm extends Block {
         }));
         
     }
+    
+    const messageList = [data.message]
+   
 
+    store.set('chats.messageList', messageList)
     
     this.setProps({
       ...this.props,

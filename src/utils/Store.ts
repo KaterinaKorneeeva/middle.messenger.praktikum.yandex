@@ -32,10 +32,8 @@ class Store extends EventBus {
 
   public set(path: keyof StoreData, value: unknown) {
     set(this.state, path, value)
-
     this.emit(StoreEvents.Updated)
   }
-
 }
 
 const store = new Store()

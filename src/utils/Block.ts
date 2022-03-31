@@ -61,13 +61,6 @@ class Block {
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this))
   }
 
-  //   _createResources() {
-  //     this._element = this._createDocumentElement('div');
-  //   }
-
-  //   protected getStateFromProps(props: any): void {
-  //     this.state = {};
-  //   }
 
   init() {
     // this._createResources();
@@ -87,25 +80,13 @@ class Block {
     });
   }
 
-  componentDidMount() {
-  }
+  // componentDidMount() {
+  // }
 
   dispatchComponentDidMount() {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM)
   }
 
-  // private _componentDidUpdate(oldProps: any, newProps: any) {
-  //   if (!isEqual(oldProps, newProps)) {
-  //     if (this._timeoutId) return
-
-  //     this._timeoutId = setTimeout(() => {
-  //       this._removeEvents()
-  //       this.eventBus().emit(Block.EVENTS.FLOW_RENDER)
-  //       clearTimeout(this._timeoutId)
-  //       this._timeoutId = undefined
-  //     }, 200)
-  //   }
-  // }
 
   _componentDidUpdate(oldProps: any, newProps: any) {
     const response = this.componentDidUpdate(oldProps, newProps);
@@ -121,6 +102,7 @@ class Block {
     }
     return true;
 }
+
 componentDidMount(oldProps, newProps) {
   return !isEqual(oldProps, newProps);
 }

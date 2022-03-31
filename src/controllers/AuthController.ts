@@ -1,8 +1,8 @@
 import AuthAPI, { SignUpData, SignInData } from '../api/AuthApi'
 import store from '../../src/utils/Store'
 import { Router } from '../utils/Router'
-import { Path } from '../constants/router';
-import { adaptUsersData } from '../utils/profile';
+import { Path } from '../constants/router'
+import { adaptUsersData } from '../utils/profile'
 export interface ControllerSignUpData extends SignUpData {
   confirmPassword: string
 }
@@ -46,22 +46,11 @@ class AuthController {
         throw new Error(`Ошибка: ${result.status} ${result.statusText || result.responseText}`)
       }
    
-     
     } catch (error) {
       console.log(error.message);
-      // const router = new Router()
-      // router.go('')
     }
 
   }
-
-//  adaptData = (item) => {
-//     return Object.assign({}, item, {
-//       avatar: resolveAvatarSrc(item.avatar),
-//       })
-//   };
-
-
   async fetchUser() {
     try {
       const result = await this.api.read()
@@ -69,7 +58,6 @@ class AuthController {
         throw new Error(`Ошибка: ${result.status} ${result.statusText || result.responseText}`)
       }
       const userData = adaptUsersData(JSON.parse(result.response))
-      // const userData = JSON.parse(result.response)
       store.set('currentUser', userData)
     } catch (error) {
       console.log(error.message);

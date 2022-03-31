@@ -28,6 +28,7 @@ class ChatCreate extends Block {
   }
 
   async handleSubmit(e: Event) {
+    alert(111)
     e.preventDefault()
     const formData = new FormData((e.target as HTMLFormElement))
     const data = {

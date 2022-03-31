@@ -5,15 +5,15 @@ import ChatCreate from '../../components/Chat/ChatCreate'
 import chatHeader from '../../components/Chat/chatHeader'
 import Input from '../../components/Input'
 import Message from '../../components/Chat/Message'
+import MessageForm from '../../components/Chat/MessageForm'
+
 import Link from '../../components/Link'
-import Button from '../../components/Button/Button'
-import { Router } from '../../utils/Router';
-import {Path} from "../../constants/router";
+import { Router } from '../../utils/Router'
+import {Path} from "../../constants/router"
 import '../../sass/main.scss'
 import store from '../../../src/utils/Store'
-import WebSocketMessage from '../../../src/api/webSocket';
+
 class ChatPage extends Block {
-  activeSocket: WebSocketMessage;
   constructor(props) {
     super({
       ...props,
@@ -27,24 +27,6 @@ class ChatPage extends Block {
       chatList: props.chats.map(data => new Chat(data)),
       chatHeader: new chatHeader(),
       messageList: [],
-        // new Message({
-        //   className: 'chat-message--sent',
-        //   massageText: 'Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну.',
-        // }),
-        // new Message({
-        //   className: 'chat-message--incoming',
-        //   massageText: 'Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну.',
-        // }),
-        // new Message({
-        //   className: 'chat-message--incoming',
-        //   massageText: 'Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну.',
-        // }),
-        // new Message({
-        //   className: 'chat-message--sent',
-        //   massageText: 'Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну.',
-        // }),
-      
-
       inputMessage: new Input({
         inputName: 'message',
         inputValue: '',
@@ -53,10 +35,18 @@ class ChatPage extends Block {
         type: 'text',
         placeholder: 'Сообщение',
       }),
+      inputMessage: new MessageForm({
+        inputName: 'message',
+        inputValue: '',
+        id: 'message',
+        errorText: '',
+        type: 'text',
+        placeholder: 'Сообщение',
+      }),
 
-      events: {
-        submit: (e: Event) => this.handleSubmit(e),
-      },
+      // events: {
+      //   submit: (e: Event) => this.handleSubmit(e),
+      // },
       
     })
     this.route = new Router()
@@ -65,6 +55,8 @@ class ChatPage extends Block {
 
   componentDidMount() {
   }
+
+
 
   componentDidUpdate(oldProps: any, newProps: any ) {
     this.children.chatList = newProps.chats.map(data => new Chat(data));
@@ -81,12 +73,12 @@ class ChatPage extends Block {
     const data = {
       message: formData.get('message'),
     }
+    alert(1)
 
     const dataTest = store.getState().activeChat
     
     const userId = dataTest.userId
 
-    // const socket = new WebSocketMessage(userId, dataTest.chatid, dataTest.token)
     const socket = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${userId}/${dataTest.chatid}/${dataTest.token}` );
 
     socket.onopen = function(e) {

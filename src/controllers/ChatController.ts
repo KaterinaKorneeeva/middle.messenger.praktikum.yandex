@@ -1,6 +1,6 @@
 import ChatApi, { ChatData } from '../api/ChatApi'
 import store from '../utils/Store'
-import { resolveAvatarSrc } from '../utils/profile';
+import { resolveAvatarSrc } from '../utils/profile'
 class ChatController {
   private api: ChatApi
 
@@ -10,9 +10,9 @@ class ChatController {
 
   public async fetchChats() {
     try {
-      const result = await this.api.read();
+      const result = await this.api.read()
       if (result.status !== 200) {
-        throw new Error(`Ошибка: ${result.status} ${result.statusText || result.responseText}`);
+        throw new Error(`Ошибка: ${result.status} ${result.statusText || result.responseText}`)
       }
 
       const arrOfChats = (JSON.parse(result.response) as any).map((item: any) => {
@@ -23,22 +23,22 @@ class ChatController {
           chatDate: '10:49',
           unread_count: item.unread_count,
           id: item.id,
-        });
-      });
-      store.set('chats', arrOfChats);
-      return result;
+        })
+      })
+      store.set('chats', arrOfChats)
+      return result
     } catch (error) {
-      console.log(error.message);
+      console.log(error.message)
     }
   }
 
   public async addUsersChat(data: any) {
     try {
-      const result = await this.api.addUsersChat(data);
+      const result = await this.api.addUsersChat(data)
       if (result.status !== 200) {
-        throw new Error(`Ошибка: ${result.status} ${result.statusText || result.responseText}`);
+        throw new Error(`Ошибка: ${result.status} ${result.statusText || result.responseText}`)
       }
-      return result;
+      return result
     } catch (error) {
       console.log(error.message)
     }
@@ -46,12 +46,12 @@ class ChatController {
 
   public async deleteUsersChat(data: any) {
     try {
-      const result = await this.api.deleteUsersChat(data);
+      const result = await this.api.deleteUsersChat(data)
       if (result.status !== 200) {
-        throw new Error(`Ошибка: ${result.status} ${result.statusText || result.responseText}`);
+        throw new Error(`Ошибка: ${result.status} ${result.statusText || result.responseText}`)
       }
        this.fetchChats()
-      return result;
+      return result
     } catch (error) {
       console.log(error.message)
     }
@@ -60,14 +60,13 @@ class ChatController {
   public async createChat(data: ChatData) {
     return await this.api.createChat(data).then(() => {
       this.fetchChats()
-    });
+    })
   }
 
   public async getToken(chatId: number) {
     try {
       const result = await this.api.getToken(chatId)
       const resultData = JSON.parse(result.response)
-      console.log('resultData.tokenresultData.token',resultData.token)
       return resultData.token
 
     } catch (e) {
@@ -77,4 +76,4 @@ class ChatController {
   }
 }
 
-export default new ChatController();
+export default new ChatController()

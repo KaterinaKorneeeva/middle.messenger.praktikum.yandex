@@ -10,7 +10,7 @@ import Input from '../../components/Input/Input'
 import AuthController from '../../../src/controllers/AuthController'
 import UserController from '../../controllers/UserController'
 import { EditProfileData, EditPassData } from '../../api/UserApi'
-import { resolveAvatarSrc } from '../../utils/profile';
+import { resolveAvatarSrc } from '../../utils/profile'
 import { Path } from "../../constants/router"
 import { Router } from '../../utils/Router'
 class ProfilePage extends Block {
@@ -31,7 +31,7 @@ class ProfilePage extends Block {
       }),
       email: props.email,
       login: props.login,
-      first_name: props.second_name,
+      first_name: props.first_name,
       second_name: props.second_name,
       display_name: props.display_name,
       phone: props.phone,

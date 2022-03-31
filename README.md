@@ -13,6 +13,9 @@ https://www.figma.com/file/24EUnEHGEDNLdOcxg7ULwV/Chat?node-id=0%3A1
 ## Команда для stylelint :
 - npm run stylelint  
 
+## Команда для запуска тестов :
+- npm run test  
+
 ## Прототип 
 https://musical-licorice-cc279a.netlify.app
 

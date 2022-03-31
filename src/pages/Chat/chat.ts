@@ -2,7 +2,7 @@ import Block from '../../utils/Block'
 import template from './chat.pug'
 import Chat from '../../components/Chat/Chat'
 import ChatCreate from '../../components/Chat/ChatCreate'
-import chatHeader from '../../components/Chat/chatHeader'
+import ChatHeader from '../../components/Chat/ChatHeader'
 import Input from '../../components/Input'
 import Message from '../../components/Chat/Message'
 import MessageForm from '../../components/Chat/MessageForm'
@@ -25,7 +25,7 @@ class ChatPage extends Block {
       }),
       createChat:  new ChatCreate(),
       chatList: props.chats.map(data => new Chat(data)),
-      chatHeader: new chatHeader(),
+      chatHeader: new ChatHeader(),
       messageList: [],
       inputMessage: new Input({
         inputName: 'message',

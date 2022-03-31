@@ -7,13 +7,12 @@ import ProfileImage from '../../components/ProfileImage'
 import Modal from '../../components/Modal/modal'
 import ModalAvatar from '../../components/ModalAvatar/modal'
 import Input from '../../components/Input/Input'
-import AuthController, {ControllerSignUpData} from '../../../src/controllers/AuthController'
+import AuthController from '../../../src/controllers/AuthController'
 import UserController from '../../controllers/UserController'
-import {EditProfileData, EditPassData, EditPhotoData} from '../../api/UserApi'
+import { EditProfileData, EditPassData } from '../../api/UserApi'
 import { resolveAvatarSrc } from '../../utils/profile';
-import {Path} from "../../constants/router"
+import { Path } from "../../constants/router"
 import { Router } from '../../utils/Router'
-
 class ProfilePage extends Block {
   constructor(props) {
     super({
@@ -23,14 +22,19 @@ class ProfilePage extends Block {
           click: () => this.handleEditPhotoModal(),
         },
       }),
-      
+
+      linkToProfile: new Button({
+        className: 'button--arrow-back',
+        events: {
+          click: (e) => this.handleLinkToProfileClick(e),
+        },
+      }),
       email: props.email,
       login: props.login,
       first_name: props.second_name,
       second_name: props.second_name,
       display_name: props.display_name,
       phone: props.phone,
-
       modalEditProfile: new Modal({
         modalId: 'modalEditProfile',
         modalTitle: 'Изменить данные',
@@ -131,7 +135,6 @@ class ProfilePage extends Block {
       modalAddPhoto: new ModalAvatar({
         modalId: 'modalAddPhoto',
         modalTitle: 'Загрузите файл',
-        // modalBtnText: 'button-settings--blue',
         button: new Button({
           label: 'Поменять',
           type: 'submit'
@@ -170,15 +173,14 @@ class ProfilePage extends Block {
     this.route = new Router()
   }
 
-  // componentDidMount() {
-  //   console.log('componentDidMount',this.props.avatar);
-  // }
- 
+  handleLinkToProfileClick() {
+    this.route.go(Path.Chat)
+  }
 
-  async handleLogOutClick() {
-      AuthController.logout()
-       this.route.go('/sign-up');
-    }
+  handleLogOutClick() {
+    AuthController.logout()
+    this.route.go(Path.SignUp);
+  }
 
   handleEditPhotoModal() {
     const modalAddPhoto = document.getElementById('modalAddPhoto')
@@ -218,7 +220,7 @@ class ProfilePage extends Block {
 
     try {
       await UserController.editProfile(data as EditProfileData)
-      
+
     } catch (e) {
       console.log('error', e)
     }
@@ -226,6 +228,7 @@ class ProfilePage extends Block {
     const modalEditProfile = document.getElementById('modalEditProfile')
     modalEditProfile.classList.remove('active')
   }
+
   public async handleChangePasSubmit(e: Event) {
     e.preventDefault()
     const formData = new FormData((e.target as HTMLFormElement))
@@ -238,11 +241,11 @@ class ProfilePage extends Block {
 
     try {
       await UserController.editPass(data as EditPassData)
-      
+
     } catch (e) {
       console.log('error', e)
     }
-    
+
     const modalEditPass = document.getElementById('modalEditPass')
     modalEditPass.classList.remove('active')
   }

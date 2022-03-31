@@ -1,6 +1,6 @@
 import UserApi, { EditProfileData, EditPassData } from '../api/UserApi'
 import store from '../utils/Store'
-import { adaptUsersData } from '../utils/profile';
+import { adaptUsersData } from '../utils/profile'
 
 class UserController {
   private api: UserApi
@@ -24,13 +24,13 @@ class UserController {
 
   public async editPass(data: EditPassData) {
     try {
-      const result = await this.api.editPass(data);
+      const result = await this.api.editPass(data)
       if (result.status !== 200) {
         throw new Error(`Ошибка: ${result.status} ${result.statusText || result.responseText}`)
       }
-      return result;
+      return result
     } catch (error) {
-      console.log(error.message);
+      console.log(error.message)
     }
 
   }
@@ -43,7 +43,7 @@ class UserController {
       }
 
       store.set('currentUser', adaptUsersData(JSON.parse(result.response)))
-      return result;
+      return result
     } catch (error) {
       console.log(error.message)
     }

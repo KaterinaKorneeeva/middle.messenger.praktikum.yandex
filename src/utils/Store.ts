@@ -1,20 +1,20 @@
-import { set, isEqual } from './helpers';
-import EventBus from './EventBus';
-import Block from './Block';
+import { set, isEqual } from './helpers'
+import EventBus from './EventBus'
+import Block from './Block'
 
 export enum StoreEvents {
   Updated = 'updated',
 }
 
 interface User {
-  "id": number
-  "first_name": string
-  "second_name": string
-  "display_name": string
-  "login": string
-  "email": string
-  "phone": string
-  "avatar": string
+  'id': number
+  'first_name': string
+  'second_name': string
+  'display_name': string
+  'login': string
+  'email': string
+  'phone': string
+  'avatar': string
 }
 
 interface StoreData {
@@ -32,16 +32,14 @@ class Store extends EventBus {
 
   public set(path: keyof StoreData, value: unknown) {
     set(this.state, path, value)
-
     this.emit(StoreEvents.Updated)
-  };
-
+  }
 }
 
 const store = new Store()
 
 export const withStore = (mapStateToProps: (state: StoreData) => Record<string, unknown>) => (Component: typeof Block) => {
-  let state;
+  let state
 
   return class extends Component {
     constructor(props: any) {
@@ -55,6 +53,6 @@ export const withStore = (mapStateToProps: (state: StoreData) => Record<string, 
       })
     }
   }
-};
+}
 
 export default store

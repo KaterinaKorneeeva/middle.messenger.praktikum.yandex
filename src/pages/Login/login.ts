@@ -4,10 +4,10 @@ import Button from '../../components/Button/Button'
 import Input from '../../components/Input'
 import Link from '../../components/Link'
 import '../../sass/main.scss'
-import AuthController, {ControllerSignUpData} from '../../../src/controllers/AuthController'
+import AuthController from '../../../src/controllers/AuthController'
 import{ SignInData} from '../../api/AuthApi'
 import { Router } from '../../utils/Router'
-import {Path} from "../../constants/router"
+import {Path} from '../../constants/router'
 import store from '../../utils/Store'
 
 export class LoginPage extends Block {

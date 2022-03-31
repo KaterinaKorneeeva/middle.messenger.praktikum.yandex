@@ -60,4 +60,4 @@ class ChatHeader extends Block {
   }
 
 }
-export default ChatHeader;
+export default ChatHeader

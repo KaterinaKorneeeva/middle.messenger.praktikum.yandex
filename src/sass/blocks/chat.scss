@@ -128,16 +128,6 @@
     margin-bottom: 30px;
     flex: 1;
   }
-
-  &__btn-send {
-    width: 32px;
-    height: 32px;
-    background-image: url("../../static/img/arrow.svg");
-    background-repeat: no-repeat;
-    transform: rotate(180deg);
-    border: none;
-    background-color: transparent;
-  }
 }
 
 .chat-message-form .input-field {

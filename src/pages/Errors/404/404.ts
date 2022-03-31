@@ -1,9 +1,9 @@
 import Block from '../../../utils/Block'
 import { Error } from '../../../components/Error'
 import template from '../template.pug'
-import { Router } from '../../../utils/Router';
+import { Router } from '../../../utils/Router'
 import Link from '../../../components/Link'
-import {Path} from "../../../constants/router";
+import {Path} from '../../../constants/router'
 
 import '../../../sass/main.scss'
 export class Error404 extends Block {
@@ -14,7 +14,7 @@ export class Error404 extends Block {
         errorSubTitle: 'Не туда попали',
         errorBtnText: 'Назад к чатам',
         errorNavPath: '/chat.html',
-        link: new Link({
+        link: new Link ({
           label: 'Назад к чатам',
           events: {
             click: () => this.onClick()

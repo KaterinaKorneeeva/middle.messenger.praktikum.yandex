@@ -9,7 +9,7 @@ import MessageForm from '../../components/Chat/MessageForm'
 
 import Link from '../../components/Link'
 import { Router } from '../../utils/Router'
-import {Path} from "../../constants/router"
+import { Path } from '../../constants/router'
 import '../../sass/main.scss'
 import store from '../../../src/utils/Store'
 
@@ -59,8 +59,8 @@ class ChatPage extends Block {
 
 
   componentDidUpdate(oldProps: any, newProps: any ) {
-    this.children.chatList = newProps.chats.map(data => new Chat(data));
-    return super.componentDidUpdate(oldProps, newProps);
+    this.children.chatList = newProps.chats.map(data => new Chat(data))
+    return super.componentDidUpdate(oldProps, newProps)
   }
 
   onClick() {
@@ -79,16 +79,16 @@ class ChatPage extends Block {
     
     const userId = dataTest.userId
 
-    const socket = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${userId}/${dataTest.chatid}/${dataTest.token}` );
+    const socket = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${userId}/${dataTest.chatid}/${dataTest.token}` )
 
     socket.onopen = function(e) {
       console.log(("[open] Соединение установлено"))
       console.log(("Отправляем данные на сервер"))
-      // socket.send(data.message);
+      // socket.send(data.message)
       socket.send(JSON.stringify({
         content: data.message,
         type: 'message',
-        }));
+        }))
         
     }
 
@@ -106,4 +106,4 @@ class ChatPage extends Block {
     return this.compile(template, { ...this.props })
   }
 }
-export default ChatPage;
+export default ChatPage

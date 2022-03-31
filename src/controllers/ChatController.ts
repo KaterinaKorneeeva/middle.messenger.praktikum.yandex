@@ -50,7 +50,7 @@ class ChatController {
       if (result.status !== 200) {
         throw new Error(`Ошибка: ${result.status} ${result.statusText || result.responseText}`)
       }
-       this.fetchChats()
+      this.fetchChats()
       return result
     } catch (error) {
       console.log(error.message)

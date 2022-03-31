@@ -2,10 +2,10 @@ import LoginPage from './pages/Login'
 import ChatPage from './pages/Chat'
 import ProfilePage from './pages/Profile'
 import SignUpPage from './pages/SignUp'
-import Error404 from "./pages/Errors/404"
-import Error500 from "./pages/Errors/500"
+import Error404 from './pages/Errors/404'
+import Error500 from './pages/Errors/500'
 import { Router } from './utils/Router'
-import { Path } from "./constants/router"
+import { Path } from './constants/router'
 import AuthController from './controllers/AuthController'
 import ChatController from './controllers/ChatController'
 import './sass/main.scss'
@@ -25,16 +25,10 @@ document.addEventListener('DOMContentLoaded', async () => {
       await AuthController.fetchUser()
       await ChatController.fetchChats()
     } catch (e) {
-      console.log('eeee',e);
-      router.go('/');
+      console.log('eeee',e)
+      router.go('/')
     }
 
-  router.start();
+  router.start()
 });
-
-
-
-// export {
-//   router
-// };
 

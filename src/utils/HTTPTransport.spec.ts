@@ -7,7 +7,6 @@ import HTTPTransport from './HTTPTransport';
 chai.use(sinonChai);
 
 describe('Testing HTTPTransport', () => {
-  console.log(554546)
   let request: HTTPTransport;
   beforeEach(() => {
     request = new HTTPTransport();

@@ -3,7 +3,7 @@ import sinon from 'sinon'
 import { JSDOM } from 'jsdom'
 import { Router } from './Router'
 
-describe('Проверяем переходы у Роута', () => {
+describe('Проверяем переходы у Роута', () =>{
 
   const { window } = new JSDOM (
     `<html>
@@ -25,13 +25,13 @@ describe('Проверяем переходы у Роута', () => {
   })
 
   it('Переход назад должен менять состояние сущности history', () => {
-    const backSpy = sinon.spy(global.window.history, "back")
+    const backSpy = sinon.spy(global.window.history, 'back')
     router.back()
     expect(backSpy.callCount).to.eq(1)
-  });
+  })
 
   it('Переход вперед должен менять состояние сущности history', () => {
-    const backSpy = sinon.spy(global.window.history, "forward")
+    const backSpy = sinon.spy(global.window.history, 'forward')
     router.forward()
     expect(backSpy.callCount).to.eq(1)
   })
@@ -40,5 +40,5 @@ describe('Проверяем переходы у Роута', () => {
     router.use('/404', '')
     const route = router.getRoute('/404')
     expect(route).to.not.be.undefined
-  });
-});
+  })
+})

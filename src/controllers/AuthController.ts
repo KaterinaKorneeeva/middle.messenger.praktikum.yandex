@@ -16,20 +16,18 @@ class AuthController {
 
   public async signUp(data: ControllerSignUpData) {
     if (data.confirmPassword !== data.password) {
-      // throw new Error('Passwords are not the same')
       console.log(' Passwords are not the same')
       store.set('currentUser.error', 'Passwords are not the same')
       return
     }
     const { confirmPassword, ...SignUpData } = data
 
-    const response = await this.api.signUp(SignUpData);
+    const response = await this.api.signUp(SignUpData)
 
     if (response.reason) {
       store.set('currentUser.error', response.reason)
     }
   }
-
 
   public async signIn(data: SignInData) {
     await this.api.signIn(data)
@@ -40,17 +38,17 @@ class AuthController {
 
   public async logout() {
     try {
-        console.log('logoutlogout')
+      console.log('logoutlogout')
       const result = await this.api.logout()
       if (result.status !== 200) {
         throw new Error(`Ошибка: ${result.status} ${result.statusText || result.responseText}`)
       }
-   
-    } catch (error) {
-      console.log(error.message);
-    }
 
+    } catch (error) {
+      console.log(error.message)
+    }
   }
+
   async fetchUser() {
     try {
       const result = await this.api.read()
@@ -60,7 +58,7 @@ class AuthController {
       const userData = adaptUsersData(JSON.parse(result.response))
       store.set('currentUser', userData)
     } catch (error) {
-      console.log(error.message);
+      console.log(error.message)
     }
   }
 

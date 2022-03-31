@@ -3,15 +3,15 @@ import sinon from 'sinon'
 import { JSDOM } from 'jsdom'
 import { Router } from './Router'
 
-describe('Проверяем переходы у Роута', () =>{
+describe('Проверяем переходы у Роута', () => {
 
-  const { window } = new JSDOM (
+  const { window } = new JSDOM(
     `<html>
     <body>
         <div id="app"></div>
     </body>
     </html>`,
-    { url: 'http://localhost' }
+    { url: 'http://localhost' },
   )
 
   global.window = window

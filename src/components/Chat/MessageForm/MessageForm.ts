@@ -21,44 +21,42 @@ export default class MessageForm extends Block {
       },
     })
   }
-  
+
   handleSubmit(e: Event) {
     e.preventDefault()
     const formData = new FormData((e.target as HTMLFormElement))
     const data = {
       message: formData.get('message'),
     }
-
     const dataTest = store.getState().activeChat
-    
-    const userId = dataTest.userId
+    const userId = dataTest?.userId
 
-    const socket = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${userId}/${dataTest.chatid}/${dataTest.token}` );
+    if (userId && dataTest.chatid) {
+      const socket = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${userId}/${dataTest.chatid}/${dataTest.token}`);
 
-    socket.onopen = function(e) {
-      console.log(("[open] Соединение установлено"))
-      console.log(("Отправляем данные на сервер"))
-      // socket.send(data.message);
-      socket.send(JSON.stringify({
-        content: data.message,
-        type: 'message',
-        }));
-        
+      socket.onopen = function (e) {
+        console.log('Соединение установлено')
+        socket.send(JSON.stringify({
+          content: data.message,
+          type: 'message',
+        }))
+
+        socket.send(JSON.stringify({
+          content: data.message,
+          type: 'message',
+        }))
+      }
+
+      this.setProps({
+        ...this.props,
+        messageList: [new Message({
+          className: 'chat-message--sent',
+          massageText: data.message,
+        })]
+      })
+    } else {
+      console.log('пользователь не добавлен или не выбран чат')
     }
-    
-    const messageList = [data.message]
-   
-
-    store.set('chats.messageList', messageList)
-    
-    this.setProps({
-      ...this.props,
-      messageList: [  new Message({
-        className: 'chat-message--sent',
-        massageText: data.message,
-      })]
-    })
-
   }
 
   render() {

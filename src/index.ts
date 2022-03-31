@@ -20,15 +20,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     .use(Path.Chat, ChatPage)
     .use(Path.Error404, Error404)
     .use(Path.Error500, Error500)
-    // await ChatController.fetchChats()
-    try {
-      await AuthController.fetchUser()
-      await ChatController.fetchChats()
-    } catch (e) {
-      console.log('eeee',e)
-      router.go('/')
-    }
-
+  try {
+    await AuthController.fetchUser()
+    await ChatController.fetchChats()
+  } catch (e) {
+    console.log(e)
+    router.go('/')
+  }
   router.start()
 });
 

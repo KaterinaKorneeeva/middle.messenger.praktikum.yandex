@@ -23,14 +23,6 @@ class ChatPage extends Block {
       createChat: new ChatCreate(),
       chatList: props.chats.map(data => new Chat(data)),
       chatHeader: new ChatHeader(),
-      inputMessage: new Input({
-        inputName: 'message',
-        inputValue: '',
-        id: 'message',
-        errorText: '',
-        type: 'text',
-        placeholder: 'Сообщение',
-      }),
       inputMessage: new MessageForm({
         inputName: 'message',
         inputValue: '',
@@ -44,6 +36,8 @@ class ChatPage extends Block {
   }
 
   componentDidUpdate(oldProps: any, newProps: any) {
+    console.log('chatschatschats', newProps.chats) 
+
     this.children.chatList = newProps.chats.map(data => new Chat(data))
     return super.componentDidUpdate(oldProps, newProps)
   }

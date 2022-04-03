@@ -16,6 +16,7 @@ export default class MessageForm extends Block {
         type: 'text',
         placeholder: 'Сообщение',
       }),
+      messageList: new Message(),
       events: {
         submit: (e: Event) => this.handleSubmit(e),
       },
@@ -47,12 +48,26 @@ export default class MessageForm extends Block {
         }))
       }
 
+      document.getElementById('message').value= ''
+
+     
+
+      const messageNewList = 
+
+     [{
+      className: "chat-message--sent",
+      massageText: 'первое сообщение'}]
+
+      messageNewList.push(
+        {
+          className: "chat-message--sent",
+          massageText:  data.message}
+      );
+      
       this.setProps({
         ...this.props,
-        messageList: [new Message({
-          className: 'chat-message--sent',
-          massageText: data.message,
-        })]
+        
+        messageList:messageNewList.map(data =>new Message(data))
       })
     } else {
       console.log('пользователь не добавлен или не выбран чат')

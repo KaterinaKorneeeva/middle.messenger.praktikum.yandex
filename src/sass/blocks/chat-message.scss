@@ -1,5 +1,6 @@
 .chat-message {
   display: flex;
+  margin-bottom: 10px;
 
   &__container {
     border-radius: 10px;
@@ -9,7 +10,6 @@
 
   &--incoming {
     justify-content: flex-start;
-    margin-bottom: 10px;
 
     .chat-message__container {
       background-color: #fbfbfb;

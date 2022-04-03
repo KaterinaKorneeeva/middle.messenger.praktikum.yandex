@@ -3,12 +3,13 @@ import template from './chat.pug'
 import Chat from '../../components/Chat/Chat'
 import ChatCreate from '../../components/Chat/ChatCreate'
 import ChatHeader from '../../components/Chat/ChatHeader'
-import Input from '../../components/Input'
 import MessageForm from '../../components/Chat/MessageForm'
 import Link from '../../components/Link'
 import { Router } from '../../utils/Router'
 import { Path } from '../../constants/router'
 import '../../sass/main.scss'
+import store from '../../utils/Store'
+import { adaptChatData } from '../../utils/profile'
 
 class ChatPage extends Block {
   constructor(props) {
@@ -35,10 +36,13 @@ class ChatPage extends Block {
     this.route = new Router()
   }
 
-  componentDidUpdate(oldProps: any, newProps: any) {
-    console.log('chatschatschats', newProps.chats) 
 
-    this.children.chatList = newProps.chats.map(data => new Chat(data))
+
+
+  componentDidUpdate(oldProps: any, newProps: any) {
+    const activeChatId = store.getState().activeChat.chatid
+    const adaptOffers = newProps.chats.map((chat) => adaptChatData(chat, activeChatId))
+    this.children.chatList = adaptOffers.map(data => new Chat(data))
     return super.componentDidUpdate(oldProps, newProps)
   }
 

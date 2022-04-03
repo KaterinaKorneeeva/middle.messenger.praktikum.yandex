@@ -9,3 +9,17 @@ export const adaptUsersData = (user) => {
     avatar: resolveAvatarSrc(user.avatar),
   })
 }
+
+export const adaptChatData = (chat, activeChatId) => {
+  return Object.assign({}, chat, {
+    avatar: chat.avatar,
+    chatDate: chat.chatDate,
+    id: chat.id,
+    last_message: chat.last_message,
+    title: chat.title,
+    unread_count: chat.unread_count,
+    activeChatId: chat.id === activeChatId ? 'active' : '' ,
+  })
+}
+
+

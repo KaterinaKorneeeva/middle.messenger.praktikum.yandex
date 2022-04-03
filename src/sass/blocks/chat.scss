@@ -21,7 +21,7 @@
   }
 
   &:hover,
-  .active {
+  &.active {
     background-color: $blue1;
     transition: background-color $skills-start-anim;
   }

@@ -10,9 +10,9 @@ import AuthController from './controllers/AuthController'
 import ChatController from './controllers/ChatController'
 import './sass/main.scss'
 
-const router = new Router('#app')
 
 document.addEventListener('DOMContentLoaded', async () => {
+  const router = new Router()
   router
     .use('/', LoginPage)
     .use(Path.SignUp, SignUpPage)

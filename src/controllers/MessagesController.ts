@@ -1,5 +1,5 @@
 import MessagesAPI, { MessageFormData, MessagesAPIData} from '../api/MessagesAPI'
-import store from '../utils/store'
+import store from '../utils/Store'
 import ChatController from './ChatController';
 import { adaptMessageData } from '../utils/profile'
 

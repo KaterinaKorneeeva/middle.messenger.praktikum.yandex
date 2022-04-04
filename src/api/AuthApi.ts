@@ -1,5 +1,4 @@
 import HTTP from '../utils/HTTPTransport'
-import BaseAPI from './BaseApi'
 
 export type SignUpData = {
   email: string
@@ -16,29 +15,26 @@ export type SignInData = {
 
 const authAPIInstance = new HTTP('/auth')
 
-export default class AuthAPI extends BaseAPI {
+export default class AuthAPI {
 
   public signUp(data: SignUpData): Promise<XMLHttpRequest> {
     return authAPIInstance.post('/signup', {
       data: JSON.stringify(data)
-    });
+    })
   }
-  
+
   public async logout(): Promise<XMLHttpRequest> {
-    return authAPIInstance.post('/logout', {
-    }
-    );
+    return authAPIInstance.post('/logout')
   }
 
   public async signIn(data: SignInData): Promise<XMLHttpRequest> {
     return await authAPIInstance.post('/signin', {
       data: JSON.stringify(data)
-    });
+    })
   }
 
-  public read(): Promise<XMLHttpRequest> {
-    return authAPIInstance.get('/user', {
-    });
+  public getUser(): Promise<XMLHttpRequest> {
+    return authAPIInstance.get('/user')
   }
 }
 

@@ -1,5 +1,4 @@
 import HTTP from '../utils/HTTPTransport'
-import BaseAPI from './BaseApi'
 
 export type EditProfileData = {
   email: string
@@ -16,8 +15,7 @@ export type EditPassData = {
 }
 
 const settingsAPIInstance = new HTTP('/user')
-
-export default class UserApi extends BaseAPI {
+export default class UserApi {
   public editProfile(data: EditProfileData): Promise<XMLHttpRequest> {
     return settingsAPIInstance.put('/profile', {
       data: JSON.stringify(data)

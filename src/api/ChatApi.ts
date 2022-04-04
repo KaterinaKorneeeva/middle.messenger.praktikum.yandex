@@ -1,5 +1,4 @@
 import HTTP from '../utils/HTTPTransport'
-import BaseAPI from './BaseApi'
 
 export type SignUpData = {
   email: string
@@ -16,33 +15,32 @@ export type ChatData = {
 
 const authAPIInstance = new HTTP('/chats')
 
-export default class ChatAPI extends BaseAPI {
+export default class ChatAPI {
 
-  public read(): Promise<XMLHttpRequest> {
-    return authAPIInstance.get('/', {
-    });
+  public getChats(): Promise<XMLHttpRequest> {
+    return authAPIInstance.get('/')
   }
 
   public createChat(data: ChatData): Promise<XMLHttpRequest> {
     return authAPIInstance.post('/', {
       data: JSON.stringify(data)
-    });
+    })
   }
 
   public addUsersChat(data: ChatData): Promise<XMLHttpRequest> {
     return authAPIInstance.put('/users', {
       data: JSON.stringify(data)
-    });
+    })
   }
 
   public deleteUsersChat(data: ChatData): Promise<XMLHttpRequest> {
     return authAPIInstance.delete('/users', {
       data: JSON.stringify(data)
-    });
+    })
   }
 
   public getToken(chatId: number) {
-    return authAPIInstance.post(`/token/${chatId}`);
+    return authAPIInstance.post(`/token/${chatId}`)
   }
 
 }

@@ -50,7 +50,7 @@ class AuthController {
 
   async fetchUser() {
     try {
-      const result = await this.api.read()
+      const result = await this.api.getUser()
       if (result.status !== 200) {
         throw new Error(`Ошибка: ${result.status} ${result.statusText || result.responseText}`)
       }

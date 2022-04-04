@@ -1,11 +1,11 @@
-enum METHOD {
+enum Method {
   GET = 'GET',
   POST = 'POST',
   PUT = 'PUT',
   DELETE = 'DELETE'
 };
 type Options = {
-  method: METHOD,
+  method: Method,
   data?: any,
   title?: string,
   contentType?: string
@@ -18,18 +18,18 @@ export default class HTTPTransport {
   }
   protected APIUrl = 'https://ya-praktikum.tech/api/v2'
   public get(url: string, options: OptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
-    return this.request(`${this.APIUrl}${url}`, { ...options, method: METHOD.GET })
+    return this.request(`${this.APIUrl}${url}`, { ...options, method: Method.GET })
   }
   public post(url: string, options: OptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
-    return this.request(`${this.APIUrl}${url}`, { ...options, method: METHOD.POST })
+    return this.request(`${this.APIUrl}${url}`, { ...options, method: Method.POST })
   }
   public put(url: string, options: OptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
-    return this.request(`${this.APIUrl}${url}`, { ...options, method: METHOD.PUT })
+    return this.request(`${this.APIUrl}${url}`, { ...options, method: Method.PUT })
   }
   public delete(url: string, options: OptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
-    return this.request(`${this.APIUrl}${url}`, { ...options, method: METHOD.DELETE })
+    return this.request(`${this.APIUrl}${url}`, { ...options, method: Method.DELETE })
   }
-  protected request(url: string, options: Options = { method: METHOD.GET }): Promise<XMLHttpRequest> {
+  protected request(url: string, options: Options = { method: Method.GET }): Promise<XMLHttpRequest> {
     const { method, data, contentType = 'application/json' } = options
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest()
@@ -44,7 +44,7 @@ export default class HTTPTransport {
       xhr.onabort = reject
       xhr.onerror = reject
       xhr.ontimeout = reject
-      if (method === METHOD.GET || !data) {
+      if (method === Method.GET || !data) {
         xhr.send();
       } else {
         xhr.send(data);

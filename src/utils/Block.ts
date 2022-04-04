@@ -53,7 +53,7 @@ class Block {
   }
 
 
-  _registerEvents(eventBus: EventBus) {
+  private _registerEvents(eventBus: EventBus) {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this))
 
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this))
@@ -61,13 +61,11 @@ class Block {
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this))
   }
 
-
   init() {
-    // this._createResources();
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER, this.props)
   }
 
-  _componentDidMount() {
+  private _componentDidMount() {
     this.componentDidMount();
     Object.values(this.children).forEach(child => {
       if (Array.isArray(child)) {
@@ -80,17 +78,13 @@ class Block {
     });
   }
 
-  // componentDidMount() {
-  // }
-
   dispatchComponentDidMount() {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM)
   }
 
-
-  _componentDidUpdate(oldProps: any, newProps: any) {
+  private _componentDidUpdate(oldProps: any, newProps: any) {
     const response = this.componentDidUpdate(oldProps, newProps);
-  
+
     if (response) {
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
@@ -98,21 +92,20 @@ class Block {
 
   componentDidUpdate(oldProps: any, newProps: any): boolean {
     if (oldProps === newProps) {
-        return false;
+      return false;
     }
     return true;
-}
+  }
 
-componentDidMount(oldProps, newProps) {
-  return !isEqual(oldProps, newProps);
-}
-
+  componentDidMount(oldProps, newProps) {
+    return !isEqual(oldProps, newProps);
+  }
 
   setProps = (nextProps: any) => {
     if (!nextProps) {
       return
     }
-    const { props, children  } = this.getChildren(nextProps)
+    const { props, children } = this.getChildren(nextProps)
     Object.assign(this.children, children)
     Object.assign(this.props, props)
   }
@@ -122,7 +115,7 @@ componentDidMount(oldProps, newProps) {
     return this._element
   }
 
-  _render() {
+  private _render() {
     const fragment = this.render()
     const newElement = fragment.firstElementChild as HTMLElement
     if (this._element) {
@@ -131,7 +124,6 @@ componentDidMount(oldProps, newProps) {
     }
 
     this._element = newElement
-
     this._addEvents()
   }
 
@@ -144,13 +136,8 @@ componentDidMount(oldProps, newProps) {
     return this.element
   }
 
-  _makePropsProxy(props: any): any {
-    // Можно и так передать this
-    // Такой способ больше не применяется с приходом ES6+
+  private _makePropsProxy(props: any): any {
     const self = this
-
-    // const oldProps = { ...target }
-
     return new Proxy(props as unknown as object, {
       get(target: Record<string, unknown>, prop: string) {
         const value = target[prop]
@@ -158,9 +145,7 @@ componentDidMount(oldProps, newProps) {
       },
       set(target: Record<string, unknown>, prop: string, value: unknown) {
         target[prop] = value
-        const oldProps = { ...target }        // Запускаем обновление компоненты
-        // Плохой cloneDeep, в след итерации нужно заставлять добавлять cloneDeep им самим
-        // self.eventBus().emit(Block.EVENTS.FLOW_CDU, { ...target }, target)
+        const oldProps = { ...target }
         self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, target)
         return true
       },
@@ -170,20 +155,19 @@ componentDidMount(oldProps, newProps) {
     })
   }
 
-  _removeEvents() {
+  private _removeEvents() {
     const events: Record<string, () => void> = (this.props as any).events
 
     if (!events || !this._element) {
       return
     }
 
-
     Object.entries(events).forEach(([event, listener]) => {
       this._element!.removeEventListener(event, listener)
     })
   }
 
-  _addEvents() {
+  private _addEvents() {
     const events: Record<string, () => void> = (this.props as any).events
 
     if (!events) {
@@ -195,7 +179,7 @@ componentDidMount(oldProps, newProps) {
     })
   }
 
-  _createDocumentElement(tagName: string): HTMLElement {
+  private _createDocumentElement(tagName: string): HTMLElement {
     return document.createElement(tagName)
   }
 
@@ -204,9 +188,8 @@ componentDidMount(oldProps, newProps) {
   }
 
   compile(template: (context: any) => string, context: any) {
-
+    
     const fragment = this._createDocumentElement('template') as HTMLTemplateElement
-
 
     Object.entries(this.children).forEach(([key, child]) => {
       if (Array.isArray(child)) {
@@ -243,14 +226,6 @@ componentDidMount(oldProps, newProps) {
         stub.replaceWith(child.getContent()!)
       }
     })
-
-    //   Object.entries(this.children).forEach(([key, child]) => {
-    //       const stub = fragment.content.querySelector(`[data-id="id-${child.id}"]`);
-    //       if (!stub) {
-    //           return;
-    //       }
-    //       stub.replaceWith(child.getContent()!)
-    //  });
     return fragment.content
   }
 }

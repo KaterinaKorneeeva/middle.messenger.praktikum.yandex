@@ -34,7 +34,6 @@ class MessagesController {
   }
 
   public async openWSS() {
-    console.log('MessagesController',MessagesController.status)
     if (MessagesController.status === 'online') {
       this.closeWSS();
     }

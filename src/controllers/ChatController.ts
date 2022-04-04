@@ -11,7 +11,7 @@ class ChatController {
 
   public async fetchChats() {
     try {
-      const result = await this.api.read()
+      const result = await this.api.getChats()
       if (result.status !== 200) {
         throw new Error(`Ошибка: ${result.status} ${result.statusText || result.responseText}`)
       }

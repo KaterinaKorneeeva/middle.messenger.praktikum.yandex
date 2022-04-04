@@ -6,7 +6,7 @@ import Button from '../../components/Button/Button'
 import AuthController, { ControllerSignUpData } from '../../../src/controllers/AuthController'
 import Link from '../../components/Link'
 import { Router } from '../../utils/Router';
-import { Path } from "../../constants/router";
+import { Path } from '../../constants/router'
 export class SignUpPage extends Block {
   constructor(props) {
     super({

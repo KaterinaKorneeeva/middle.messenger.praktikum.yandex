@@ -1,8 +1,8 @@
 import Block from '../../../utils/Block';
 import template from './template.pug'
 import Input from '../../../components/Input'
-import Message from '../../../components/Chat/Message'
 import store from '../../../../src/utils/Store'
+import MessagesController from '../../../controllers/MessagesController'
 
 export default class MessageForm extends Block {
   constructor(props) {
@@ -16,7 +16,6 @@ export default class MessageForm extends Block {
         type: 'text',
         placeholder: 'Сообщение',
       }),
-      messageList: new Message(),
       events: {
         submit: (e: Event) => this.handleSubmit(e),
       },
@@ -32,44 +31,12 @@ export default class MessageForm extends Block {
     const dataTest = store.getState().activeChat
     const userId = dataTest?.userId
 
+    document.getElementById('message').value= ''
+    
     if (userId && dataTest.chatid) {
-      const socket = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${userId}/${dataTest.chatid}/${dataTest.token}`);
-
-      socket.onopen = function (e) {
-        console.log('Соединение установлено')
-        socket.send(JSON.stringify({
-          content: data.message,
-          type: 'message',
-        }))
-
-        socket.send(JSON.stringify({
-          content: data.message,
-          type: 'message',
-        }))
-      }
-
-      document.getElementById('message').value= ''
-
-     
-
-      const messageNewList = 
-
-     [{
-      className: "chat-message--sent",
-      massageText: 'первое сообщение'}]
-
-      messageNewList.push(
-        {
-          className: "chat-message--sent",
-          massageText:  data.message}
-      );
-      
-      this.setProps({
-        ...this.props,
-        
-        messageList:messageNewList.map(data =>new Message(data))
-      })
-    } else {
+      MessagesController.sendMessage({ type: 'message', content: data.message });
+    }
+    else {
       console.log('пользователь не добавлен или не выбран чат')
     }
   }

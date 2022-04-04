@@ -1,6 +1,7 @@
 import ChatApi, { ChatData } from '../api/ChatApi'
 import store from '../utils/Store'
 import { resolveAvatarSrc } from '../utils/profile'
+
 class ChatController {
   private api: ChatApi
 

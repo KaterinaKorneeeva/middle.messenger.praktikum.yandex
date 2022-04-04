@@ -6,10 +6,9 @@ import Button from '../../components/Button/Button'
 import AuthController, { ControllerSignUpData } from '../../../src/controllers/AuthController'
 import Link from '../../components/Link'
 import { Router } from '../../utils/Router';
-import {Path} from "../../constants/router";
+import { Path } from "../../constants/router";
 export class SignUpPage extends Block {
   constructor(props) {
-    console.log('props.erorr', props)
     super({
       label: 'Регистрация',
       formName: 'Регистрация',
@@ -75,12 +74,6 @@ export class SignUpPage extends Block {
     this.route = new Router()
   }
 
-  componentDidMount() {
-    console.log('props.erorr', this.props)
-  }
-  componentDidUpdate() {
-
-  }
   onClick() {
     this.route.go(Path.SignIn)
   }
@@ -99,16 +92,11 @@ export class SignUpPage extends Block {
       confirmPassword: formData.get('confirmPassword'),
     }
 
-    // await AuthController.signUp(data as ControllerSignUpData)
-
-    // console.log('this.props', this.props)
-    console.log('signuppage', data)
     try {
       await AuthController.signUp(data as ControllerSignUpData)
     } catch (e) {
       console.log('error', e)
     }
-
   }
 
   render() {

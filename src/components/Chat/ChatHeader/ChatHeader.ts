@@ -1,6 +1,5 @@
 import Block from '../../../utils/Block'
 import template from './template.pug'
-import store from '../../../../src/utils/Store'
 import Link from '../../../components/Link'
 import ChatController from '../../../controllers/ChatController'
 
@@ -30,8 +29,6 @@ class ChatHeader extends Block {
       users: [userId],
       chatId: this.props.chatid
     }
-
-    console.log('datadata',this.props)
     try {
       await ChatController.addUsersChat(data)
       alert(`Пользователь ${userId} добавлен`)

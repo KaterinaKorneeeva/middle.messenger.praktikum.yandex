@@ -54,13 +54,12 @@ export class LoginPage extends Block {
       }
     }
     catch (e) {
-      console.log('eeeeeess', e);
+      console.log('e', e);
       this.route.go('/')
     }
   }
 
   onClick() {
-    console.log('Path.SignUp')
     this.route.go(Path.SignUp)
   }
 

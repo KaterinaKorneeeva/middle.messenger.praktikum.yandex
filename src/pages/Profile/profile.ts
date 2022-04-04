@@ -164,11 +164,6 @@ class ProfilePage extends Block {
           click: () => this.handleLogOutClick(),
         },
       }),
-      buttonAddPhoto: {
-        events: {
-          click: () => console.log('buttonAddPhoto'),
-        },
-      },
     })
     this.route = new Router()
   }
@@ -216,8 +211,6 @@ class ProfilePage extends Block {
       phone: formData.get('phone'),
     }
 
-    console.log('changeProfile', data)
-
     try {
       await UserController.editProfile(data as EditProfileData)
 
@@ -237,8 +230,6 @@ class ProfilePage extends Block {
       newPassword: formData.get('newPassword'),
       confirmPassword: formData.get('confirmPassword'),
     }
-    console.log('ChangePas', data)
-
     try {
       await UserController.editPass(data as EditPassData)
 

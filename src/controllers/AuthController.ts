@@ -38,7 +38,6 @@ class AuthController {
 
   public async logout() {
     try {
-      console.log('logoutlogout')
       const result = await this.api.logout()
       if (result.status !== 200) {
         throw new Error(`Ошибка: ${result.status} ${result.statusText || result.responseText}`)

@@ -21,7 +21,8 @@ interface StoreData {
   currentUser?: User
   chats?: []
   messages?: []
-  activeChat?: []
+  activeChat?: [],
+  activeChatMessages?: [],
 }
 class Store extends EventBus {
   private state: StoreData = {}

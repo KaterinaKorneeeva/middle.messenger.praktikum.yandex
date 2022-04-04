@@ -1,8 +1,7 @@
 import Block from '../../../utils/Block'
 import template from './template.pug'
 import store from '../../../../src/utils/Store'
-import ChatController from '../../../controllers/ChatController'
-
+import MessagesController from '../../../controllers/MessagesController'
 interface ChatProps {
   id: number
   messageText: string
@@ -17,22 +16,24 @@ export default class Chat extends Block {
   constructor(props: ChatProps) {
     super({
       ...props,
+      lastMessage: props.last_message?.content,
       events: {
         click: () => this.handleActiveChatClick()
       },
     })
-
   }
 
   async handleActiveChatClick() {
-    const token = await ChatController.getToken(this.props.id)
+    const lastMess = this.props.last_message?.content
     const chatActiveData = {
       title: this.props.title,
       chatid: this.props.id,
       userId: store.getState().currentUser?.id,
-      token,
+      lastMessage: lastMess
     }
     store.set('activeChat', chatActiveData)
+
+    setTimeout(() => MessagesController.openWSS(), 500);
   }
 
   render() {

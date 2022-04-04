@@ -4,13 +4,13 @@ export function resolveAvatarSrc(path?: string): string | undefined {
   return path ? `${APIRoute.RESOURCES}${path}` : undefined
 }
 
-export const adaptUsersData = (user) => {
+export const adaptUsersData = (user:Array<{}>) => {
   return Object.assign({}, user, {
     avatar: resolveAvatarSrc(user.avatar),
   })
 }
 
-export const adaptChatData = (chat, activeChatId) => {
+export const adaptChatData = (chat:Array<{}>, activeChatId: number) => {
   return Object.assign({}, chat, {
     avatar: chat.avatar,
     chatDate: chat.chatDate,
@@ -22,4 +22,10 @@ export const adaptChatData = (chat, activeChatId) => {
   })
 }
 
+export const adaptMessageData = (message: Array<{}>, userId: number) => {
+  return Object.assign({}, message, {
+    massageText: message.content,
+    className: userId === message.user_id ? 'chat-message--sent':'chat-message--incoming'
+  })
+}
 

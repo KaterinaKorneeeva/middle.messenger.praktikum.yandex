@@ -24,18 +24,13 @@ export default class Chat extends Block {
   }
 
   async handleActiveChatClick() {
-    // MessagesController.status = offline
-
-    const lastMess = this.props.last_message?.content
     const chatActiveData = {
       title: this.props.title,
       chatid: this.props.id,
       userId: store.getState().currentUser?.id,
-      lastMessage: lastMess
     }
-
     store.set('activeChat', chatActiveData)
-    setTimeout(() => MessagesController.openWSS(), 100)
+    setTimeout(() => MessagesController.openWSS(), 1000)
   }
 
   render() {

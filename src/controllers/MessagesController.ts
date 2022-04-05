@@ -28,7 +28,6 @@ class MessagesController {
       }
     }
 
-    console.log('typetypetype',type)
     if (type !== 'message') {
       data = data.map((message) => adaptMessageData(message))
     }
@@ -40,19 +39,18 @@ class MessagesController {
       this.closeWSS();
     }
 
+
     const chatId =  store.getState().activeChat?.chatid
     const userId =  store.getState().activeChat?.userId
-
+    
     if (!chatId || !userId) return;
     const token = await ChatController.getToken(chatId)
 
     if (!token) return;
   
     const callback = this._events();
-
     this.wss = new MessagesAPI({ userId, chatId, token, callback });
   }
-
 
   public closeWSS() {
     this.wss.close()
@@ -64,7 +62,7 @@ class MessagesController {
   }
 
   private _onCloseHandler() {
-    console.log('_onCloseHandler_onCloseHandler')
+    store.set('activeChatMessages', [])
     MessagesController.status = 'offline';
   }
 
@@ -76,7 +74,6 @@ class MessagesController {
 
   private _onMessageHandler(e: Event) {
     const res = this.formingResponse(e);
-
     (!res.data.reason && (Array.isArray(res.data) || res.data?.type === 'message')) 
     {
       const messages = store.getState().activeChatMessages || [];

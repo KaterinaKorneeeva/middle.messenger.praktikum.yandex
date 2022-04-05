@@ -30,7 +30,7 @@ export default class Chat extends Block {
       userId: store.getState().currentUser?.id,
     }
     store.set('activeChat', chatActiveData)
-    setTimeout(() => MessagesController.openWSS(), 1000)
+    setTimeout(() => MessagesController.openWSS(), 100)
   }
 
   render() {

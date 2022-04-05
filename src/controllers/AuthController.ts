@@ -1,18 +1,19 @@
 import AuthAPI, { SignUpData, SignInData } from '../api/AuthApi'
 import store from '../../src/utils/Store'
-import { Router } from '../utils/Router'
 import { Path } from '../constants/router'
 import { adaptUsersData } from '../utils/profile'
+import { Router } from '../utils/Router'
 export interface ControllerSignUpData extends SignUpData {
   confirmPassword: string
 }
 
 class AuthController {
   private api: AuthAPI
-
+  
   constructor() {
     this.api = new AuthAPI()
   }
+ 
 
   public async signUp(data: ControllerSignUpData) {
     if (data.confirmPassword !== data.password) {
@@ -35,6 +36,8 @@ class AuthController {
     const router = new Router()
     router.go(Path.Chat)
   }
+
+  
 
   public async logout() {
     try {

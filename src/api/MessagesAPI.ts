@@ -37,7 +37,6 @@ export default class MessagesAPI {
   }
 
   public send({ type, content }: MessageFormData) {
-
     return this._send({ content, type });
   }
 

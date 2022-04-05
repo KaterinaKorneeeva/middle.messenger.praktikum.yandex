@@ -41,7 +41,8 @@ class ChatPage extends Block {
   }
 
   componentDidUpdate(oldProps: any, newProps: any) {
-    const activeChatId = store.getState().activeChat.chatid
+    const activeChatId = store.getState().activeChat?.chatid
+    
     const adaptOffers = newProps.chats.map((chat) => adaptChatData(chat, activeChatId))
     this.children.chatList = adaptOffers.map(data => new Chat(data))
     return super.componentDidUpdate(oldProps, newProps)

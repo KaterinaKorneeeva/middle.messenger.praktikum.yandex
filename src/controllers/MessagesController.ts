@@ -6,6 +6,7 @@ import { adaptMessageData } from '../utils/profile'
 class MessagesController {
   static status: string;
   private wss: MessagesAPI;
+  static timeout: NodeJS.Timer;
   private _events(): MessagesAPIData['callback'] {
     return {
       onOpen: this._onOpenHandler.bind(this),
@@ -27,6 +28,7 @@ class MessagesController {
       }
     }
 
+    console.log('typetypetype',type)
     if (type !== 'message') {
       data = data.map((message) => adaptMessageData(message))
     }
@@ -37,6 +39,7 @@ class MessagesController {
     if (MessagesController.status === 'online') {
       this.closeWSS();
     }
+
     const chatId =  store.getState().activeChat?.chatid
     const userId =  store.getState().activeChat?.userId
 
@@ -46,14 +49,13 @@ class MessagesController {
     if (!token) return;
   
     const callback = this._events();
+
     this.wss = new MessagesAPI({ userId, chatId, token, callback });
   }
 
 
   public closeWSS() {
-    store.set('activeChatMessages', []);
-    this.wss.close();
-
+    this.wss.close()
   }
 
   public sendMessage(data: MessageFormData = {}) {
@@ -62,8 +64,8 @@ class MessagesController {
   }
 
   private _onCloseHandler() {
+    console.log('_onCloseHandler_onCloseHandler')
     MessagesController.status = 'offline';
-    
   }
 
   private _onOpenHandler() {
@@ -74,9 +76,10 @@ class MessagesController {
 
   private _onMessageHandler(e: Event) {
     const res = this.formingResponse(e);
+
     (!res.data.reason && (Array.isArray(res.data) || res.data?.type === 'message')) 
     {
-      const messages =store.getState().activeChatMessages || [];
+      const messages = store.getState().activeChatMessages || [];
       const newMessages = Array.isArray(res.data) ? res.data : [res.data];
       store.set('activeChatMessages', (messages).concat(newMessages));
     }

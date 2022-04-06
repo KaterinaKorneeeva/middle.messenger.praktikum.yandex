@@ -1,69 +1,54 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
-enum METHODS {
-    GET = 'GET',
-    PUT = 'PUT',
-    POST = 'POST',
-    DELETE = 'DELETE',
-}
-
-type IOption = {
-    timeout?: number;
-    data?: { [key: string]: string } | any;
-    method?: METHODS;
-    headers?: Record<string, string>;
-    withCredentials?: boolean;
-}
-
-function queryStringify(data): string {
-    if (data === undefined || typeof data !== 'object') {
-        throw new Error('error data');
-    }
-    let result = '?';
-    const keys = Object.keys(data);
-    keys.forEach((el, index) => {
-        const isAmpersand = index >= keys.length - 1 ? '' : '&';
-        result += `${el}=${data[el]}${isAmpersand}`;
-    });
-    return result;
-}
+enum Method {
+  GET = 'GET',
+  POST = 'POST',
+  PUT = 'PUT',
+  DELETE = 'DELETE'
+};
+type Options = {
+  method: Method,
+  data?: any,
+  title?: string,
+  contentType?: string
+};
+type OptionsWithoutMethod = Omit<Options, 'method'>
 
 export default class HTTPTransport {
-    get(url: string, options: IOption = {}): Promise<XMLHttpRequest> {
-        return this.request(url, { ...options, method: METHODS.GET }, options.timeout);
-    }
-    post(url: string, options: IOption = {}): Promise<XMLHttpRequest> {
-        return this.request(url, { ...options, method: METHODS.POST }, options.timeout);
-    }
-    put(url: string, options: IOption = {}): Promise<XMLHttpRequest> {
-        return this.request(url, { ...options, method: METHODS.PUT }, options.timeout);
-    }
-    delete(url: string, options: IOption = {}): Promise<XMLHttpRequest> {
-        return this.request(url, { ...options, method: METHODS.DELETE }, options.timeout);
-    }
-    request(url: string, options: IOption, timeout = 5000): Promise<XMLHttpRequest> {
-        const { data, method = METHODS.GET, headers = {} } = options;
-        return new Promise((resolve, reject) => {
-            const xhr = new XMLHttpRequest();
-            const isGet = method === METHODS.GET;
-            xhr.open(method, isGet ? url + queryStringify(data) : url);
-            xhr.onload = function () {
-                resolve(xhr);
-            };
-            xhr.timeout = timeout;
-            xhr.onabort = reject;
-            xhr.onerror = reject;
-            xhr.ontimeout = reject;
-
-            Object.keys(headers).forEach((key) => {
-                xhr.setRequestHeader(key, headers[key]);
-            });
-
-            if (isGet || !data) {
-                xhr.send();
-            } else {
-                xhr.send(data);
-            }
-        });
-    }
+  constructor(endpoint?: string) {
+    this.APIUrl += (endpoint || '')
+  }
+  protected APIUrl = 'https://ya-praktikum.tech/api/v2'
+  public get(url: string, options: OptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
+    return this.request(`${this.APIUrl}${url}`, { ...options, method: Method.GET })
+  }
+  public post(url: string, options: OptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
+    return this.request(`${this.APIUrl}${url}`, { ...options, method: Method.POST })
+  }
+  public put(url: string, options: OptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
+    return this.request(`${this.APIUrl}${url}`, { ...options, method: Method.PUT })
+  }
+  public delete(url: string, options: OptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
+    return this.request(`${this.APIUrl}${url}`, { ...options, method: Method.DELETE })
+  }
+  protected request(url: string, options: Options = { method: Method.GET }): Promise<XMLHttpRequest> {
+    const { method, data, contentType = 'application/json' } = options
+    return new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest()
+      xhr.open(method, url);
+      xhr.withCredentials = true
+      xhr.setRequestHeader('credentials', 'include')
+      xhr.setRequestHeader('mode', 'cors')
+      if (!(data instanceof FormData)) xhr.setRequestHeader('content-type', contentType)
+      xhr.onload = function () {
+        resolve(xhr)
+      };
+      xhr.onabort = reject
+      xhr.onerror = reject
+      xhr.ontimeout = reject
+      if (method === Method.GET || !data) {
+        xhr.send();
+      } else {
+        xhr.send(data);
+      }
+    });
+  }
 }

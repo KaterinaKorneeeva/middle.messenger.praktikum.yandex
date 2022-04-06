@@ -1,21 +1,47 @@
-import Block from '../../utils/Block';
+import Block from '../../../utils/Block';
 import template from './template.pug'
+import Input from '../../../components/Input'
+import store from '../../../../src/utils/Store'
+import MessagesController from '../../../controllers/MessagesController'
 
-interface ErrorProps {
-    errorTitle: string;
-    errorSubTitle: string;
-    errorBtnText: string;
-    errorNavPath: string;
-}
+export default class MessageForm extends Block {
+  constructor(props) {
+    super({
+      ...props,
+      inputMessage: new Input({
+        inputName: 'message',
+        inputValue: '',
+        id: 'message',
+        errorText: '',
+        type: 'text',
+        placeholder: 'Сообщение',
+      }),
+      events: {
+        submit: (e: Event) => this.handleSubmit(e),
+      },
+    })
+  }
 
-export default class Error extends Block {
-    constructor(props: ErrorProps) {
-        super(props)
+  handleSubmit(e: Event) {
+    e.preventDefault()
+    const formData = new FormData((e.target as HTMLFormElement))
+    const data = {
+      message: formData.get('message'),
     }
+    const dataTest = store.getState().activeChat
+    const userId = dataTest?.userId
 
-    render() {
-        // const { errorTitle, errorSubTitle, errorBtnText } = this.props
-
-        return this.compile(template, {  ...this.props  })
+    document.getElementById('message').value= ''
+    
+    if (userId && dataTest.chatid) {
+      MessagesController.sendMessage({ type: 'message', content: data.message });
     }
+    else {
+      console.log('пользователь не добавлен или не выбран чат')
+    }
+  }
+
+  render() {
+    return this.compile(template, { ...this.props })
+  }
 }

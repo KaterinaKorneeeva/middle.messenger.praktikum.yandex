@@ -1,50 +1,33 @@
-import Block from '../../utils/Block';
+import Block from '../../utils/Block'
 import template from './chat.pug'
-import Chat from "../../components/Chat/Chat";
-import Input from "../../components/Input";
-import Message from "../../components/Chat/Message";
-import { renderDOM } from "../../utils/renderDOM";
-
+import Chat from '../../components/Chat/Chat'
+import ChatCreate from '../../components/Chat/ChatCreate'
+import ChatHeader from '../../components/Chat/ChatHeader'
+import MessageForm from '../../components/Chat/MessageForm'
+import MessageList from '../../components/Chat/MessageList'
+import Link from '../../components/Link'
+import { Router } from '../../utils/Router'
+import { Path } from '../../constants/router'
 import '../../sass/main.scss'
+import store from '../../utils/Store'
+import { adaptChatData } from '../../utils/profile'
+class ChatPage extends Block {
 
-export class ChatPage extends Block {
-  constructor() {
+  constructor(props) {
+
     super({
-      label: 'Регистрация',
-      sender: 'Андрей',
-      chatList: [
-        new Chat({
-          sender: 'Андрей',
-          messageText: 'Друзья, у меня для вас особенный выпуск новостей!',
-          date: '10:40',
-          count: '1'
-        }),
-        new Chat({
-          sender: 'Семен',
-          messageText: 'Привет! посмотри ссылку',
-          date: '9:40',
-          count: '3'
-        })],
-
-      messageList: [
-        new Message({
-          className: 'chat-message--sent',
-          massageText: 'Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну.',
-        }),
-        new Message({
-          className: 'chat-message--incoming',
-          massageText: 'Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну.'
-        }),
-        new Message({
-          className: 'chat-message--incoming',
-          massageText: 'Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну.'
-        }),
-        new Message({
-          className: 'chat-message--sent',
-          massageText: 'Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну.'
-        }),
-      ],
-      inputMessage: new Input({
+      ...props,
+      link: new Link({
+        label: 'профиль',
+        events: {
+          click: () => this.onClick()
+        }
+      }),
+      createChat: new ChatCreate(),
+      chatList: props.chats.map(data => new Chat(data)),
+      chatHeader: new ChatHeader(),
+      messageList: new MessageList(),
+      inputMessage: new MessageForm({
         inputName: 'message',
         inputValue: '',
         id: 'message',
@@ -52,27 +35,25 @@ export class ChatPage extends Block {
         type: 'text',
         placeholder: 'Сообщение',
       }),
-      events: {
-        submit: (e: Event) => this.handleSubmit(e),
-      },
+
     })
+    this.route = new Router()
   }
 
+  componentDidUpdate(oldProps: any, newProps: any) {
+    const activeChatId = store.getState().activeChat?.chatid
+    
+    const adaptOffers = newProps.chats.map((chat) => adaptChatData(chat, activeChatId))
+    this.children.chatList = adaptOffers.map(data => new Chat(data))
+    return super.componentDidUpdate(oldProps, newProps)
+  }
 
-  handleSubmit(e: Event) {
-    e.preventDefault();
-    const formData = new FormData((e.target as HTMLFormElement));
-    const data = {
-      message: formData.get('message'),
-    };
-
-    console.log('messageForm', data);
+  onClick() {
+    this.route.go(Path.Profile)
   }
 
   render() {
-    return this.compile(template, { ...this.props });
+    return this.compile(template, { ...this.props })
   }
 }
-
-const chatPage = new ChatPage();
-renderDOM(".page", chatPage);
+export default ChatPage

@@ -21,6 +21,12 @@
   background-repeat: no-repeat;
   background-position: center;
 
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
+
   &::after {
     position: absolute;
     content: "Поменять аватар";

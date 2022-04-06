@@ -1,16 +1,16 @@
-import Block from '../../utils/Block';
-import template from './template.pug';
+import Block from '../../utils/Block'
+import template from './template.pug'
 import { VALIDATOR } from '../../utils/const'
 
 interface InputProps {
-  inputName: string;
-  inputValue?: string;
-  labelName?: string;
-  id: string;
-  errorText?: string;
-  type: string;
-  placeholder?: string;
-  required?:  boolean;
+  inputName: string
+  inputValue?: string
+  labelName?: string
+  id: string
+  errorText?: string
+  type: string
+  placeholder?: string
+  required?: boolean
 }
 class Input extends Block {
   constructor(props: InputProps) {
@@ -19,7 +19,7 @@ class Input extends Block {
       events: {
         focusout: (e: Event) => this.handleBlur(e),
       },
-    });
+    })
   }
 
   onValid(name: string, value: FormDataEntryValue | null): { isValid: boolean, errorText: string } | void {
@@ -44,8 +44,8 @@ class Input extends Block {
 
 
   render() {
-    return this.compile(template, { ...this.props });
+    return this.compile(template, { ...this.props })
   }
 }
-export default Input;
+export default Input
 

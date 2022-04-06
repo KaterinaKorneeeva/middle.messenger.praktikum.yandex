@@ -1,36 +1,38 @@
-import EventBus from './EventBus';
-import { nanoid } from 'nanoid';
-
+import EventBus from './EventBus'
+import { nanoid } from 'nanoid'
+import { isEqual } from './helpers';
 class Block {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
     FLOW_CDU: 'flow:component-did-update',
     FLOW_RENDER: 'flow:render',
-  } as const;
+  } as const
 
-  public id = nanoid(6);
+  public id = nanoid(6)
 
-  private _element: HTMLElement | null = null;
-  private _meta: { props: any };
+  private _element: HTMLElement | null = null
+  private _meta: { props: any }
 
-  protected props: any;
-  protected children: Record<string, Block>;
+  protected props: any
+  private _timeoutId: undefined | ReturnType<typeof setTimeout>
+
+  protected children: Record<string, Block>
   private eventBus: () => EventBus
 
 
   constructor(propsAndChildren: any = {}) {
-    const eventBus = new EventBus();
+    const eventBus = new EventBus()
     const { props, children } = this.getChildren(propsAndChildren)
 
-    this.children = children;
+    this.children = children
     this._meta = {
       props,
-    };
+    }
 
-    this.props = this._makePropsProxy(props);
-    this.eventBus = () => eventBus;
-    this._registerEvents(eventBus);
+    this.props = this._makePropsProxy(props)
+    this.eventBus = () => eventBus
+    this._registerEvents(eventBus)
     eventBus.emit(Block.EVENTS.INIT)
   }
 
@@ -40,199 +42,192 @@ class Block {
 
     Object.entries(propsAndChildren).map(([key, value]) => {
       if (value instanceof Block) {
-        children[key] = value;
+        children[key] = value
       } else if (Array.isArray(value) && value.every(v => (v instanceof Block))) {
-        children[key] = value;
+        children[key] = value
       } else {
         props[key] = value
       }
-    });
+    })
     return { props, children }
   }
 
 
-  _registerEvents(eventBus: EventBus) {
-    eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
+  private _registerEvents(eventBus: EventBus) {
+    eventBus.on(Block.EVENTS.INIT, this.init.bind(this))
 
-    eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
-    eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
-    eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
+    eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this))
+    eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this))
+    eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this))
   }
-
-  //   _createResources() {
-  //     this._element = this._createDocumentElement('div');
-  //   }
-
-  //   protected getStateFromProps(props: any): void {
-  //     this.state = {};
-  //   }
 
   init() {
-    // this._createResources();
-    this.eventBus().emit(Block.EVENTS.FLOW_RENDER, this.props);
+    this.eventBus().emit(Block.EVENTS.FLOW_RENDER, this.props)
   }
 
-  _componentDidMount() {
+  private _componentDidMount() {
     this.componentDidMount();
-  }
-
-  componentDidMount() {
+    Object.values(this.children).forEach(child => {
+      if (Array.isArray(child)) {
+        child.forEach(elem => {
+          elem.dispatchComponentDidMount();
+        })
+      } else {
+        child.dispatchComponentDidMount();
+      }
+    });
   }
 
   dispatchComponentDidMount() {
-    this.eventBus().emit(Block.EVENTS.FLOW_CDM);
+    this.eventBus().emit(Block.EVENTS.FLOW_CDM)
   }
 
-  _componentDidUpdate(oldProps: any, newProps: any) {
-    if (this.componentDidUpdate(oldProps, newProps)) {
+  private _componentDidUpdate(oldProps: any, newProps: any) {
+    const response = this.componentDidUpdate(oldProps, newProps);
+
+    if (response) {
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
   }
 
-  componentDidUpdate(oldProps: any, newProps: any) {
+  componentDidUpdate(oldProps: any, newProps: any): boolean {
+    if (oldProps === newProps) {
+      return false;
+    }
     return true;
+  }
+
+  componentDidMount(oldProps, newProps) {
+    return !isEqual(oldProps, newProps);
   }
 
   setProps = (nextProps: any) => {
     if (!nextProps) {
-      return;
+      return
     }
-
-    Object.assign(this.props, nextProps);
-  };
+    const { props, children } = this.getChildren(nextProps)
+    Object.assign(this.children, children)
+    Object.assign(this.props, props)
+  }
 
 
   get element(): HTMLElement | null {
-    return this._element;
+    return this._element
   }
 
-  _render() {
-    const fragment = this.render();
-    const newElement = fragment.firstElementChild as HTMLElement;
+  private _render() {
+    const fragment = this.render()
+    const newElement = fragment.firstElementChild as HTMLElement
     if (this._element) {
-      this._removeEvents();
-      this._element.replaceWith(newElement);
+      this._removeEvents()
+      this._element.replaceWith(newElement)
     }
 
-    this._element = newElement;
-
-    this._addEvents();
-
-
+    this._element = newElement
+    this._addEvents()
   }
 
+
   protected render(): DocumentFragment {
-    return new DocumentFragment();
+    return new DocumentFragment()
   }
 
   getContent(): HTMLElement | null {
-    return this.element;
+    return this.element
   }
 
-  _makePropsProxy(props: any): any {
-    // Можно и так передать this
-    // Такой способ больше не применяется с приходом ES6+
-    const self = this;
-
+  private _makePropsProxy(props: any): any {
+    const self = this
     return new Proxy(props as unknown as object, {
       get(target: Record<string, unknown>, prop: string) {
-        const value = target[prop];
-        return typeof value === 'function' ? value.bind(target) : value;
+        const value = target[prop]
+        return typeof value === 'function' ? value.bind(target) : value
       },
       set(target: Record<string, unknown>, prop: string, value: unknown) {
-        target[prop] = value;
-
-        // Запускаем обновление компоненты
-        // Плохой cloneDeep, в след итерации нужно заставлять добавлять cloneDeep им самим
-        self.eventBus().emit(Block.EVENTS.FLOW_CDU, { ...target }, target);
-        return true;
+        target[prop] = value
+        const oldProps = { ...target }
+        self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, target)
+        return true
       },
       deleteProperty() {
-        throw new Error('Нет доступа');
+        throw new Error('Нет доступа')
       },
-    });
+    })
   }
 
-  _removeEvents() {
-    const events: Record<string, () => void> = (this.props as any).events;
+  private _removeEvents() {
+    const events: Record<string, () => void> = (this.props as any).events
 
     if (!events || !this._element) {
-      return;
+      return
     }
 
-
     Object.entries(events).forEach(([event, listener]) => {
-      this._element!.removeEventListener(event, listener);
-    });
+      this._element!.removeEventListener(event, listener)
+    })
   }
 
-  _addEvents() {
-    const events: Record<string, () => void> = (this.props as any).events;
+  private _addEvents() {
+    const events: Record<string, () => void> = (this.props as any).events
 
     if (!events) {
-      return;
+      return
     }
 
     Object.entries(events).forEach(([event, listener]) => {
-      this._element!.addEventListener(event, listener);
-    });
+      this._element!.addEventListener(event, listener)
+    })
   }
 
-  _createDocumentElement(tagName: string): HTMLElement {
-    return document.createElement(tagName);
+  private _createDocumentElement(tagName: string): HTMLElement {
+    return document.createElement(tagName)
   }
 
+  remove() {
+    this.getContent().remove()
+  }
 
   compile(template: (context: any) => string, context: any) {
+    
+    const fragment = this._createDocumentElement('template') as HTMLTemplateElement
 
-    const fragment = this._createDocumentElement('template') as HTMLTemplateElement;
-
-  
     Object.entries(this.children).forEach(([key, child]) => {
       if (Array.isArray(child)) {
         child.forEach((elem) => {
           if (context[key]) {
-            context[key] = context[key] + `<div data-id="id-${elem.id}"></div>`;
+            context[key] = context[key] + `<div data-id="id-${elem.id}"></div>`
           } else {
-            context[key] = `<div data-id="id-${elem.id}"></div>`;
+            context[key] = `<div data-id="id-${elem.id}"></div>`
           }
         })
       } else {
-        context[key] = `<div data-id="id-${child.id}"></div>`;
+        context[key] = `<div data-id="id-${child.id}"></div>`
       }
-    });
+    })
 
-    fragment.innerHTML = template(context);
+    fragment.innerHTML = template(context)
 
 
 
     Object.entries(this.children).forEach(([key, child]) => {
       if (Array.isArray(child)) {
         child.forEach((elem) => {
-          const stub = fragment.content.querySelector(`[data-id="id-${elem.id}"]`);
+          const stub = fragment.content.querySelector(`[data-id="id-${elem.id}"]`)
           if (!stub) {
-            return;
+            return
           }
-          stub.replaceWith(elem.getContent()!);
+          stub.replaceWith(elem.getContent()!)
         })
       } else {
-        const stub = fragment.content.querySelector(`[data-id="id-${child.id}"]`);
+        const stub = fragment.content.querySelector(`[data-id="id-${child.id}"]`)
         if (!stub) {
-          return;
+          return
         }
-        stub.replaceWith(child.getContent()!);
+        stub.replaceWith(child.getContent()!)
       }
-    });
-
-    //   Object.entries(this.children).forEach(([key, child]) => {
-    //       const stub = fragment.content.querySelector(`[data-id="id-${child.id}"]`);
-    //       if (!stub) {
-    //           return;
-    //       }
-    //       stub.replaceWith(child.getContent()!)
-    //  });
-    return fragment.content;
+    })
+    return fragment.content
   }
 }
 
-export default Block;
+export default Block

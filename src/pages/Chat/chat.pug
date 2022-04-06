@@ -3,24 +3,12 @@ block variables
 
 block content
     include ../../templates/main.pug
-        .chat-container
+        .chat-container 
             .chat-list
-                .chat-list__container
-                    a(href='/profile.html') профиль 
-                    .chat-search-bar
-                        .chat-search-bar__container
-                            input.chat-search-bar__input(placeholder="Поиск")
+                .chat-list__container !{link} 
+                    | !{createChat} 
                     | !{chatList}
             .chat-area
-                .chat-area__header
-                    .chat-list-item__image
-                    .chat-list-item__message-info
-                        p.chat-list-item__user-name !{sender}
-                .chat-area__container
-                    | !{messageList}
-                .chat-area__footer
-                    form.chat-message-form(name="message")
-                        .chat-message-form__btn-attach
-                        | !{inputMessage}
-                        button.chat-message-form__btn-send
-          
+              | !{chatHeader}
+              | !{messageList}
+              | !{inputMessage}

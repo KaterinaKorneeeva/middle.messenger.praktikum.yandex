@@ -1,6 +1,7 @@
+import { compile } from 'pug'
 import Block from '../../../utils/Block'
 import { Error } from '../../../components/Error'
-import template from '../template.d'
+import {errorTemplate} from '../error.tmpl'
 import { Router } from '../../../utils/Router'
 import Link from '../../../components/Link'
 import {Path} from '../../../constants/router'
@@ -31,6 +32,6 @@ export class Error404 extends Block {
 
   render() {
     const { content } = this.props
-    return this.compile(template, { content })
+    return this.compile(compile(errorTemplate), { content })
   }
 }

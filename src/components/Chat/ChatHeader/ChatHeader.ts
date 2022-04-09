@@ -1,5 +1,6 @@
+import { compile } from 'pug'
 import Block from '../../../utils/Block'
-import template from './template.d'
+import {chatHeaderTemplate} from './ChatHeader.tmpl'
 import Link from '../../../components/Link'
 import ChatController from '../../../controllers/ChatController'
 
@@ -53,7 +54,7 @@ class ChatHeader extends Block {
   }
 
   render() {
-    return this.compile(template, { ...this.props })
+    return this.compile(compile(chatHeaderTemplate), { ...this.props })
   }
 
 }

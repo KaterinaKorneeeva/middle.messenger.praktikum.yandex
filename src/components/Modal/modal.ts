@@ -1,5 +1,6 @@
+import { compile } from 'pug'
 import Block from '../../utils/Block'
-import template from './template.d'
+import {modalTemplate} from './modal.tmpl'
 interface ButtonProps {
   label: string
   events?: {
@@ -13,7 +14,7 @@ class Modal extends Block {
   }
 
   render() {
-    return this.compile(template, { ...this.props })
+    return this.compile(compile(modalTemplate), { ...this.props })
   }
 }
 export default Modal

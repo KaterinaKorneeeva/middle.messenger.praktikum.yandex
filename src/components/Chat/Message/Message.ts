@@ -1,5 +1,6 @@
+import { compile } from 'pug'
 import Block from '../../../utils/Block'
-import template from './template.d'
+import {messageTemplate} from './message.tmpl'
 
 interface MessageProps {
   massageText: string
@@ -11,6 +12,6 @@ export default class Message extends Block {
     super(props)
   }
   render() {
-    return this.compile(template, { ...this.props })
+    return this.compile(compile(messageTemplate), { ...this.props })
   }
 }

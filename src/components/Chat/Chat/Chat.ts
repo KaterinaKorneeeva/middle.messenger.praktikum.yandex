@@ -1,5 +1,6 @@
+import { compile } from 'pug'
 import Block from '../../../utils/Block'
-import template from './template.d'
+import {chatTemplate} from './chat.tmpl'
 import store from '../../../../src/utils/Store'
 import MessagesController from '../../../controllers/MessagesController'
 interface ChatProps {
@@ -34,6 +35,6 @@ export default class Chat extends Block {
   }
 
   render() {
-    return this.compile(template, { ...this.props })
+    return this.compile(compile(chatTemplate), { ...this.props })
   }
 }

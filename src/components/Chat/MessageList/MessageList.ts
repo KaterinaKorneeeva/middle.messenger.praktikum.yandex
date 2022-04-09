@@ -1,5 +1,6 @@
+import { compile } from 'pug'
 import Block from '../../../utils/Block'
-import template from './template.d'
+import {messageListTemplate} from './messageList.tmpl'
 import store from '../../../utils/Store'
 import Message from '../../../components/Chat/Message'
 import { adaptMessageData } from '../../../utils/profile'
@@ -21,7 +22,7 @@ class ChatHeader extends Block {
   }
 
   render() {
-    return this.compile(template, { ...this.props })
+    return this.compile(compile(messageListTemplate), { ...this.props })
   }
 
 }

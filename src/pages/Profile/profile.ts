@@ -1,6 +1,7 @@
+import { compile } from 'pug'
 import Block from '../../utils/Block'
 import '../../sass/main.scss'
-import template from './template.d'
+import {profileTemplate} from './profile.tmpl'
 import Button from '../../components/Button/Button'
 import ButtonSettings from '../../components/Button/SettingsButton'
 import ProfileImage from '../../components/ProfileImage'
@@ -247,7 +248,7 @@ class ProfilePage extends Block {
   }
 
   render() {
-    return this.compile(template, { ...this.props })
+    return this.compile(compile(profileTemplate), { ...this.props })
   }
 }
 

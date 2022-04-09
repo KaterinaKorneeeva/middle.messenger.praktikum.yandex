@@ -1,0 +1,8 @@
+export const modalAvatarTemplate = `
+div(id=modalId).modal
+    .modal__container
+        h3.modal__title !{modalTitle}
+          form(action="" id="editAvatar")
+            input(type="file" name="avatar" accept="image/*") 
+            | !{button}
+`

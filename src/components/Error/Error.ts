@@ -1,5 +1,6 @@
+import { compile } from 'pug'
 import Block from '../../utils/Block'
-import template from './template.d'
+import {errorTemplate} from './error.tmpl'
 
 interface ErrorProps {
   errorTitle: string
@@ -14,6 +15,6 @@ export default class Error extends Block {
   }
 
   render() {
-    return this.compile(template, { ...this.props })
+    return this.compile(compile(errorTemplate), { ...this.props })
   }
 }

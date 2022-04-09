@@ -1,5 +1,6 @@
+import { compile } from 'pug'
 import Block from '../../utils/Block'
-import template from './login.tmpl'
+import {loginTemplate} from './login.tmpl'
 import Button from '../../components/Button/Button'
 import Input from '../../components/Input'
 import Link from '../../components/Link'
@@ -75,7 +76,7 @@ export class LoginPage extends Block {
   }
 
   render() {
-    return this.compile(template, { ...this.props })
+    return this.compile(compile(loginTemplate), { ...this.props })
   }
 }
 

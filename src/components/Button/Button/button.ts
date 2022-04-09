@@ -1,5 +1,6 @@
+import { compile } from 'pug'
 import Block from '../../../utils/Block'
-import template from './button.tmpl'
+import { buttonTemplate } from './button.tmpl'
 interface ButtonProps {
   label?: string
   type?: string
@@ -14,7 +15,7 @@ class Button extends Block {
   }
 
   render() {
-    return this.compile(template, { ...this.props })
+    return this.compile(compile(buttonTemplate), { ...this.props })
   }
 }
 export default Button

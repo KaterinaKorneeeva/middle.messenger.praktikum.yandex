@@ -1,14 +1,9 @@
-block variables
-    - const siteTitle = 'Список чатов';
-
-block content
-    include ../../templates/main.pug
-        .chat-container 
-            .chat-list
-                .chat-list__container !{link} 
-                    | !{createChat} 
-                    | !{chatList}
-            .chat-area
-              | !{chatHeader}
-              | !{messageList}
-              | !{inputMessage}
+.chat-container 
+    .chat-list
+        .chat-list__container !{link} 
+            | !{createChat} 
+            | !{chatList}
+    .chat-area
+      | !{chatHeader}
+      | !{messageList}
+      | !{inputMessage}

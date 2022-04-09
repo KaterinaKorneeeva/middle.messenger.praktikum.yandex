@@ -1,5 +1,6 @@
+import { compile } from 'pug'
 import Block from '../../utils/Block'
-import template from './template.d'
+import {inputTemplate} from './input.tmpl'
 import { VALIDATOR } from '../../utils/const'
 
 interface InputProps {
@@ -44,7 +45,7 @@ class Input extends Block {
 
 
   render() {
-    return this.compile(template, { ...this.props })
+    return this.compile(compile(inputTemplate), { ...this.props })
   }
 }
 export default Input

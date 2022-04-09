@@ -1,0 +1,5 @@
+export const messageTemplate = `
+.chat-message(class!=className)
+    .chat-message__container
+        p.chat-message__text !{massageText}
+`

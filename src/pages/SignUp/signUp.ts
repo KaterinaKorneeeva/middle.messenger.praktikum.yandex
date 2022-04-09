@@ -1,6 +1,7 @@
+import { compile } from 'pug'
 import Block from '../../utils/Block'
 import '../../sass/main.scss'
-import template from './template.d'
+import {signupTemplate}  from './signup.tmpl'
 import Input from '../../components/Input'
 import Button from '../../components/Button/Button'
 import AuthController, { ControllerSignUpData } from '../../../src/controllers/AuthController'
@@ -107,6 +108,6 @@ export class SignUpPage extends Block {
   }
 
   render() {
-    return this.compile(template, { ...this.props })
+    return this.compile(compile(signupTemplate), { ...this.props })
   }
 }

@@ -1,6 +1,6 @@
 import Block from '../../utils/Block'
 import '../../sass/main.scss'
-import template from './signUp.pug'
+import template from './template.d'
 import Input from '../../components/Input'
 import Button from '../../components/Button/Button'
 import AuthController, { ControllerSignUpData } from '../../../src/controllers/AuthController'

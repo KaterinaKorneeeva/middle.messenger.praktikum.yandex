@@ -1,5 +1,5 @@
 import Block from '../../../utils/Block'
-import template from './template.pug'
+import template from './template.d'
 import store from '../../../utils/Store'
 import Message from '../../../components/Chat/Message'
 import { adaptMessageData } from '../../../utils/profile'

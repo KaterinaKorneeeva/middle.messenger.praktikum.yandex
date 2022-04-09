@@ -1,5 +1,5 @@
 import Block from '../../utils/Block'
-import template from './chat.pug'
+import template from './template.d'
 import Chat from '../../components/Chat/Chat'
 import ChatCreate from '../../components/Chat/ChatCreate'
 import ChatHeader from '../../components/Chat/ChatHeader'

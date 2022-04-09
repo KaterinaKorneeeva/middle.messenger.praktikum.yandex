@@ -1,5 +1,5 @@
 import Block from '../../../utils/Block'
-import template from './template.pug'
+import template from './template.d'
 import store from '../../../../src/utils/Store'
 import MessagesController from '../../../controllers/MessagesController'
 interface ChatProps {

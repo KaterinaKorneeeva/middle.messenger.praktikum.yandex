@@ -1,5 +1,5 @@
 import Block from '../../../utils/Block'
-import template from './template.pug'
+import template from './template.d'
 import Link from '../../../components/Link'
 import ChatController from '../../../controllers/ChatController'
 

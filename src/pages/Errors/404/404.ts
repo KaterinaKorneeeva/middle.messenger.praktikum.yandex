@@ -1,6 +1,6 @@
 import Block from '../../../utils/Block'
 import { Error } from '../../../components/Error'
-import template from '../template.pug'
+import template from '../template.d'
 import { Router } from '../../../utils/Router'
 import Link from '../../../components/Link'
 import {Path} from '../../../constants/router'

@@ -1,5 +1,5 @@
 import Block from '../../utils/Block'
-import template from './login.pug'
+import template from './login.tmpl'
 import Button from '../../components/Button/Button'
 import Input from '../../components/Input'
 import Link from '../../components/Link'

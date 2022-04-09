@@ -1,6 +1,6 @@
 import Block from '../../utils/Block'
 import '../../sass/main.scss'
-import template from './profile.pug'
+import template from './template.d'
 import Button from '../../components/Button/Button'
 import ButtonSettings from '../../components/Button/SettingsButton'
 import ProfileImage from '../../components/ProfileImage'

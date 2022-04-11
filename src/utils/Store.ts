@@ -40,7 +40,7 @@ class Store extends EventBus {
 const store = new Store()
 
 export const withStore = (mapStateToProps: (state: StoreData) => Record<string, unknown>) => (Component: typeof Block) => {
-  let state
+  let state: Record<string, unknown>;
 
   return class extends Component {
     constructor(props: any) {

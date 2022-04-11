@@ -218,7 +218,7 @@ class ProfilePage extends Block {
       console.log('error', e)
     }
 
-    const modalEditProfile = document.getElementById('modalEditProfile')
+    const modalEditProfile = <HTMLTextAreaElement>document.getElementById('modalEditProfile')
     modalEditProfile.classList.remove('active')
   }
 
@@ -237,12 +237,12 @@ class ProfilePage extends Block {
       console.log('error', e)
     }
 
-    const modalEditPass = document.getElementById('modalEditPass')
+    const modalEditPass = <HTMLTextAreaElement>document.getElementById('modalEditPass')
     modalEditPass.classList.remove('active')
   }
 
   public handleClickPassword() {
-    const modalEditPass = document.getElementById('modalEditPass')
+    const modalEditPass = <HTMLTextAreaElement>document.getElementById('modalEditPass')
     modalEditPass.classList.add('active')
   }
 

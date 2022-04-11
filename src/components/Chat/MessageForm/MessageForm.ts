@@ -1,12 +1,12 @@
 import { compile } from 'pug'
 import Block from '../../../utils/Block';
-import {messageFormTemplate} from './messageForm.tmpl'
+import { messageFormTemplate } from './messageForm.tmpl'
 import Input from '../../../components/Input'
 import store from '../../../../src/utils/Store'
 import MessagesController from '../../../controllers/MessagesController'
 
 export default class MessageForm extends Block {
-  constructor(props:any) {
+  constructor(props: any) {
     super({
       ...props,
       inputMessage: new Input({
@@ -32,8 +32,10 @@ export default class MessageForm extends Block {
     const dataTest = store.getState().activeChat
     const userId = dataTest?.userId
 
-    document.getElementById('message').value= ''
-    
+
+    const input = (document.getElementById('message') as HTMLInputElement)
+    input.value = ''
+
     if (userId && dataTest.chatid) {
       MessagesController.sendMessage({ type: 'message', content: data.message });
     }

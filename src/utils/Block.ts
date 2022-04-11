@@ -92,7 +92,7 @@ class Block {
     return true;
   }
 
-  componentDidMount(oldProps, newProps) {
+  componentDidMount(oldProps: any, newProps: any) {
     return !isEqual(oldProps, newProps);
   }
 

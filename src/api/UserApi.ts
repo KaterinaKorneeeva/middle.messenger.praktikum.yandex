@@ -7,6 +7,7 @@ export type EditProfileData = {
   second_name: string
   phone: string
   password: string
+  display_name: string
 }
 
 export type EditPassData = {

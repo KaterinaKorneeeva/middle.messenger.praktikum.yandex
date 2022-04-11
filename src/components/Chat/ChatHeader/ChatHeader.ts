@@ -25,7 +25,7 @@ class ChatHeader extends Block {
   }
 
   async handleAddUserClick() {
-    const userId = 2562
+    const userId = 315
     const data = {
       users: [userId],
       chatId: this.props.chatid
@@ -39,7 +39,7 @@ class ChatHeader extends Block {
   }
 
   async handleDeleteUserClick() {
-    const userId = 2562
+    const userId = 315
     const data = {
       users: [userId],
       chatId: this.props.chatid

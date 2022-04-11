@@ -4,7 +4,7 @@ import {modalAvatarTemplate} from './modalAvatar.tmpl'
 interface ButtonProps {
   label: string
   events?: {
-    submit?: () => void
+    submit?: () => void | undefined
   }
 }
 

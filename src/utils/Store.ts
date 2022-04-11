@@ -17,11 +17,16 @@ interface User {
   'avatar': string
 }
 
+interface ActiveChat {
+  'userId': number
+  'chatid': number
+}
+
 interface StoreData {
   currentUser?: User
   chats?: []
   messages?: []
-  activeChat?: [],
+  activeChat?: ActiveChat,
   activeChatMessages?: [],
 }
 class Store extends EventBus {

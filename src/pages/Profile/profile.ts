@@ -27,7 +27,7 @@ class ProfilePage extends Block {
       linkToProfile: new Button({
         className: 'button--arrow-back',
         events: {
-          click: (e) => this.handleLinkToProfileClick(e),
+          click: () => this.handleLinkToProfileClick(),
         },
       }),
       email: props.email,
@@ -178,7 +178,7 @@ class ProfilePage extends Block {
   }
 
   handleEditPhotoModal() {
-    const modalAddPhoto = document.getElementById('modalAddPhoto')
+    const modalAddPhoto = <HTMLTextAreaElement>document.getElementById('modalAddPhoto')
     modalAddPhoto.classList.add('active')
   }
 
@@ -190,12 +190,12 @@ class ProfilePage extends Block {
     } catch (e) {
       console.log('error', e)
     }
-    const modalAddPhoto = document.getElementById('modalAddPhoto')
+    const modalAddPhoto = <HTMLTextAreaElement>document.getElementById('modalAddPhoto')
     modalAddPhoto.classList.remove('active')
   }
 
   public handleClickEditInfo() {
-    const modalEditProfile = document.getElementById('modalEditProfile')
+    const modalEditProfile = <HTMLTextAreaElement>document.getElementById('modalEditProfile')
     modalEditProfile.classList.add('active')
   }
 

@@ -36,7 +36,7 @@ export default class MessageForm extends Block {
     const input = (document.getElementById('message') as HTMLInputElement)
     input.value = ''
 
-    if (userId && dataTest.chatid) {
+    if (userId && dataTest?.chatid) {
       MessagesController.sendMessage({ type: 'message', content: data.message });
     }
     else {

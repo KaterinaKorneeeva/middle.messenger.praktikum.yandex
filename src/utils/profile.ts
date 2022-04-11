@@ -10,7 +10,7 @@ export const adaptUsersData = (user:any) => {
   })
 }
 
-export const adaptChatData = (chat:any , activeChatId: number) => {
+export const adaptChatData = (chat:any , activeChatId: number | undefined) => {
   return Object.assign({}, chat, {
     avatar: chat.avatar,
     chatDate: chat.chatDate,
@@ -22,7 +22,7 @@ export const adaptChatData = (chat:any , activeChatId: number) => {
   })
 }
 
-export const adaptMessageData = (message: any, userId: number) => {
+export const adaptMessageData = (message: any, userId: number | undefined) => {
   return Object.assign({}, message, {
     massageText: message.content,
     className: userId === message.user_id ? 'chat-message--sent':'chat-message--incoming'

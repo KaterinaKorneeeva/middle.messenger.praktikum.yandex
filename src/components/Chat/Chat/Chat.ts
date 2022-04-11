@@ -10,7 +10,7 @@ interface ChatProps {
   chatDate: string
   unread_count: string
   activeChatId: boolean
-  last_message: string
+  last_message: Record<string, unknown>;
 }
 
 export default class Chat extends Block {

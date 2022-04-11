@@ -29,7 +29,8 @@ class MessagesController {
     }
 
     if (type !== 'message') {
-      data = data.map((message:any) => adaptMessageData(message))
+      const userId = store.getState().currentUser?.id
+      data = data.map((message:any) => adaptMessageData(message, userId))
     }
     return {data, type };
   }
@@ -78,7 +79,7 @@ class MessagesController {
     {
       const messages = store.getState().activeChatMessages || [];
       const newMessages = Array.isArray(res.data) ? res.data : [res.data];
-      store.set('activeChatMessages', (messages).concat(newMessages));
+      store.set('activeChatMessages', (messages as any[]).concat(newMessages));
     }
   }
 

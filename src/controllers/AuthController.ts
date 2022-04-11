@@ -23,10 +23,7 @@ class AuthController {
     const { confirmPassword, ...SignUpData } = data
 
     const response = await this.api.signUp(SignUpData)
-
-    if (response.reason) {
-      store.set('currentUser.error', response.reason)
-    }
+    return response
   }
 
   public async signIn(data: SignInData) {

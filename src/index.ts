@@ -13,7 +13,6 @@ import './sass/main.scss'
 
 const router = new Router();
 document.addEventListener('DOMContentLoaded', async () => {
-  alert(3)
   router
     .use('/', LoginPage)
     .use(Path.SignUp, SignUpPage)

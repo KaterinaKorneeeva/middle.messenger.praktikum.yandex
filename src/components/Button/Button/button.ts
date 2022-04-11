@@ -6,7 +6,7 @@ interface ButtonProps {
   type?: string
   className?: string 
   events?: {
-    onClick?: () => void
+    click?: () => void | undefined
   }
 }
 class Button extends Block {

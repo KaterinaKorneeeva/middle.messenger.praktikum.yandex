@@ -6,7 +6,7 @@ import ChatController from '../../../controllers/ChatController'
 
 
 class ChatHeader extends Block {
-  constructor(props) {
+  constructor(props:any | undefined) {
     super({
       ...props,
       addUser: new Link({

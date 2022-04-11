@@ -29,7 +29,7 @@ class MessagesController {
     }
 
     if (type !== 'message') {
-      data = data.map((message) => adaptMessageData(message))
+      data = data.map((message:any) => adaptMessageData(message))
     }
     return {data, type };
   }

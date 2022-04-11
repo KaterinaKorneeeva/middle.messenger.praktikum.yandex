@@ -6,7 +6,7 @@ import store from '../../../../src/utils/Store'
 import MessagesController from '../../../controllers/MessagesController'
 
 export default class MessageForm extends Block {
-  constructor(props) {
+  constructor(props:any) {
     super({
       ...props,
       inputMessage: new Input({

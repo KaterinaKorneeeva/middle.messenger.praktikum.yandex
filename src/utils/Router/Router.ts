@@ -1,5 +1,4 @@
 import { Route } from '../Route'
-import Block from '../Block'
 export default class Router {
   private static __instance: Router;
   private _routes: Route[] = [];
@@ -14,7 +13,7 @@ export default class Router {
     Router.__instance = this;
   }
 
-  public use(pathname: string, block: Block, props: object = {}) {
+  public use(pathname: string, block: any, props: object = {}) {
     const routeProps = Object.assign({ rootQuery: '#app' }, props);
     const route = new Route(pathname, block, routeProps)
 

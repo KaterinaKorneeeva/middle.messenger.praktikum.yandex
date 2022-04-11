@@ -11,7 +11,7 @@ interface Props {
 export default class Route {
 
   private _pathname: string;
-  private _blockClass: unknown;
+  private _blockClass: unknown | any;
   private _block: string | null;
   private _props: Props;
   private _root: HTMLElement | null;

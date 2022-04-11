@@ -1,7 +1,7 @@
 import { compile } from 'pug'
 import Block from '../../utils/Block'
 import {linkTemplate} from './link.tmpl'
-interface LinkProps {
+export interface LinkProps {
   label: string
   events?: {
     click?: () => void

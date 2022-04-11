@@ -6,10 +6,10 @@ import Input from '../../components/Input'
 import Button from '../../components/Button/Button'
 import AuthController, { ControllerSignUpData } from '../../../src/controllers/AuthController'
 import Link from '../../components/Link'
-import { Router } from '../../utils/Router';
 import { Path } from '../../constants/router'
+import {router} from '../../index'
 export class SignUpPage extends Block {
-  constructor(props) {
+  constructor(props:any) {
     super({
       label: 'Регистрация',
       formName: 'Регистрация',
@@ -79,11 +79,10 @@ export class SignUpPage extends Block {
         submit: (e: Event) => this.handleSubmit(e),
       },
     })
-    this.route = new Router()
   }
 
   onClick() {
-    this.route.go(Path.SignIn)
+    router.go(Path.SignIn)
   }
 
   async handleSubmit(e: Event) {

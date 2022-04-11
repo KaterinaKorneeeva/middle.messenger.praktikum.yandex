@@ -12,10 +12,8 @@ class Block {
   public id = nanoid(6)
 
   private _element: HTMLElement | null = null
-  private _meta: { props: any }
 
   protected props: any
-  private _timeoutId: undefined | ReturnType<typeof setTimeout>
 
   protected children: Record<string, Block>
   private eventBus: () => EventBus
@@ -26,9 +24,6 @@ class Block {
     const { props, children } = this.getChildren(propsAndChildren)
 
     this.children = children
-    this._meta = {
-      props,
-    }
 
     this.props = this._makePropsProxy(props)
     this.eventBus = () => eventBus
@@ -184,7 +179,7 @@ class Block {
   }
 
   remove() {
-    this.getContent().remove()
+    this.getContent()?.remove()
   }
 
   compile(template: (context: any) => string, context: any) {
@@ -209,7 +204,7 @@ class Block {
 
 
 
-    Object.entries(this.children).forEach(([key, child]) => {
+    Object.entries(this.children).forEach(([_key, child]) => {
       if (Array.isArray(child)) {
         child.forEach((elem) => {
           const stub = fragment.content.querySelector(`[data-id="id-${elem.id}"]`)

@@ -7,9 +7,9 @@ import Link from '../../components/Link'
 import '../../sass/main.scss'
 import AuthController from '../../../src/controllers/AuthController'
 import{ SignInData} from '../../api/AuthApi'
-import { Router } from '../../utils/Router'
 import {Path} from '../../constants/router'
 import store from '../../utils/Store'
+import {router} from '../../index'
 
 export class LoginPage extends Block {
   constructor() {
@@ -44,24 +44,23 @@ export class LoginPage extends Block {
         submit: (e: Event) => this.handleSubmit(e),
       },
     })
-    this.route = new Router()
   }
 
   async componentDidMount() {
     try {
       await AuthController.fetchUser();
       if (store.getState().currentUser) {
-        this.route.go('/messenger');
+        router.go('/messenger');
       }
     }
     catch (e) {
       console.log('e', e);
-      this.route.go('/')
+      router.go('/')
     }
   }
 
   onClick() {
-    this.route.go(Path.SignUp)
+    router.go(Path.SignUp)
   }
 
   handleSubmit(e: Event) {

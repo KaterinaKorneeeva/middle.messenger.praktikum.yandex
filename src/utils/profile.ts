@@ -10,7 +10,7 @@ export const adaptUsersData = (user:Array<{}>) => {
   })
 }
 
-export const adaptChatData = (chat:Array<{}>, activeChatId: number) => {
+export const adaptChatData = (chat:Array<{}> , activeChatId: number) => {
   return Object.assign({}, chat, {
     avatar: chat.avatar,
     chatDate: chat.chatDate,

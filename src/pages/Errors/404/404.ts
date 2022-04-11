@@ -2,11 +2,10 @@ import { compile } from 'pug'
 import Block from '../../../utils/Block'
 import { Error } from '../../../components/Error'
 import {errorTemplate} from '../error.tmpl'
-import { Router } from '../../../utils/Router'
 import Link from '../../../components/Link'
 import {Path} from '../../../constants/router'
-
 import '../../../sass/main.scss'
+import {router} from '../../../index'
 export class Error404 extends Block {
   constructor() {
     super({
@@ -23,11 +22,10 @@ export class Error404 extends Block {
         }),
       }),
     })
-    this.route = new Router()
   }
 
   onClick() {
-    this.route.go(Path.Chat)
+    router.go(Path.Chat)
   }
 
   render() {

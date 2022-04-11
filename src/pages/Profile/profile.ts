@@ -13,9 +13,9 @@ import UserController from '../../controllers/UserController'
 import { EditProfileData, EditPassData } from '../../api/UserApi'
 import { resolveAvatarSrc } from '../../utils/profile'
 import { Path } from '../../constants/router'
-import { Router } from '../../utils/Router'
+import {router} from '../../index'
 class ProfilePage extends Block {
-  constructor(props) {
+  constructor(props:any) {
     super({
       image: new ProfileImage({
         avatar: resolveAvatarSrc(props.avatar),
@@ -166,16 +166,15 @@ class ProfilePage extends Block {
         },
       }),
     })
-    this.route = new Router()
   }
 
   handleLinkToProfileClick() {
-    this.route.go(Path.Chat)
+    router.go(Path.Chat)
   }
 
   handleLogOutClick() {
     AuthController.logout()
-    this.route.go(Path.SignUp);
+    router.go(Path.SignUp);
   }
 
   handleEditPhotoModal() {

@@ -6,7 +6,7 @@ import Message from '../../../components/Chat/Message'
 import { adaptMessageData } from '../../../utils/profile'
 
 class ChatHeader extends Block {
-  constructor(props) {
+  constructor(props:any) {
     super({
       ...props,
       messageList: []
@@ -16,8 +16,8 @@ class ChatHeader extends Block {
   componentDidUpdate(oldProps: any, newProps: any) {
     const messagesList = store.getState().activeChatMessages
     const userId = store.getState().currentUser?.id
-    const adaptMessage = messagesList.map((message) => adaptMessageData(message, userId))
-    this.children.messageList = adaptMessage.map(data => new Message(data))
+    const adaptMessage = messagesList?.map((message:any) => adaptMessageData(message, userId))
+    this.children.messageList = adaptMessage?.map(data => new Message(data))
     return super.componentDidUpdate(oldProps, newProps)
   }
 

@@ -6,7 +6,7 @@
     "start": "parcel --no-cache --port 3000 src/*.html",
     "dev": "webpack serve --mode development &&  webpack --watch",
     "server": " node ./server.js",
-    "build": "parcel build src/*.html",
+    "build": "parcel build src/*.html --no-cache --np-optimize --no-scope-hoist",
     "eslint": "eslint . --ext .ts,.js",
     "stylelint": "stylelint '**/*.scss'",
     "stylelint::fix": "stylelint '**/*.scss' --fix",

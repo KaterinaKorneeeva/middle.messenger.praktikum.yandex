@@ -45,19 +45,7 @@ export class LoginPage extends Block {
     })
   }
 
-  // async componentDidMount() {
-  //   try {
-  //     await AuthController.fetchUser();
-  //     if (store.getState().currentUser) {
-  //       router.go('/messenger');
-  //     }
-  //   }
-  //   catch (e) {
-  //     console.log('e', e);
-  //     router.go('/')
-  //   }
-  // }
-
+  
   onClick() {
     router.go(Path.SignUp)
   }

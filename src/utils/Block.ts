@@ -14,8 +14,7 @@ class Block {
   private _element: HTMLElement | null = null
 
   protected props: any
-
-  protected children: Record<string, Block>
+  protected children: Record<string, Block> 
   private eventBus: () => EventBus
 
 

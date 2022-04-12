@@ -2,7 +2,7 @@ import { APIRoute } from '../../src/utils/const'
 
 export type MessageFormData = {
   data?: string,
-  content?: string,
+  content?: any,
   type?: string
 }
 

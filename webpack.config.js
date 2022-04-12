@@ -21,6 +21,7 @@ module.exports = {
     },
   },
   module: {
+    exprContextCritical: false,
     rules: [
       {
         test: /\.tsx?$/,
@@ -70,6 +71,7 @@ module.exports = {
       directory: path.resolve(__dirname, 'dist'),
     },
     historyApiFallback: true,
+   
     compress: true,
     port: 3000,
     open: true,

@@ -71,11 +71,13 @@
     "webpack-dev-server": "4.8.1"
   },
   "dependencies": {
+    "@types/sinon-chai": "^3.2.8",
     "css-loader": "6.7.1",
     "express": "4.17.2",
     "html-webpack-plugin": "5.5.0",
     "mini-css-extract-plugin": "2.6.0",
     "postcss-scss": "^4.0.3",
+    "request": "^2.79.0",
     "sass-loader": "12.6.0",
     "ts-loader": "9.2.8"
   }

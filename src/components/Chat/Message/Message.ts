@@ -2,13 +2,13 @@ import { compile } from 'pug'
 import Block from '../../../utils/Block'
 import {messageTemplate} from './message.tmpl'
 
-interface MessageProps {
-  massageText: string
-  className: string
-}
+// interface MessageProps {
+//   massageText: string
+//   className: string
+// }
 
 export default class Message extends Block {
-  constructor(props: MessageProps) {
+  constructor(props: any) {
     super(props)
   }
   render() {

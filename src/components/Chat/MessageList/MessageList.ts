@@ -17,7 +17,8 @@ class ChatHeader extends Block {
     const messagesList = store.getState().activeChatMessages
     const userId = store.getState().currentUser?.id
     const adaptMessage = messagesList?.map((message:any) => adaptMessageData(message, userId))
-    this.children.messageList = adaptMessage?.map(data => new Message(data))
+    // @ts-ignore
+    this.children.messageList = adaptMessage?.map((data:any) => new Message(data))
     return super.componentDidUpdate(oldProps, newProps)
   }
 

@@ -1,22 +1,13 @@
 import { isEqual, render } from '../helpers'
-interface Props {
-  rootQuery: string,
-  classes: string,
-  id?: string,
-  events?: {
-    string: () => void
-  },
-  state?: unknown
-}
 export default class Route {
 
   private _pathname: string
   private _blockClass: unknown | any
   private _block: string | null
-  private _props: Props
+  private _props: any
   private _root: HTMLElement | null
 
-  constructor(pathname: string, view: unknown, props: Props) {
+  constructor(pathname: string, view: unknown, props: any) {
     this._pathname = pathname
     this._blockClass = view
     this._block = null

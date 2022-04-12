@@ -1,15 +1,9 @@
 import { compile } from 'pug'
 import Block from '../../utils/Block'
 import {modalAvatarTemplate} from './modalAvatar.tmpl'
-interface ButtonProps {
-  label: string
-  events?: {
-    submit?: () => void | undefined
-  }
-}
 
 class Modal extends Block {
-  constructor(props: ButtonProps) {
+  constructor(props: any) {
     super(props)
   }
 

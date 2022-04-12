@@ -1,15 +1,8 @@
 import { compile } from 'pug'
 import Block from '../../utils/Block'
 import {modalTemplate} from './modal.tmpl'
-interface ButtonProps {
-  label: string
-  events?: {
-    submit?: () => void
-  }
-}
-
 class Modal extends Block {
-  constructor(props: ButtonProps) {
+  constructor(props: any) {
     super(props)
   }
 

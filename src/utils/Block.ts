@@ -60,8 +60,8 @@ class Block {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER, this.props)
   }
 
-  private _componentDidMount() {
-    this.componentDidMount();
+  private _componentDidMount(oldProps: any, newProps: any) {
+    this.componentDidMount(oldProps, newProps);
     Object.values(this.children).forEach(child => {
       if (Array.isArray(child)) {
         child.forEach(elem => {

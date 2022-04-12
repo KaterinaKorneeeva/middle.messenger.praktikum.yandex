@@ -8,7 +8,6 @@ import '../../sass/main.scss'
 import AuthController from '../../../src/controllers/AuthController'
 import{ SignInData} from '../../api/AuthApi'
 import {Path} from '../../constants/router'
-import store from '../../utils/Store'
 import {router} from '../../index'
 
 export class LoginPage extends Block {
@@ -46,18 +45,18 @@ export class LoginPage extends Block {
     })
   }
 
-  async componentDidMount() {
-    try {
-      await AuthController.fetchUser();
-      if (store.getState().currentUser) {
-        router.go('/messenger');
-      }
-    }
-    catch (e) {
-      console.log('e', e);
-      router.go('/')
-    }
-  }
+  // async componentDidMount() {
+  //   try {
+  //     await AuthController.fetchUser();
+  //     if (store.getState().currentUser) {
+  //       router.go('/messenger');
+  //     }
+  //   }
+  //   catch (e) {
+  //     console.log('e', e);
+  //     router.go('/')
+  //   }
+  // }
 
   onClick() {
     router.go(Path.SignUp)

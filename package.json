@@ -10,7 +10,13 @@
     "eslint": "eslint . --ext .ts,.js",
     "stylelint": "stylelint '**/*.scss'",
     "stylelint::fix": "stylelint '**/*.scss' --fix",
-    "test": "NODE_ENV=test mocha --require babel-register.js"
+    "test": "NODE_ENV=test mocha --require babel-register.js",
+    "prepare": "husky install",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{ts, js}": "eslint --cache --ext .js,.ts,.json --ignore-path .gitignore .",
+    "*.{scss, css}": "stylelint 'src/styles/**/*.{scss,css}'"
   },
   "author": "",
   "license": "ISC",
@@ -38,9 +44,11 @@
     "eslint-plugin-import": "2.25.4",
     "eslint-plugin-jsx-a11y": "6.5.1",
     "eslint-plugin-react": "7.29.3",
+    "husky": "^7.0.4",
     "jsdom": "19.0.0",
     "jsdom-global": "3.0.2",
     "jstransformer-markdown-it": "2.1.0",
+    "lint-staged": "^12.3.7",
     "mocha": "9.2.2",
     "nanoid": "3.3.1",
     "normalize.css": "8.0.1",

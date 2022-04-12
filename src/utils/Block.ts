@@ -1,6 +1,6 @@
 import EventBus from './EventBus'
 import { nanoid } from 'nanoid'
-import { isEqual } from './helpers';
+import { isEqual } from './helpers'
 class Block {
   static EVENTS = {
     INIT: 'init',
@@ -61,16 +61,16 @@ class Block {
   }
 
   private _componentDidMount(oldProps: any, newProps: any) {
-    this.componentDidMount(oldProps, newProps);
+    this.componentDidMount(oldProps, newProps)
     Object.values(this.children).forEach(child => {
       if (Array.isArray(child)) {
         child.forEach(elem => {
-          elem.dispatchComponentDidMount();
+          elem.dispatchComponentDidMount()
         })
       } else {
-        child.dispatchComponentDidMount();
+        child.dispatchComponentDidMount()
       }
-    });
+    })
   }
 
   dispatchComponentDidMount() {
@@ -78,22 +78,22 @@ class Block {
   }
 
   private _componentDidUpdate(oldProps: any, newProps: any) {
-    const response = this.componentDidUpdate(oldProps, newProps);
+    const response = this.componentDidUpdate(oldProps, newProps)
 
     if (response) {
-      this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+      this.eventBus().emit(Block.EVENTS.FLOW_RENDER)
     }
   }
 
   componentDidUpdate(oldProps: any, newProps: any): boolean {
     if (oldProps === newProps) {
-      return false;
+      return false
     }
-    return true;
+    return true
   }
 
   componentDidMount(oldProps: any, newProps: any) {
-    return !isEqual(oldProps, newProps);
+    return !isEqual(oldProps, newProps)
   }
 
   setProps = (nextProps: any) => {

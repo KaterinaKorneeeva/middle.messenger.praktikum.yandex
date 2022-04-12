@@ -1,8 +1,7 @@
 {
   "extends": [
     "eslint:recommended", 
-    "plugin:@typescript-eslint/recommended", 
-    "airbnb"
+    "plugin:import/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint"],
@@ -10,8 +9,10 @@
     "max-len": [1, 200],
     "max-params": [2, 3],
     "no-undef": "off",
+    "no-unused-vars": "off",
+    "no-useless-escape": "off",
     "semi": ["error", "never"],
-    "@typescript-eslint/no-var-requires": "error",
+    "no-prototype-builtins": "off",
     "import/extensions": [
       "error",
       "ignorePackages",

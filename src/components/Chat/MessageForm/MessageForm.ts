@@ -1,5 +1,5 @@
 import { compile } from 'pug'
-import Block from '../../../utils/Block';
+import Block from '../../../utils/Block'
 import { messageFormTemplate } from './messageForm.tmpl'
 import Input from '../../../components/Input'
 import store from '../../../../src/utils/Store'
@@ -37,7 +37,7 @@ export default class MessageForm extends Block {
     input.value = ''
 
     if (userId && dataTest?.chatid) {
-      MessagesController.sendMessage({ type: 'message', content: data.message });
+      MessagesController.sendMessage({ type: 'message', content: data.message })
     }
     else {
       console.log('пользователь не добавлен или не выбран чат')

@@ -47,4 +47,4 @@ class ChatCreate extends Block {
   }
 
 }
-export default ChatCreate;
+export default ChatCreate

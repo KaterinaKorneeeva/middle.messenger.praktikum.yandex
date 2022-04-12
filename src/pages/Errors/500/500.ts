@@ -3,7 +3,7 @@ import Block from '../../../utils/Block'
 import { Error } from '../../../components/Error'
 import {errorTemplate} from '../error.tmpl'
 import Link from '../../../components/Link'
-import {Path} from "../../../constants/router";
+import {Path} from "../../../constants/router"
 import {router} from '../../../index'
 import '../../../sass/main.scss'
 export class Error500 extends Block {

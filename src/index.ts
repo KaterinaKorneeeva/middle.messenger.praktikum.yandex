@@ -11,7 +11,7 @@ import ChatController from './controllers/ChatController'
 import './sass/main.scss'
 
 
-const router = new Router();
+const router = new Router()
 document.addEventListener('DOMContentLoaded', async () => {
   router
     .use('/', LoginPage)
@@ -28,8 +28,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     router.go('/')
   }
   router.start()
-});
+})
 
 export {
   router,
-};
+}

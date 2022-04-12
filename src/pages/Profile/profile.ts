@@ -174,7 +174,7 @@ class ProfilePage extends Block {
 
   handleLogOutClick() {
     AuthController.logout()
-    router.go(Path.SignUp);
+    router.go(Path.SignUp)
   }
 
   handleEditPhotoModal() {
@@ -251,4 +251,4 @@ class ProfilePage extends Block {
   }
 }
 
-export default ProfilePage;
+export default ProfilePage

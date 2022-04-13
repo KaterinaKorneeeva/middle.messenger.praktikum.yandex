@@ -28,4 +28,4 @@ export const VALIDATOR: Record<string, (value: string, againValue?: string) => V
 export const APIRoute = {
   RESOURCES: `https://ya-praktikum.tech/api/v2/resources`,
   WSS: `wss://ya-praktikum.tech/ws/chats`,
-};
+}

@@ -1,4 +1,6 @@
+export const inputTemplate = `
 .input-field
     label.input-field__label(for=id)=labelName
     input.input-field__input(id=id name=inputName placeholder=placeholder type=type value=inputValue required=required)
     p.input-field__error-text=errorText
+`

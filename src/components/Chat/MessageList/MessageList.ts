@@ -1,11 +1,12 @@
+import { compile } from 'pug'
 import Block from '../../../utils/Block'
-import template from './template.pug'
+import {messageListTemplate} from './messageList.tmpl'
 import store from '../../../utils/Store'
 import Message from '../../../components/Chat/Message'
 import { adaptMessageData } from '../../../utils/profile'
 
 class ChatHeader extends Block {
-  constructor(props) {
+  constructor(props:any) {
     super({
       ...props,
       messageList: []
@@ -15,13 +16,14 @@ class ChatHeader extends Block {
   componentDidUpdate(oldProps: any, newProps: any) {
     const messagesList = store.getState().activeChatMessages
     const userId = store.getState().currentUser?.id
-    const adaptMessage = messagesList.map((message) => adaptMessageData(message, userId))
-    this.children.messageList = adaptMessage.map(data => new Message(data))
+    const adaptMessage = messagesList?.map((message:any) => adaptMessageData(message, userId))
+    // @ts-ignore
+    this.children.messageList = adaptMessage?.map((data:any) => new Message(data))
     return super.componentDidUpdate(oldProps, newProps)
   }
 
   render() {
-    return this.compile(template, { ...this.props })
+    return this.compile(compile(messageListTemplate), { ...this.props })
   }
 
 }

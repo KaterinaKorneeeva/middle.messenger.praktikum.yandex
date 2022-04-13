@@ -1,6 +1,6 @@
 import EventBus from './EventBus'
 import { nanoid } from 'nanoid'
-import { isEqual } from './helpers';
+import { isEqual } from './helpers'
 class Block {
   static EVENTS = {
     INIT: 'init',
@@ -12,12 +12,9 @@ class Block {
   public id = nanoid(6)
 
   private _element: HTMLElement | null = null
-  private _meta: { props: any }
 
   protected props: any
-  private _timeoutId: undefined | ReturnType<typeof setTimeout>
-
-  protected children: Record<string, Block>
+  protected children: Record<string, Block> 
   private eventBus: () => EventBus
 
 
@@ -26,9 +23,6 @@ class Block {
     const { props, children } = this.getChildren(propsAndChildren)
 
     this.children = children
-    this._meta = {
-      props,
-    }
 
     this.props = this._makePropsProxy(props)
     this.eventBus = () => eventBus
@@ -65,17 +59,17 @@ class Block {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER, this.props)
   }
 
-  private _componentDidMount() {
-    this.componentDidMount();
+  private _componentDidMount(oldProps: any, newProps: any) {
+    this.componentDidMount(oldProps, newProps)
     Object.values(this.children).forEach(child => {
       if (Array.isArray(child)) {
         child.forEach(elem => {
-          elem.dispatchComponentDidMount();
+          elem.dispatchComponentDidMount()
         })
       } else {
-        child.dispatchComponentDidMount();
+        child.dispatchComponentDidMount()
       }
-    });
+    })
   }
 
   dispatchComponentDidMount() {
@@ -83,22 +77,22 @@ class Block {
   }
 
   private _componentDidUpdate(oldProps: any, newProps: any) {
-    const response = this.componentDidUpdate(oldProps, newProps);
+    const response = this.componentDidUpdate(oldProps, newProps)
 
     if (response) {
-      this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+      this.eventBus().emit(Block.EVENTS.FLOW_RENDER)
     }
   }
 
   componentDidUpdate(oldProps: any, newProps: any): boolean {
     if (oldProps === newProps) {
-      return false;
+      return false
     }
-    return true;
+    return true
   }
 
-  componentDidMount(oldProps, newProps) {
-    return !isEqual(oldProps, newProps);
+  componentDidMount(oldProps: any, newProps: any) {
+    return !isEqual(oldProps, newProps)
   }
 
   setProps = (nextProps: any) => {
@@ -184,7 +178,7 @@ class Block {
   }
 
   remove() {
-    this.getContent().remove()
+    this.getContent()?.remove()
   }
 
   compile(template: (context: any) => string, context: any) {
@@ -209,7 +203,7 @@ class Block {
 
 
 
-    Object.entries(this.children).forEach(([key, child]) => {
+    Object.entries(this.children).forEach(([_key, child]) => {
       if (Array.isArray(child)) {
         child.forEach((elem) => {
           const stub = fragment.content.querySelector(`[data-id="id-${elem.id}"]`)

@@ -1,5 +1,6 @@
+import { compile } from 'pug'
 import Block from '../../utils/Block'
-import template from './template.pug'
+import {inputTemplate} from './input.tmpl'
 import { VALIDATOR } from '../../utils/const'
 
 interface InputProps {
@@ -22,11 +23,11 @@ class Input extends Block {
     })
   }
 
-  onValid(name: string, value: FormDataEntryValue | null): { isValid: boolean, errorText: string } | void {
+  onValid(name: string, value: any | null): { isValid: boolean, errorText: string } | void {
     return VALIDATOR[`${name}`]?.(value)
   }
 
-  onUpdate(name: string, value: FormDataEntryValue | null) {
+  onUpdate(name: string, value: any | null) {
     const { isValid = true, errorText = '' } = this.onValid(name, value) || {}
     this.setProps({
       ...this.props,
@@ -37,14 +38,14 @@ class Input extends Block {
     })
   }
 
-  handleBlur(e: FocusEvent) {
+  handleBlur(e: Event) {
     const { name, value } = (<HTMLInputElement>e.target)
     this.onUpdate(name, value)
   }
 
 
   render() {
-    return this.compile(template, { ...this.props })
+    return this.compile(compile(inputTemplate), { ...this.props })
   }
 }
 export default Input

@@ -18,22 +18,19 @@ class AuthController {
   public async signUp(data: ControllerSignUpData) {
     if (data.confirmPassword !== data.password) {
       console.log(' Passwords are not the same')
-      store.set('currentUser.error', 'Passwords are not the same')
       return
     }
     const { confirmPassword, ...SignUpData } = data
 
     const response = await this.api.signUp(SignUpData)
-
-    if (response.reason) {
-      store.set('currentUser.error', response.reason)
-    }
+    return response
   }
 
   public async signIn(data: SignInData) {
     await this.api.signIn(data)
     await this.fetchUser()
     const router = new Router()
+    console.log('Path.Chat)',Path.Chat)
     router.go(Path.Chat)
   }
 

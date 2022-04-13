@@ -1,11 +1,12 @@
+import { compile } from 'pug'
 import Block from '../../../utils/Block'
-import template from './template.pug'
+import {chatHeaderTemplate} from './ChatHeader.tmpl'
 import Link from '../../../components/Link'
 import ChatController from '../../../controllers/ChatController'
 
 
 class ChatHeader extends Block {
-  constructor(props) {
+  constructor(props:any | undefined) {
     super({
       ...props,
       addUser: new Link({
@@ -24,7 +25,7 @@ class ChatHeader extends Block {
   }
 
   async handleAddUserClick() {
-    const userId = 2562
+    const userId = 315
     const data = {
       users: [userId],
       chatId: this.props.chatid
@@ -38,7 +39,7 @@ class ChatHeader extends Block {
   }
 
   async handleDeleteUserClick() {
-    const userId = 2562
+    const userId = 315
     const data = {
       users: [userId],
       chatId: this.props.chatid
@@ -53,7 +54,7 @@ class ChatHeader extends Block {
   }
 
   render() {
-    return this.compile(template, { ...this.props })
+    return this.compile(compile(chatHeaderTemplate), { ...this.props })
   }
 
 }

@@ -1,6 +1,6 @@
 type Indexed<T = any> = {
   [key in string]: T
-};
+}
 
 export function merge(lhs: Indexed, rhs: Indexed): Indexed {
   for (let p in rhs) {
@@ -33,7 +33,7 @@ export function set(object: Indexed | unknown, path: string, value: unknown): In
 
   const result = path.split('.').reduceRight<Indexed>((acc, key) => ({
     [key]: acc,
-  }), value as any);
+  }), value as any)
   return merge(object as Indexed, result)
 }
 

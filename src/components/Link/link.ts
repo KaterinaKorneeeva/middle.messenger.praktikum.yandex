@@ -1,6 +1,7 @@
+import { compile } from 'pug'
 import Block from '../../utils/Block'
-import template from './template.pug'
-interface LinkProps {
+import {linkTemplate} from './link.tmpl'
+export interface LinkProps {
   label: string
   events?: {
     click?: () => void
@@ -12,7 +13,7 @@ class Link extends Block {
   }
 
   render() {
-    return this.compile(template, { ...this.props })
+    return this.compile(compile(linkTemplate), { ...this.props })
   }
 }
 export default Link

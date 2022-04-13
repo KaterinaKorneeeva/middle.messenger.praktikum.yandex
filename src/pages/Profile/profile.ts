@@ -1,6 +1,7 @@
+import { compile } from 'pug'
 import Block from '../../utils/Block'
 import '../../sass/main.scss'
-import template from './profile.pug'
+import {profileTemplate} from './profile.tmpl'
 import Button from '../../components/Button/Button'
 import ButtonSettings from '../../components/Button/SettingsButton'
 import ProfileImage from '../../components/ProfileImage'
@@ -12,9 +13,9 @@ import UserController from '../../controllers/UserController'
 import { EditProfileData, EditPassData } from '../../api/UserApi'
 import { resolveAvatarSrc } from '../../utils/profile'
 import { Path } from '../../constants/router'
-import { Router } from '../../utils/Router'
+import {router} from '../../index'
 class ProfilePage extends Block {
-  constructor(props) {
+  constructor(props:any) {
     super({
       image: new ProfileImage({
         avatar: resolveAvatarSrc(props.avatar),
@@ -26,7 +27,7 @@ class ProfilePage extends Block {
       linkToProfile: new Button({
         className: 'button--arrow-back',
         events: {
-          click: (e) => this.handleLinkToProfileClick(e),
+          click: () => this.handleLinkToProfileClick(),
         },
       }),
       email: props.email,
@@ -165,20 +166,19 @@ class ProfilePage extends Block {
         },
       }),
     })
-    this.route = new Router()
   }
 
   handleLinkToProfileClick() {
-    this.route.go(Path.Chat)
+    router.go(Path.Chat)
   }
 
   handleLogOutClick() {
     AuthController.logout()
-    this.route.go(Path.SignUp);
+    router.go(Path.SignUp)
   }
 
   handleEditPhotoModal() {
-    const modalAddPhoto = document.getElementById('modalAddPhoto')
+    const modalAddPhoto = <HTMLTextAreaElement>document.getElementById('modalAddPhoto')
     modalAddPhoto.classList.add('active')
   }
 
@@ -190,12 +190,12 @@ class ProfilePage extends Block {
     } catch (e) {
       console.log('error', e)
     }
-    const modalAddPhoto = document.getElementById('modalAddPhoto')
+    const modalAddPhoto = <HTMLTextAreaElement>document.getElementById('modalAddPhoto')
     modalAddPhoto.classList.remove('active')
   }
 
   public handleClickEditInfo() {
-    const modalEditProfile = document.getElementById('modalEditProfile')
+    const modalEditProfile = <HTMLTextAreaElement>document.getElementById('modalEditProfile')
     modalEditProfile.classList.add('active')
   }
 
@@ -218,7 +218,7 @@ class ProfilePage extends Block {
       console.log('error', e)
     }
 
-    const modalEditProfile = document.getElementById('modalEditProfile')
+    const modalEditProfile = <HTMLTextAreaElement>document.getElementById('modalEditProfile')
     modalEditProfile.classList.remove('active')
   }
 
@@ -237,18 +237,18 @@ class ProfilePage extends Block {
       console.log('error', e)
     }
 
-    const modalEditPass = document.getElementById('modalEditPass')
+    const modalEditPass = <HTMLTextAreaElement>document.getElementById('modalEditPass')
     modalEditPass.classList.remove('active')
   }
 
   public handleClickPassword() {
-    const modalEditPass = document.getElementById('modalEditPass')
+    const modalEditPass = <HTMLTextAreaElement>document.getElementById('modalEditPass')
     modalEditPass.classList.add('active')
   }
 
   render() {
-    return this.compile(template, { ...this.props })
+    return this.compile(compile(profileTemplate), { ...this.props })
   }
 }
 
-export default ProfilePage;
+export default ProfilePage

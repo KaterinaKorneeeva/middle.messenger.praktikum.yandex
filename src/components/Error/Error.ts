@@ -1,19 +1,13 @@
+import { compile } from 'pug'
 import Block from '../../utils/Block'
-import template from './template.pug'
-
-interface ErrorProps {
-  errorTitle: string
-  errorSubTitle: string
-  errorBtnText: string
-  errorNavPath: string
-}
+import {errorTemplate} from './error.tmpl'
 
 export default class Error extends Block {
-  constructor(props: ErrorProps) {
+  constructor(props: any) {
     super(props)
   }
 
   render() {
-    return this.compile(template, { ...this.props })
+    return this.compile(compile(errorTemplate), { ...this.props })
   }
 }

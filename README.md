@@ -5,10 +5,10 @@
 https://www.figma.com/file/24EUnEHGEDNLdOcxg7ULwV/Chat?node-id=0%3A1
 
 ## Команда для сборки:
-- npm run start
+- npm run dev
 
 ## Команда для ESLint :
-- node_modules/.bin/eslint .  
+- npm run eslint
 
 ## Команда для stylelint :
 - npm run stylelint  
@@ -20,12 +20,21 @@ https://www.figma.com/file/24EUnEHGEDNLdOcxg7ULwV/Chat?node-id=0%3A1
 https://musical-licorice-cc279a.netlify.app
 
 ## Для проверки  Websocket
-в чат добавляется пользователь  c id = 409052
-id 409052
-login test_katerina123
-pass 12345678Tt
+в чат добавляется пользователь  c id = 315<br />
+id 315<br />
+login 999kokatrn<br />
+pass 1234567Tt<br />
 
-## Ссылки на страницы приложения
+## Запуск docker контейнера
+    docker ps 
+    docker stop <CONTAINER ID>
+    docker build . -t <IMAGE>
+    docker run -p 3000:3000 -d <IMAGE>
+
+## Ссылка на страницу приложения на Heroku
+https://praktikum-chat-new.herokuapp.com/messenger
+
+## Ссылки на страницы приложения Netlify
 https://musical-licorice-cc279a.netlify.app <br />
 https://musical-licorice-cc279a.netlify.app/sign-up <br />
 https://musical-licorice-cc279a.netlify.app/messenger <br />
@@ -34,5 +43,5 @@ https://musical-licorice-cc279a.netlify.app/404 <br />
 https://musical-licorice-cc279a.netlify.app/500 
 
 ## Пулл реквест
-https://github.com/KaterinaKorneeeva/middle.messenger.praktikum.yandex/pull/7
+https://github.com/KaterinaKorneeeva/middle.messenger.praktikum.yandex/pull/8
 

@@ -3,10 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "parcel --no-cache --port 3000 src/*.html",
     "dev": "webpack serve --mode development &&  webpack --watch",
     "server": " node ./server.js",
-    "build": "parcel build src/*.html --no-cache --no-optimize --no-scope-hoist",
+    "build": "rimraf dist && webpack",
     "eslint": "eslint . --ext .ts,.js",
     "stylelint": "stylelint '**/*.scss'",
     "stylelint::fix": "stylelint '**/*.scss' --fix",

@@ -1,8 +1,7 @@
 import { expect } from 'chai'
 import sinon from 'sinon'
 import { JSDOM } from 'jsdom'
-import { Router } from './Router'
-
+import {router} from '../index'
 describe('Проверяем переходы у Роута', () => {
 
   const { window } = new JSDOM(
@@ -16,8 +15,6 @@ describe('Проверяем переходы у Роута', () => {
   // @ts-ignore
   global.window = window
   global.document = window.document
-  // @ts-ignore
-  const router = new Router('#app')
 
   it('Переход на новую страницу должен менять состояние сущности history', () => {
     router.history.pushState({ page: '/' }, 'LoginPage', '/')

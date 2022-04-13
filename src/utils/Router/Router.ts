@@ -2,7 +2,7 @@ import { Route } from '../Route'
 export default class Router {
   private static __instance: Router
   private _routes: Route[] = []
-  private _history = window.history
+  public history = window.history
   private _currentRoute: Route | null = null
 
   constructor() {
@@ -47,21 +47,21 @@ export default class Router {
   }
 
   public go(pathname: string) {
-    this._history.pushState({}, '', pathname)
+    this.history.pushState({}, '', pathname)
     this._onRoute(pathname)
   }
 
   public replace(pathname: string) {
-    this._history.replaceState({}, '', pathname)
+    this.history.replaceState({}, '', pathname)
     this._onRoute(pathname)
   }
 
   public back() {
-    this._history.back()
+    this.history.back()
   }
 
   public forward() {
-    this._history.forward()
+    this.history.forward()
   }
 
   private _getRoute(pathname: string) {

@@ -13,6 +13,7 @@
     "no-useless-escape": "off",
     "semi": ["error", "never"],
     "no-prototype-builtins": "off",
+    "import/no-named-as-default-member": "off",
     "import/extensions": [
       "error",
       "ignorePackages",

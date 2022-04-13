@@ -1,14 +1,14 @@
+import { compile } from 'pug'
 import Block from '../../utils/Block'
-import template from './login.pug'
+import {loginTemplate} from './login.tmpl'
 import Button from '../../components/Button/Button'
 import Input from '../../components/Input'
 import Link from '../../components/Link'
 import '../../sass/main.scss'
 import AuthController from '../../../src/controllers/AuthController'
 import{ SignInData} from '../../api/AuthApi'
-import { Router } from '../../utils/Router'
 import {Path} from '../../constants/router'
-import store from '../../utils/Store'
+import {router} from '../../index'
 
 export class LoginPage extends Block {
   constructor() {
@@ -43,24 +43,11 @@ export class LoginPage extends Block {
         submit: (e: Event) => this.handleSubmit(e),
       },
     })
-    this.route = new Router()
   }
 
-  async componentDidMount() {
-    try {
-      await AuthController.fetchUser();
-      if (store.getState().currentUser) {
-        this.route.go('/messenger');
-      }
-    }
-    catch (e) {
-      console.log('e', e);
-      this.route.go('/')
-    }
-  }
-
+  
   onClick() {
-    this.route.go(Path.SignUp)
+    router.go(Path.SignUp)
   }
 
   handleSubmit(e: Event) {
@@ -75,7 +62,7 @@ export class LoginPage extends Block {
   }
 
   render() {
-    return this.compile(template, { ...this.props })
+    return this.compile(compile(loginTemplate), { ...this.props })
   }
 }
 

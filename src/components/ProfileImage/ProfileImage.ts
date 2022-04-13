@@ -1,5 +1,6 @@
+import { compile } from 'pug'
 import Block from '../../utils/Block'
-import template from './template.pug'
+import {ProfileImageTemplate} from './profileImage.tmpl'
 
 interface ProfileImageProps {
   avatar?: string
@@ -16,6 +17,6 @@ export default class ProfileImage extends Block {
   }
 
   render() {
-    return this.compile(template, { ...this.props })
+    return this.compile(compile(ProfileImageTemplate), { ...this.props })
   }
 }

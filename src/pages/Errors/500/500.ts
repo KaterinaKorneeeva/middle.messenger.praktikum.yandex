@@ -1,9 +1,10 @@
+import { compile } from 'pug'
 import Block from '../../../utils/Block'
 import { Error } from '../../../components/Error'
-import template from '../template.pug'
-import { Router } from '../../../utils/Router';
+import {errorTemplate} from '../error.tmpl'
 import Link from '../../../components/Link'
-import {Path} from "../../../constants/router";
+import {Path} from "../../../constants/router"
+import {router} from '../../../index'
 import '../../../sass/main.scss'
 export class Error500 extends Block {
   constructor() {
@@ -21,15 +22,14 @@ export class Error500 extends Block {
         }),
       }),
     })
-    this.route = new Router()
   }
 
   onClick() {
-    this.route.go(Path.Chat)
+    router.go(Path.Chat)
   }
   render() {
     const { content } = this.props
-    return this.compile(template, { content })
+    return this.compile(compile(errorTemplate), { content })
   }
 }
 

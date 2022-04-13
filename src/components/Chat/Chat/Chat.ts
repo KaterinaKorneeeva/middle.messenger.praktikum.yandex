@@ -1,5 +1,6 @@
+import { compile } from 'pug'
 import Block from '../../../utils/Block'
-import template from './template.pug'
+import {chatTemplate} from './chat.tmpl'
 import store from '../../../../src/utils/Store'
 import MessagesController from '../../../controllers/MessagesController'
 interface ChatProps {
@@ -9,6 +10,7 @@ interface ChatProps {
   chatDate: string
   unread_count: string
   activeChatId: boolean
+  last_message: Record<string, unknown>;
 }
 
 export default class Chat extends Block {
@@ -34,6 +36,6 @@ export default class Chat extends Block {
   }
 
   render() {
-    return this.compile(template, { ...this.props })
+    return this.compile(compile(chatTemplate), { ...this.props })
   }
 }

@@ -1,19 +1,13 @@
+import { compile } from 'pug'
 import Block from '../../utils/Block'
-import template from './template.pug'
-interface ButtonProps {
-  label: string
-  events?: {
-    submit?: () => void
-  }
-}
-
+import {modalTemplate} from './modal.tmpl'
 class Modal extends Block {
-  constructor(props: ButtonProps) {
+  constructor(props: any) {
     super(props)
   }
 
   render() {
-    return this.compile(template, { ...this.props })
+    return this.compile(compile(modalTemplate), { ...this.props })
   }
 }
 export default Modal

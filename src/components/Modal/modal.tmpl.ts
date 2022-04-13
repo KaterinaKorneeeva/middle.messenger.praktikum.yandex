@@ -1,3 +1,4 @@
+export const modalTemplate = `
 div(id=modalId).modal
     .modal__container
         h3.modal__title !{modalTitle}
@@ -6,4 +7,4 @@ div(id=modalId).modal
             | !{content}
             div !{button}
               .small.modal__error-text.error #{modalErrorText}
-              
+`

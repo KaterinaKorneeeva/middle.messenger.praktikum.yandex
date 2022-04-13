@@ -1,12 +1,12 @@
-const path = require('path');
-const webpack = require('webpack');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const webpack = require('webpack')
 
 module.exports = {
   mode: 'development',
-  entry: ['/src/index.ts', '/src/sass/main.scss'],
+  target: "web",
+  entry: './src/index.ts',
   output: {
     path: path.resolve(__dirname, 'dist/'),
     filename: 'messenger.bundle.js',
@@ -36,16 +36,16 @@ module.exports = {
         exclude: /(node_modules)/
       },
       {
+        test: /\.(png|svg|jpg|gif|woff(2)?|eot|ttf|otf)$/,
+        type: 'asset/resource',
+      },
+      {
         test: /\.s[ac]ss$/i,
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader',
           'sass-loader',
         ],
-      },
-      {
-        test: /\.(png|svg|jpg|gif|woff(2)?|eot|ttf|otf)$/,
-        type: 'asset/resource',
       },
       {
         test: /\.pug$/,
@@ -57,21 +57,24 @@ module.exports = {
     new webpack.ProvidePlugin({
       process: 'process/browser',
     }),
-    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, '/src/index.html'),
+      template: './src/index.html',
       filename: 'index.html',
+      favicon: './static/favicon.ico',
     }),
-    new MiniCssExtractPlugin(),
+    new MiniCssExtractPlugin({
+      filename: '[name].[contenthash:5].css'
+    })
   ],
   devServer: {
     static: {
       directory: path.resolve(__dirname, 'dist'),
     },
     historyApiFallback: true,
+   
     compress: true,
     port: 3000,
     open: true,
     hot: true,
   }
-};
+}
